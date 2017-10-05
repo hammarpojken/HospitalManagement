@@ -1,5 +1,7 @@
+package Hospital;
 import java.io.IOException;
 
+import GUI.LoginViewController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -31,7 +33,7 @@ public class MainApp extends Application {
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("GUI/RootLayout.fxml"));
+            loader.setLocation(MainApp.class.getResource("../GUI/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
 
             // Show the scene containing the root layout.
@@ -50,12 +52,15 @@ public class MainApp extends Application {
         try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("GUI/LoginView.fxml"));
+            loader.setLocation(MainApp.class.getResource("../GUI/LoginView.fxml"));
             Pane loginView = (Pane) loader.load();
             
 
             // Set person overview into the center of root layout.
             rootLayout.setCenter(loginView);
+            
+            LoginViewController controller = loader.getController();
+            controller.setMainApp(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
