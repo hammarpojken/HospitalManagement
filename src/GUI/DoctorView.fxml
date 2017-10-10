@@ -19,11 +19,11 @@
                <children>
                   <Pane prefHeight="401.0" prefWidth="429.0">
                      <children>
-                        <TableView layoutX="27.0" layoutY="50.0" prefHeight="258.0" prefWidth="306.0">
-                          <columns>
-                            <TableColumn prefWidth="75.0" text="First name" />
-                            <TableColumn prefWidth="75.0" text="Last name" />
-                          </columns>
+                        <TableView fx:id="tv" layoutX="27.0" layoutY="50.0" prefHeight="258.0" prefWidth="306.0">
+                           <columns>
+                              <TableColumn fx:id="nameCol" prefWidth="75.0" text="First name" />
+                              <TableColumn fx:id="lnameCol" prefWidth="75.0" text="Last name" />
+                           </columns>
                         </TableView>
                         <Button layoutX="366.0" layoutY="50.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Show Patients" />
                         <Button layoutX="366.0" layoutY="98.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Show Journal" />
