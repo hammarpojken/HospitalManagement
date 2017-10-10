@@ -51,8 +51,9 @@ public class LoginViewController {
 		
 		try {
 			boolean b = login.checkUser();
-			FXMLLoader loader = new FXMLLoader();
+			
 			if (b == true) {
+				FXMLLoader loader = new FXMLLoader();
 				String role = login.checkRole();
 				if(role.equals("nurse")) {
 			         loader.setLocation(LoginViewController.class.getResource("../GUI/NurseView.fxml"));
@@ -60,23 +61,23 @@ public class LoginViewController {
 			         mainApp.getRoot().setCenter(journal);
 			         
 				}
-				if(role.equals("doctor")) {
+				else if(role.equals("doctor")) {
 			         loader.setLocation(LoginViewController.class.getResource("../GUI/DoctorView.fxml"));
 			         Pane journal = (Pane) loader.load();
 			         mainApp.getRoot().setCenter(journal);
 				
 			    }
-				if(role.equals("admin")) {
+				else if(role.equals("admin")) {
 			         loader.setLocation(LoginViewController.class.getResource("../GUI/AdminView.fxml"));
 			         Pane journal = (Pane) loader.load();
 			         mainApp.getRoot().setCenter(journal);
 				}
-				if(role.equals("receptionist")) {
+				else if(role.equals("receptionist")) {
 			         loader.setLocation(LoginViewController.class.getResource("../GUI/ReceptionistView.fxml"));
 			         Pane journal = (Pane) loader.load();
 			         mainApp.getRoot().setCenter(journal);
 				}
-				if(role.equals("patient")) {
+				else if(role.equals("patient")) {
 			         loader.setLocation(LoginViewController.class.getResource("../GUI/PatientView.fxml"));
 			         Pane journal = (Pane) loader.load();
 			         mainApp.getRoot().setCenter(journal);
