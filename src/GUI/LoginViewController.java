@@ -51,15 +51,36 @@ public class LoginViewController {
 		
 		try {
 			boolean b = login.checkUser();
+			FXMLLoader loader = new FXMLLoader();
 			if (b == true) {
 				String role = login.checkRole();
 				if(role.equals("nurse")) {
-					 FXMLLoader loader = new FXMLLoader();
-			         loader.setLocation(LoginViewController.class.getResource("../GUI/Journal.fxml"));
+			         loader.setLocation(LoginViewController.class.getResource("../GUI/NurseView.fxml"));
+			         Pane journal = (Pane) loader.load();
+			         mainApp.getRoot().setCenter(journal);
+			         
+				}
+				if(role.equals("doctor")) {
+			         loader.setLocation(LoginViewController.class.getResource("../GUI/DoctorView.fxml"));
+			         Pane journal = (Pane) loader.load();
+			         mainApp.getRoot().setCenter(journal);
+				
+			    }
+				if(role.equals("admin")) {
+			         loader.setLocation(LoginViewController.class.getResource("../GUI/AdminView.fxml"));
 			         Pane journal = (Pane) loader.load();
 			         mainApp.getRoot().setCenter(journal);
 				}
-				
+				if(role.equals("receptionist")) {
+			         loader.setLocation(LoginViewController.class.getResource("../GUI/ReceptionistView.fxml"));
+			         Pane journal = (Pane) loader.load();
+			         mainApp.getRoot().setCenter(journal);
+				}
+				if(role.equals("patient")) {
+			         loader.setLocation(LoginViewController.class.getResource("../GUI/PatientView.fxml"));
+			         Pane journal = (Pane) loader.load();
+			         mainApp.getRoot().setCenter(journal);
+				}
 			}
 			System.out.println(b);
 		} catch (SQLException e) {
