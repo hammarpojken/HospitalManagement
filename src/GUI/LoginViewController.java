@@ -25,7 +25,7 @@ public class LoginViewController {
 	@FXML
 	public void initialize() {
 		proffChoice.setItems(FXCollections.observableArrayList(
-    "Nurse", "Doctor", "Receptionist", "Patient", "Admin"));
+    "Staff", "Patient"));
 	}
 	
 	public LoginViewController() {
