@@ -14,6 +14,7 @@ public class MainApp extends Application {
 
     private Stage primaryStage;
     private BorderPane rootLayout;
+    private Person currentUser;
 
     @Override
     public void start(Stage primaryStage) {
@@ -50,13 +51,13 @@ public class MainApp extends Application {
      */
     public void showLoginView() {
         try {
-            // Load person overview.
+            // Load login overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("../GUI/LoginView.fxml"));
             Pane loginView = (Pane) loader.load();
             
 
-            // Set person overview into the center of root layout.
+            // Set login overview into the center of root layout.
             rootLayout.setCenter(loginView);
             
             LoginViewController controller = loader.getController();
@@ -72,6 +73,12 @@ public class MainApp extends Application {
      */
     public Stage getPrimaryStage() {
         return primaryStage;
+    }
+    public void setUser(Person person) {
+    	this.currentUser = person;
+    }
+    public BorderPane getRoot() {
+    	return rootLayout;
     }
 
     public static void main(String[] args) {

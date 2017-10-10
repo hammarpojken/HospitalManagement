@@ -1,15 +1,13 @@
 package Hospital;
 
-public class Nurse {
+public class Nurse extends Person {
 	
-	private String fName;
-	private String lName;
-	private int ssn;
 	
-	public Nurse(String firstName, String lastName, int ssN) {
-		this.fName = firstName;
-		this.lName = lastName;
-		this.ssn = ssN;
+	public Nurse(String firstName, String lastName, String role) {
+		super(firstName, lastName, role);
+	}
+	public void mycketkul(){
+		
 	}
 
 }

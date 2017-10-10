@@ -11,33 +11,56 @@ import java.sql.Statement;
 public class Login {
 	
 	private String userName;
-	private String password;
+	private String passWord;
 	private String proffession;
+	private MainApp mainApp;
+	private ResultSet rs = null;
 	
-	public Login(String uname, String pass, String proff) {
+	public Login(MainApp app, String uname, String pass, String proff) {
+		this.mainApp = app;
 		this.userName = uname;
-		this.password = pass;
+		this.passWord = pass;
 		this.proffession = proff;
 		
 	}
-	
-	public void checkUser() {
+	// TODO if user does not exist inform the user.
+	public boolean checkUser() throws SQLException {
+		
 		try {
-			Connection con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/world?autoReconnect=true&useSSL=false", "root", "backstab1870"
+			Connection con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "backstab1870"
 					);
 			Statement st = con.createStatement();
 			
-			ResultSet rs = st.executeQuery("select Name FROM world.city;");
-			
-			while(rs.next()) {
-				System.out.println(rs.getString(1));
+			if (proffession == "Staff") {
+				 rs = st.executeQuery("select * FROM projecthospita.staff WHERE staff.username = '" + userName + "' AND staff.password = " + passWord + ";");
+	
+					
+			}
+			if (proffession == "Patient") {
+				rs = st.executeQuery("select * FROM projecthospita.patient WHERE patient.username = '" + userName + "' AND patient.password = " + passWord + ";");
+				
+				
 			}
 			
-			con.close();
+			
+		
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		if(rs.next())
+			return true;
+		return false;
+		
+		
+		
 	}
+	public String checkRole() throws SQLException {
+		return rs.getString(3);
+	
+			
+	}
+
 
 }
