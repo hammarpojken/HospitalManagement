@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="649.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane prefHeight="655.0" prefWidth="486.0">
+         <top>
+            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TextField floatText="first name" layoutX="64.0" layoutY="63.0" />
+                  <TextField floatText="last name" layoutX="271.0" layoutY="63.0" />
+                  <TextField floatText="adress" layoutX="64.0" layoutY="130.0" />
+                  <TextField floatText="phone" layoutX="271.0" layoutY="130.0" />
+               </children>
+            </Pane>
+         </top>
+         <center>
+            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TextField floatText="disease" layoutX="64.0" layoutY="54.0" prefWidth="142.0" />
+                  <TextField floatText="suggested medicine" layoutX="273.0" layoutY="54.0" prefWidth="142.0" />
+                  <TextField floatText="tests" layoutX="64.0" layoutY="131.0" prefWidth="142.0" />
+                  <TextField floatText="doctors name" layoutX="58.0" layoutY="387.0" prefHeight="36.0" prefWidth="370.0" />
+               </children>
+            </Pane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
