@@ -5,9 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Observable;
+
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -55,12 +53,12 @@ public class DoctorViewController {
 	
 	}
 	
-    private class Patient {
+    public static class Patient {
     	 
         private final SimpleStringProperty firstName;
         private final SimpleStringProperty lastName;
  
-        private Patient(String fName, String lName) {
+        public Patient(String fName, String lName) {
             this.firstName = new SimpleStringProperty(fName);
             this.lastName = new SimpleStringProperty(lName);
         }
