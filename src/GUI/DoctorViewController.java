@@ -67,6 +67,8 @@ public class DoctorViewController {
 		return data;
 	
 	}
+	
+	
 	@FXML
 	public void ShowJournal() throws IOException {
 		Connection con;
@@ -78,8 +80,7 @@ public class DoctorViewController {
 	        FXMLLoader loader = new FXMLLoader();
 	        loader.setLocation(DoctorViewController.class.getResource("Journal.fxml"));
 	        AnchorPane page = (AnchorPane) loader.load();
-	    //    loader.getController().setPatient(p);
-	      //  loader.getController().setDoctor(this.doc);
+	       
 
 	        // Create the dialog Stage.
 	        Stage dialogStage = new Stage();
@@ -88,6 +89,10 @@ public class DoctorViewController {
 	        dialogStage.initOwner(null);
 	        Scene scene = new Scene(page);
 	        dialogStage.setScene(scene);
+	        
+	        JournalController controller = loader.getController();
+	        controller.setDoctor(doc);
+	        controller.setPatient(p);
 
 	       
 	        // Show the dialog and wait until the user closes it
