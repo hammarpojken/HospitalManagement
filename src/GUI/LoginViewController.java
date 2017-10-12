@@ -66,7 +66,9 @@ public class LoginViewController {
 			         Pane journal = (Pane) loader.load();
 			         DoctorViewController controller = loader.getController();
 			         controller.setDoctor(login.getDoc());
+			         controller.setMainApp(mainApp);
 			         mainApp.getRoot().setCenter(journal);
+			         mainApp.getPrimaryStage().setTitle(login.getDoc().getfname());
 				
 			    }
 				else if(role.equals("admin")) {

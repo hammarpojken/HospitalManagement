@@ -29,7 +29,7 @@
                            </columnResizePolicy>
                         </TableView>
                         <Button layoutX="366.0" layoutY="50.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Show Patients" />
-                        <Button layoutX="366.0" layoutY="98.0" mnemonicParsing="false" onAction="#getJournal" prefHeight="25.0" prefWidth="130.0" text="Show Journal" />
+                        <Button layoutX="366.0" layoutY="98.0" mnemonicParsing="false" onAction="#ShowJournal" prefHeight="25.0" prefWidth="130.0" text="Show Journal" />
                         <Button layoutX="366.0" layoutY="148.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" text="Create Result Card" />
                      </children>
                   </Pane>

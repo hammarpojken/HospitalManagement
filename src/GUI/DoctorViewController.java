@@ -43,6 +43,7 @@ public class DoctorViewController {
 		 nameCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("firstName"));
 	     lnameCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("lastName"));
 	     tv.getItems().setAll(getPatients());
+	    
 	     
 		
 	}
@@ -77,8 +78,8 @@ public class DoctorViewController {
 	        FXMLLoader loader = new FXMLLoader();
 	        loader.setLocation(DoctorViewController.class.getResource("Journal.fxml"));
 	        AnchorPane page = (AnchorPane) loader.load();
-	        loader.getController().setPatient(p);
-	        loader.getController().setDoctor(this.doc);
+	    //    loader.getController().setPatient(p);
+	      //  loader.getController().setDoctor(this.doc);
 
 	        // Create the dialog Stage.
 	        Stage dialogStage = new Stage();
