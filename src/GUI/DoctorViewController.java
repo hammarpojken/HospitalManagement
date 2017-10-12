@@ -1,12 +1,13 @@
 package GUI;
 
+import java.awt.Button;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
+import Hospital.Doctor;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,13 +18,17 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class DoctorViewController {
 	
+	private Doctor doc;
+	
 	@FXML
 	private TableView<Patient> tv;
 	@FXML
 	private TableColumn<Patient, String> nameCol;
 	@FXML
 	private TableColumn<Patient, String> lnameCol;
-	
+	@FXML
+	private Button showJournal;
+
 	@FXML
 	public void initialize() {
 		 nameCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("firstName"));
@@ -78,6 +83,9 @@ public class DoctorViewController {
         public void setLastName(String fName) {
             lastName.set(fName);
         }
+    }
+    public void setDoctor(Doctor d) {
+    	this.doc = d;
     }
 
 }

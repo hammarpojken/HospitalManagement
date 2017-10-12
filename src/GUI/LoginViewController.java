@@ -64,6 +64,8 @@ public class LoginViewController {
 				else if(role.equals("doctor")) {
 			         loader.setLocation(LoginViewController.class.getResource("../GUI/DoctorView.fxml"));
 			         Pane journal = (Pane) loader.load();
+			         DoctorViewController controller = loader.getController();
+			         controller.setDoctor(login.getDoc());
 			         mainApp.getRoot().setCenter(journal);
 				
 			    }
