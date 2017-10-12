@@ -15,6 +15,7 @@ public class Login {
 	private String proffession;
 	private MainApp mainApp;
 	private ResultSet rs = null;
+	private Doctor doc;
 	
 	public Login(MainApp app, String uname, String pass, String proff) {
 		this.mainApp = app;
@@ -33,10 +34,12 @@ public class Login {
 			
 			if (proffession == "Staff") {
 				 rs = st.executeQuery("select * FROM projecthospita.staff WHERE staff.username = '" + userName + "' AND staff.password = " + passWord + ";");
+				 if(rs.getString(3).equals("doctor"))
+					 doc = new Doctor(rs.getString("fname"), rs.getString("lname"), rs.getString("role"));
 	
 					
 			}
-			if (proffession == "Patient") {
+			else if (proffession == "Patient") {
 				rs = st.executeQuery("select * FROM projecthospita.patient WHERE patient.username = '" + userName + "' AND patient.password = " + passWord + ";");
 				
 				
@@ -61,6 +64,10 @@ public class Login {
 	
 			
 	}
+	public Doctor getDoc() {
+		return doc;
+	}
+	
 
 
 }
