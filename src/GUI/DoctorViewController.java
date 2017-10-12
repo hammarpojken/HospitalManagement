@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.Button;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -62,7 +63,7 @@ public class DoctorViewController {
 			ResultSet rs = st.executeQuery("select fname, lname FROM projecthospita.patient;");
 			
 			while(rs.next()){
-				data.add(new Patient(rs.getString(1), rs.getString(2)));
+				data.add(new Patient(rs.getString(1), rs.getString(2), 22222222));
 				  
                 }
   
@@ -74,44 +75,50 @@ public class DoctorViewController {
 	
 	}
 	@FXML
-	public void getJournal() {
+	public void getJournal() throws IOException {
 		Connection con;
 		Patient p = tv.getSelectionModel().getSelectedItem();
 		
 		
 		
 		try {
+			 // Load the fxml file and create a new stage for the popup dialog.
+			
+	        FXMLLoader loader = new FXMLLoader();
+	        loader.setLocation(DoctorViewController.class.getResource("Journal.fxml"));
+	        AnchorPane page = (AnchorPane) loader.load();
+	        loader.setController(this);
+
+	        // Create the dialog Stage.
+	        Stage dialogStage = new Stage();
+	        dialogStage.setTitle("Journal");
+	        dialogStage.initModality(Modality.WINDOW_MODAL);
+	        dialogStage.initOwner(null);
+	        Scene scene = new Scene(page);
+	        dialogStage.setScene(scene);
+
+	       
+	        // Show the dialog and wait until the user closes it
+	        dialogStage.show();
+	        fnametext.setText("ahsdasd");
+		 
 			
 			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "backstab1870");
 			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery("select fname, lname, adress, phone FROM projecthospita.patient WHERE ssn = " + p.getSSN() + ";");
-				
+			ResultSet rs = st.executeQuery("select fname, lname, adress, phone FROM projecthospita.patient WHERE fname = '" + p.getFirstName() + "';");
+			
 	    while(rs.next()) { 
-	    	
-	    		fnametext.setText(rs.getString("firstname"));
-		        lnametext.setText(rs.getString("lastname"));
+	    		
+	    		fnametext.setText(rs.getString(1));
+		        lnametext.setText(rs.getString(2));
 		        adresstext.setText(rs.getString("adress"));
 		        phonetext.setText(rs.getString("phone"));
 	    
 	   
 	    }
+	   
 	    
-	       // Load the fxml file and create a new stage for the popup dialog.
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(DoctorViewController.class.getResource("Journal.fxml"));
-        AnchorPane page = (AnchorPane) loader.load();
-
-        // Create the dialog Stage.
-        Stage dialogStage = new Stage();
-        dialogStage.setTitle("Journal");
-        dialogStage.initModality(Modality.WINDOW_MODAL);
-        dialogStage.initOwner(mainapp.getPrimaryStage());
-        Scene scene = new Scene(page);
-        dialogStage.setScene(scene);
-
-        
-        // Show the dialog and wait until the user closes it
-        dialogStage.showAndWait();
+	  
 	    
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -125,9 +132,11 @@ public class DoctorViewController {
 	public void setMainApp(MainApp mainapp) {
 		this.mainapp = mainapp; 
 	}
+	 public void setDoctor(Doctor d) {
+	    	this.doc = d;
+	    }
 		
 	
-	}
 	
     public static class Patient {
     	 
@@ -159,9 +168,7 @@ public class DoctorViewController {
         
         public long getSSN() {
         	return SSN.get();
-    }
-    public void setDoctor(Doctor d) {
-    	this.doc = d;
+        }
     }
     
     
