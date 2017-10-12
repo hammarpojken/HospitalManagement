@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
+import Hospital.Doctor;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,6 +17,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class DoctorViewController {
+	
+	private Doctor doc;
 	
 	@FXML
 	private TableView<Patient> tv;
@@ -81,6 +83,9 @@ public class DoctorViewController {
         public void setLastName(String fName) {
             lastName.set(fName);
         }
+    }
+    public void setDoctor(Doctor d) {
+    	this.doc = d;
     }
 
 }
