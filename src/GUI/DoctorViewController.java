@@ -1,5 +1,6 @@
 package GUI;
 
+import java.awt.Button;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -23,7 +24,9 @@ public class DoctorViewController {
 	private TableColumn<Patient, String> nameCol;
 	@FXML
 	private TableColumn<Patient, String> lnameCol;
-	
+	@FXML
+	private Button showJournal;
+
 	@FXML
 	public void initialize() {
 		 nameCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("firstName"));
