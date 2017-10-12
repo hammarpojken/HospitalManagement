@@ -39,14 +39,6 @@ public class DoctorViewController {
 	@FXML
 	private Button showJournal;
 	@FXML
-	private TextField fnametext;
-	@FXML
-	private TextField lnametext;
-	@FXML
-	private TextField adresstext;
-	@FXML
-	private TextField phonetext;
-	@FXML
 	public void initialize() {
 		 nameCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("firstName"));
 	     lnameCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("lastName"));
@@ -75,11 +67,9 @@ public class DoctorViewController {
 	
 	}
 	@FXML
-	public void getJournal() throws IOException {
+	public void ShowJournal() throws IOException {
 		Connection con;
 		Patient p = tv.getSelectionModel().getSelectedItem();
-		
-		
 		
 		try {
 			 // Load the fxml file and create a new stage for the popup dialog.
@@ -87,7 +77,8 @@ public class DoctorViewController {
 	        FXMLLoader loader = new FXMLLoader();
 	        loader.setLocation(DoctorViewController.class.getResource("Journal.fxml"));
 	        AnchorPane page = (AnchorPane) loader.load();
-	        loader.setController(this);
+	        loader.getController().setPatient(p);
+	        loader.getController().setDoctor(this.doc);
 
 	        // Create the dialog Stage.
 	        Stage dialogStage = new Stage();
@@ -99,28 +90,10 @@ public class DoctorViewController {
 
 	       
 	        // Show the dialog and wait until the user closes it
-	        dialogStage.show();
-	        fnametext.setText("ahsdasd");
-		 
-			
-			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "backstab1870");
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery("select fname, lname, adress, phone FROM projecthospita.patient WHERE fname = '" + p.getFirstName() + "';");
-			
-	    while(rs.next()) { 
-	    		
-	    		fnametext.setText(rs.getString(1));
-		        lnametext.setText(rs.getString(2));
-		        adresstext.setText(rs.getString("adress"));
-		        phonetext.setText(rs.getString("phone"));
-	    
-	   
-	    }
-	   
-	    
+	        dialogStage.showAndWait();
 	  
 	    
-		} catch (SQLException e) {
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
