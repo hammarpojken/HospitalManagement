@@ -5,8 +5,19 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import GUI.DoctorViewController.Patient;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 
 public class JournalController {
+	
+	@FXML
+	private TextField fnametext;
+	@FXML
+	private TextField lnametext;
+	@FXML
+	private TextField adresstext;
+	@FXML
+	private TextField phonetext;
 	
 	
 	public void getJournal() {
