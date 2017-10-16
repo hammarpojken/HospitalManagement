@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.Button;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -8,17 +9,26 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import Hospital.Doctor;
+import Hospital.MainApp;
+import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class DoctorViewController {
 	
 	private Doctor doc;
+	private MainApp mainapp;
 	
 	@FXML
 	private TableView<Patient> tv;
@@ -28,12 +38,12 @@ public class DoctorViewController {
 	private TableColumn<Patient, String> lnameCol;
 	@FXML
 	private Button showJournal;
-
 	@FXML
 	public void initialize() {
 		 nameCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("firstName"));
 	     lnameCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("lastName"));
 	     tv.getItems().setAll(getPatients());
+	    
 	     
 		
 	}
@@ -46,7 +56,7 @@ public class DoctorViewController {
 			ResultSet rs = st.executeQuery("select fname, lname FROM projecthospita.patient;");
 			
 			while(rs.next()){
-				data.add(new Patient(rs.getString(1), rs.getString(2)));
+				data.add(new Patient(rs.getString(1), rs.getString(2), 22222222));
 				  
                 }
   
@@ -58,14 +68,65 @@ public class DoctorViewController {
 	
 	}
 	
+	
+	@FXML
+	public void ShowJournal() throws IOException {
+		Connection con;
+		Patient p = tv.getSelectionModel().getSelectedItem();
+		
+		try {
+			 // Load the fxml file and create a new stage for the popup dialog.
+			
+	        FXMLLoader loader = new FXMLLoader();
+	        loader.setLocation(DoctorViewController.class.getResource("Journal.fxml"));
+	        AnchorPane page = (AnchorPane) loader.load();
+	       
+
+	        // Create the dialog Stage.
+	        Stage dialogStage = new Stage();
+	        dialogStage.setTitle("Journal");
+	        dialogStage.initModality(Modality.WINDOW_MODAL);
+	        dialogStage.initOwner(null);
+	        Scene scene = new Scene(page);
+	        dialogStage.setScene(scene);
+	        
+	        JournalController controller = loader.getController();
+	        controller.setDoctor(doc);
+	        controller.setPatient(p);
+
+	       
+	        // Show the dialog and wait until the user closes it
+	        dialogStage.showAndWait();
+	  
+	    
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	       
+				
+		
+	}
+	
+	public void setMainApp(MainApp mainapp) {
+		this.mainapp = mainapp; 
+	}
+	 public void setDoctor(Doctor d) {
+	    	this.doc = d;
+	    }
+		
+	
+	
     public static class Patient {
     	 
         private final SimpleStringProperty firstName;
         private final SimpleStringProperty lastName;
+        private final SimpleLongProperty SSN;
  
-        public Patient(String fName, String lName) {
+        public Patient(String fName, String lName, long SSN) {
             this.firstName = new SimpleStringProperty(fName);
             this.lastName = new SimpleStringProperty(lName);
+            this.SSN = new SimpleLongProperty(SSN);
         }
  
         public String getFirstName() {
@@ -83,9 +144,16 @@ public class DoctorViewController {
         public void setLastName(String fName) {
             lastName.set(fName);
         }
+        
+        public long getSSN() {
+        	return SSN.get();
+        }
     }
-    public void setDoctor(Doctor d) {
-    	this.doc = d;
-    }
+    
+    
 
 }
+    
+    
+    
+    

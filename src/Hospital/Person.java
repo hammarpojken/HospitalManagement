@@ -13,5 +13,8 @@ public abstract class Person {
 	public void whoAmI() {
 		System.out.println("Jag heter " + this.fName);
 	}
+	public String getfname() {
+		return this.fName;
+	}
 
 }

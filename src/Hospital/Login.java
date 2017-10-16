@@ -34,8 +34,10 @@ public class Login {
 			
 			if (proffession == "Staff") {
 				 rs = st.executeQuery("select * FROM projecthospita.staff WHERE staff.username = '" + userName + "' AND staff.password = " + passWord + ";");
+				 rs.next();
 				 if(rs.getString(3).equals("doctor"))
-					 doc = new Doctor(rs.getString("fname"), rs.getString("lname"), rs.getString("role"));
+					 doc = new Doctor(rs.getString(1), rs.getString(2), rs.getString(3));
+				 
 	
 					
 			}
@@ -52,7 +54,7 @@ public class Login {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(rs.next())
+		if(rs.first())
 			return true;
 		return false;
 		
