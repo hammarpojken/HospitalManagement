@@ -1,6 +1,6 @@
 package GUI;
 
-import java.awt.Button;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,9 +14,12 @@ import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -31,7 +34,9 @@ public class DoctorViewController {
 	
 	private Doctor doc;
 	private MainApp mainapp;
+	private BorderPane journalLayout;
 	
+
 	@FXML
 	private HBox DoctorHbox;
 	@FXML
@@ -44,29 +49,19 @@ public class DoctorViewController {
 	private TableColumn<Patient, String> lnameCol;
 	@FXML
 	private Button showJournal;
-	//journal components
-	@FXML
-	private TextField fnametext;
-	@FXML
-	private TextField lnametext;
-	@FXML
-	private TextField adresstext;
-	@FXML
-	private TextField phonetext;
+
 	@FXML
 	public void initialize() {
 		 nameCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("firstName"));
 	     lnameCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("lastName"));
-	     tv.getItems().setAll(getPatients());
-	    
-	     
-		
+	     tv.getItems().setAll(getPatients());   
 	}
+	
 	private ObservableList<Patient> getPatients(){
 		Connection con;
 		 ObservableList<Patient> data = FXCollections.observableArrayList();
 		try {
-			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "jqjipotv1");
+			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "backstab1870");
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery("select fname, lname FROM projecthospita.patient;");
 			
@@ -83,30 +78,24 @@ public class DoctorViewController {
 	
 	}
 	
-	
-	
+	@FXML
 	public void ShowJournal() throws IOException {
 		
 		Patient p = tv.getSelectionModel().getSelectedItem();
-		getJournalLayout();
-		showPatient(p);
+		System.out.println(p.getFirstName());
+		FXMLLoader loader = new FXMLLoader();
 		
-	}
-	public void getJournalLayout() {
-		  FXMLLoader loader = new FXMLLoader();
-	        loader.setLocation(DoctorViewController.class.getResource("Journal.fxml"));
-	        BorderPane page;
-			try {
-				page = (BorderPane) loader.load();
-				loader.setController(this);
-				 DoctorHbox.getChildren().add(page);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	        
-	  
-	       
+        loader.setLocation(DoctorViewController.class.getResource("Journal.fxml"));
+        JournalController controller = loader.getController();
+        controller.setPatient(p);
+        BorderPane page = (BorderPane) loader.load();
+        
+     
+    
+        //controller.setPatientInfo(p);
+        DoctorHbox.getChildren().add(page);
+		
+	
 	}
 	
 	public void setMainApp(MainApp mainapp) {
@@ -115,16 +104,7 @@ public class DoctorViewController {
 	 public void setDoctor(Doctor d) {
 	    	this.doc = d;
 	    }
-		
-	
-	public void showPatient(Patient pat) {
-		
-		fnametext.setText(pat.getFirstName());
-        lnametext.setText(pat.getLastName());
-        //adresstext.setText();
-        //phonetext.setText();
-	}
-	 
+
     public static class Patient {
     	 
         private final SimpleStringProperty firstName;
