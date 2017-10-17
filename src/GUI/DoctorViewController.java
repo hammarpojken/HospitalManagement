@@ -61,7 +61,7 @@ public class DoctorViewController {
 		Connection con;
 		 ObservableList<Patient> data = FXCollections.observableArrayList();
 		try {
-			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "jqjipotv1");
+			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "backstab1870");
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery("select fname, lname FROM projecthospita.patient;");
 			

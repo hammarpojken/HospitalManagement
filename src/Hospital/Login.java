@@ -16,6 +16,7 @@ public class Login {
 	private MainApp mainApp;
 	private ResultSet rs = null;
 	private Doctor doc;
+	private PatientUser pat;
 	
 	public Login(MainApp app, String uname, String pass, String proff) {
 		this.mainApp = app;
@@ -28,7 +29,7 @@ public class Login {
 	public boolean checkUser() throws SQLException {
 		
 		try {
-			Connection con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "jqjipotv1"
+			Connection con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "backstab1870"
 					);
 			Statement st = con.createStatement();
 			
@@ -43,7 +44,7 @@ public class Login {
 			}
 			else if (proffession == "Patient") {
 				rs = st.executeQuery("select * FROM projecthospita.patient WHERE patient.username = '" + userName + "' AND patient.password = " + passWord + ";");
-				
+				pat = new PatientUser(rs.getString(1), rs.getString(2), rs.getString(3));
 				
 			}
 			
