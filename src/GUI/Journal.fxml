@@ -6,9 +6,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="578.0" prefWidth="447.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.JournalController">
-   <bottom>
+   <top>
       <Pane prefHeight="578.0" prefWidth="465.0" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="fnametext" layoutX="53.0" layoutY="78.0" />
@@ -27,8 +28,13 @@
             <Label layoutX="53.0" layoutY="342.0" text="Medicine" />
             <Label layoutX="245.0" layoutY="342.0" text="Tests" />
             <Label layoutX="53.0" layoutY="399.0" text="Remark:" />
-            <Button fx:id="buttonSave" layoutX="187.0" layoutY="532.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" text="Update" />
+            <Button fx:id="buttonUpdate" layoutX="187.0" layoutY="532.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" text="Update" />
+            <Label layoutX="172.0" text="Journal">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
-   </bottom>
+   </top>
 </BorderPane>
