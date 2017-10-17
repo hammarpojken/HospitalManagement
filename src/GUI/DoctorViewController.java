@@ -10,6 +10,7 @@ import java.sql.Statement;
 
 import Hospital.Doctor;
 import Hospital.MainApp;
+import Hospital.Patient;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -69,10 +70,10 @@ public class DoctorViewController {
 		try {
 			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "jqjipotv1");
 			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery("select fname, lname FROM projecthospita.patient;");
+			ResultSet rs = st.executeQuery("select fname, lname, adress, phone, disease, medicine, tests FROM projecthospita.patient;");
 			
 			while(rs.next()){
-				data.add(new Patient(rs.getString(1), rs.getString(2), 22222222));
+				data.add(new Patient(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7)));
 				  
                 }
   
@@ -111,38 +112,7 @@ public class DoctorViewController {
 	    	this.doc = d;
 	    }
 
-    public static class Patient {
-    	 
-        private final SimpleStringProperty firstName;
-        private final SimpleStringProperty lastName;
-        private final SimpleLongProperty SSN;
- 
-        public Patient(String fName, String lName, long SSN) {
-            this.firstName = new SimpleStringProperty(fName);
-            this.lastName = new SimpleStringProperty(lName);
-            this.SSN = new SimpleLongProperty(SSN);
-        }
- 
-        public String getFirstName() {
-            return firstName.get();
-        }
- 
-        public void setFirstName(String fName) {
-            firstName.set(fName);
-        }
- 
-        public String getLastName() {
-            return lastName.get();
-        }
- 
-        public void setLastName(String fName) {
-            lastName.set(fName);
-        }
-        
-        public long getSSN() {
-        	return SSN.get();
-        }
-    }
+   
     
     
 
