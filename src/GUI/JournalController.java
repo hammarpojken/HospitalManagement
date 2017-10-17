@@ -1,6 +1,6 @@
 package GUI;
 
-import GUI.DoctorViewController.Patient;
+import Hospital.Patient;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -18,7 +18,13 @@ public class JournalController {
 	@FXML
 	private TextField phonetext;
 	@FXML
-	private Button buttonTest;
+	private TextField diseaseText;
+	@FXML
+	private TextField medicineText;
+	@FXML
+	private TextField testText;
+	@FXML
+	private Button buttonUpdate;
 	
 	@FXML
 	private void initialize(){
@@ -32,9 +38,12 @@ public class JournalController {
 		System.out.println(pat.getFirstName());
 		fnametext.setText(pat.getFirstName());
         lnametext.setText(pat.getLastName());
+        adresstext.setText(pat.getAdress());
+        phonetext.setText(pat.getPhone() + "");
+//        diseaseText.setText(pat.getDisease());
+//        medicineText.setText(pat.getMedicine());
+//        testText.setText(pat.getTest());
         
-        //adresstext.setText();
-        //phonetext.setText();
 	}
 	
 	
