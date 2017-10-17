@@ -75,9 +75,10 @@ public class DoctorViewController {
 			ResultSet rs = st.executeQuery("select fname, lname, adress, phone, disease, medicine, tests FROM projecthospita.patient;");
 			
 			while(rs.next()){
-				data.add(new Patient(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7)));
+				data.add(new Patient(rs.getString("fname"), rs.getString("lname"), rs.getString("adress"), rs.getInt("phone"), rs.getString(5), rs.getString(6), rs.getString(7)));
 				  
                 }
+			// Change JOIN? and remove disease, medicine, test from Patient DB
   
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
