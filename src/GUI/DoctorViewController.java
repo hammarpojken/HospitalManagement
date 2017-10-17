@@ -98,12 +98,13 @@ public class DoctorViewController {
 	        BorderPane page;
 			try {
 				page = (BorderPane) loader.load();
+				loader.setController(this);
 				 DoctorHbox.getChildren().add(page);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-	        loader.setController(this);
+	        
 	  
 	       
 	}
