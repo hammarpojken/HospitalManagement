@@ -22,7 +22,7 @@ public class JournalController {
 	
 	@FXML
 	private void initialize(){
-		setPatientInfo(currentPatient);
+		
 	}
 	
 	public void setPatient(Patient p) {
