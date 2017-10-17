@@ -28,7 +28,7 @@ public class Login {
 	public boolean checkUser() throws SQLException {
 		
 		try {
-			Connection con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "jqjipotv1"
+			Connection con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "backstab1870"
 					);
 			Statement st = con.createStatement();
 			
