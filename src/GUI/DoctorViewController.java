@@ -84,18 +84,19 @@ public class DoctorViewController {
 		Patient p = tv.getSelectionModel().getSelectedItem();
 		System.out.println(p.getFirstName());
 		FXMLLoader loader = new FXMLLoader();
+
 		
         loader.setLocation(DoctorViewController.class.getResource("Journal.fxml"));
-        JournalController controller = loader.getController();
-        controller.setPatient(p);
         BorderPane page = (BorderPane) loader.load();
         
-     
-    
-        //controller.setPatientInfo(p);
+        JournalController controller = loader.getController();
+        controller.setPatient(p);
+        controller.setPatientInfo(p);
         DoctorHbox.getChildren().add(page);
 		
-	
+		
+
+		
 	}
 	
 	public void setMainApp(MainApp mainapp) {
