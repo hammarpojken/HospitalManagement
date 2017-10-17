@@ -54,6 +54,8 @@ public class DoctorViewController {
 	private Button assignbtn;
 	@FXML
 	private Button appointmentbtn;
+	@FXML
+	private Button CreateRSbtn;
 
 
 
@@ -68,7 +70,7 @@ public class DoctorViewController {
 		Connection con;
 		 ObservableList<Patient> data = FXCollections.observableArrayList();
 		try {
-			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "backstab1870");
+			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "jqjipotv1");
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery("select fname, lname, adress, phone, disease, medicine, tests FROM projecthospita.patient;");
 			
@@ -98,10 +100,28 @@ public class DoctorViewController {
         JournalController controller = loader.getController();
         controller.setPatient(p);
         controller.setPatientInfo(p);
+        if (DoctorHbox.getChildren().size() >= 3) {
+        	DoctorHbox.getChildren().remove(2);
+        }
         DoctorHbox.getChildren().add(page);
 		
 		
 
+		
+	}
+	
+	@FXML
+	public void ShowResultCard() throws IOException {
+		
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(DoctorViewController.class.getResource("CreateResultCard.fxml"));
+        BorderPane page = (BorderPane) loader.load();
+        
+    //   ResultCardController controller = loader.getController();
+       
+        if (DoctorHbox.getChildren().size() >= 3)
+        	DoctorHbox.getChildren().remove(2);
+        DoctorHbox.getChildren().add(page);
 		
 	}
 	
