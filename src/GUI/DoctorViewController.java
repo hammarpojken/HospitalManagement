@@ -22,6 +22,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -31,6 +33,10 @@ public class DoctorViewController {
 	private MainApp mainapp;
 	
 	@FXML
+	private HBox DoctorHbox;
+	@FXML
+	private BorderPane DoctorViewPane;
+	@FXML
 	private TableView<Patient> tv;
 	@FXML
 	private TableColumn<Patient, String> nameCol;
@@ -38,6 +44,15 @@ public class DoctorViewController {
 	private TableColumn<Patient, String> lnameCol;
 	@FXML
 	private Button showJournal;
+	//journal components
+	@FXML
+	private TextField fnametext;
+	@FXML
+	private TextField lnametext;
+	@FXML
+	private TextField adresstext;
+	@FXML
+	private TextField phonetext;
 	@FXML
 	public void initialize() {
 		 nameCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("firstName"));
@@ -51,7 +66,7 @@ public class DoctorViewController {
 		Connection con;
 		 ObservableList<Patient> data = FXCollections.observableArrayList();
 		try {
-			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "backstab1870");
+			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "jqjipotv1");
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery("select fname, lname FROM projecthospita.patient;");
 			
@@ -69,43 +84,28 @@ public class DoctorViewController {
 	}
 	
 	
-	@FXML
+	
 	public void ShowJournal() throws IOException {
-		Connection con;
+		
 		Patient p = tv.getSelectionModel().getSelectedItem();
+		getJournalLayout();
+		showPatient(p);
 		
-		try {
-			 // Load the fxml file and create a new stage for the popup dialog.
-			
-	        FXMLLoader loader = new FXMLLoader();
+	}
+	public void getJournalLayout() {
+		  FXMLLoader loader = new FXMLLoader();
 	        loader.setLocation(DoctorViewController.class.getResource("Journal.fxml"));
-	        AnchorPane page = (AnchorPane) loader.load();
-	       
-
-	        // Create the dialog Stage.
-	        Stage dialogStage = new Stage();
-	        dialogStage.setTitle("Journal");
-	        dialogStage.initModality(Modality.WINDOW_MODAL);
-	        dialogStage.initOwner(null);
-	        Scene scene = new Scene(page);
-	        dialogStage.setScene(scene);
-	        
-	        JournalController controller = loader.getController();
-	        controller.setDoctor(doc);
-	        controller.setPatient(p);
-
-	       
-	        // Show the dialog and wait until the user closes it
-	        dialogStage.showAndWait();
+	        BorderPane page;
+			try {
+				page = (BorderPane) loader.load();
+				 DoctorHbox.getChildren().add(page);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        loader.setController(this);
 	  
-	    
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	       
-				
-		
 	}
 	
 	public void setMainApp(MainApp mainapp) {
@@ -116,7 +116,14 @@ public class DoctorViewController {
 	    }
 		
 	
-	
+	public void showPatient(Patient pat) {
+		
+		fnametext.setText(pat.getFirstName());
+        lnametext.setText(pat.getLastName());
+        //adresstext.setText();
+        //phonetext.setText();
+	}
+	 
     public static class Patient {
     	 
         private final SimpleStringProperty firstName;
