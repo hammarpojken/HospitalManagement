@@ -21,9 +21,11 @@ public class Patient {
    //     this.SSN = new SimpleLongProperty(SSN);
         this.adress = new SimpleStringProperty(adress);
         this.phone = new SimpleIntegerProperty(phone);
-        this.disease = new SimpleStringProperty("isease");
-        this.medicine = new SimpleStringProperty("medicine");
-        this.test = new SimpleStringProperty("test");
+        this.disease = new SimpleStringProperty(disease);
+        this.medicine = new SimpleStringProperty(medicine);
+        this.test = new SimpleStringProperty(test);
+        
+        // Ska patient innehålla disease,test,medicine??
         
         
     }
