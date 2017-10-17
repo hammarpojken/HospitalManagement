@@ -49,6 +49,12 @@ public class DoctorViewController {
 	private TableColumn<Patient, String> lnameCol;
 	@FXML
 	private Button showJournal;
+	@FXML
+	private Button assignbtn;
+	@FXML
+	private Button appointmentbtn;
+
+
 
 	@FXML
 	public void initialize() {
