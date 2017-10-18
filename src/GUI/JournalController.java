@@ -43,7 +43,6 @@ public class JournalController {
 		this.currentPatient = p;
 	}
 	public void setPatientInfo(Patient pat,  ResultSet rs) {
-		System.out.println(pat.getFirstName());
 		fnametext.setText(pat.getFirstName());
         lnametext.setText(pat.getLastName());
         adresstext.setText(pat.getAdress());

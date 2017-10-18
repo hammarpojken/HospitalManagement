@@ -16,7 +16,7 @@
       <PasswordField fx:id="passwordField" layoutX="216.0" layoutY="254.0" prefHeight="25.0" prefWidth="174.0" promptText="Password" />
       <ChoiceBox fx:id="proffChoice" layoutX="216.0" layoutY="290.0" prefHeight="25.0" prefWidth="110.0" />
       <Button layoutX="332.0" layoutY="290.0" mnemonicParsing="false" onMouseClicked="#tryLogin" prefHeight="25.0" prefWidth="58.0" text="Log in" />
-      <Label layoutX="62.0" layoutY="14.0" prefHeight="94.0" prefWidth="476.0" text="Hospital Helper" textFill="RED">
+      <Label layoutX="98.0" layoutY="14.0" prefHeight="94.0" prefWidth="476.0" text="Hospital Helper" textFill="RED">
          <font>
             <Font name="Footlight MT Light" size="65.0" />
          </font>

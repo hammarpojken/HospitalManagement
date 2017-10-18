@@ -65,6 +65,17 @@ public class Doctor extends Person {
 		return null;
 	}
 	
+	public void setResultCard() {
+		
+		Connection con;
+		try {
+			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root");
+			Statement st = con.createStatement();
+			
+			st.executeUpdate("INSERT INTO projecthospita.resultcard (disease, medicine, tests, remark) + VALUES (diseaseText.getText(), medicineText.getText(), testText.getText(), remarkArea.getText())");
+		}
+	}
+	
 }
 
 
