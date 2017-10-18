@@ -14,12 +14,7 @@ public class PatientViewController {
 	private Button personalInfoBtn;
 	@FXML
 	private Button payBillBtn;
-	@FXML
-	@FXML
-	@FXML
-	@FXML
-	@FXML
-	@FXML
+	
 	@FXML
 	public void initialize(){
 		
