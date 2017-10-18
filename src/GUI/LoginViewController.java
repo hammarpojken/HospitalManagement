@@ -89,6 +89,7 @@ public class LoginViewController {
 			         PatientViewController controller = loader.getController();
 			         controller.setPatientUser(login.getPatientUser());
 			         controller.setMainApp(this.mainApp);
+			         controller.fillResultCard();
 			         mainApp.getRoot().setCenter(journal);
 				}
 			}
