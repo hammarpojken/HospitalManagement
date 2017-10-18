@@ -1,8 +1,12 @@
 package GUI;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import Hospital.Patient;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class JournalController {
@@ -26,6 +30,8 @@ public class JournalController {
 	@FXML
 	private TextField testText;
 	@FXML
+	private TextArea remarkArea;
+	@FXML
 	private Button buttonUpdate;
 	
 	@FXML
@@ -36,13 +42,26 @@ public class JournalController {
 	public void setPatient(Patient p) {
 		this.currentPatient = p;
 	}
-	public void setPatientInfo(Patient pat) {
+	public void setPatientInfo(Patient pat,  ResultSet rs) {
 		System.out.println(pat.getFirstName());
 		fnametext.setText(pat.getFirstName());
         lnametext.setText(pat.getLastName());
         adresstext.setText(pat.getAdress());
         phonetext.setText(pat.getPhone() + "");
         ssnText.setText(pat.getSSN() + "");
+        
+        if(rs != null) {
+        	try {
+        		
+				diseaseText.setText(rs.getString("disease"));
+				medicineText.setText(rs.getString("medicine"));
+				testText.setText(rs.getString("tests"));
+				remarkArea.setText(rs.getString("remark"));
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
         
 	}
 	

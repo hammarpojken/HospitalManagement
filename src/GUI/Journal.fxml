@@ -16,10 +16,10 @@
             <TextField fx:id="adresstext" layoutX="53.0" layoutY="136.0" />
             <TextField fx:id="lnametext" layoutX="245.0" layoutY="78.0" />
             <TextField fx:id="phonetext" layoutX="245.0" layoutY="136.0" />
-            <TextField fx:id="diseasText" layoutX="53.0" layoutY="312.0" />
-            <TextField fx:id="testTex" layoutX="245.0" layoutY="359.0" />
+            <TextField fx:id="diseaseText" layoutX="53.0" layoutY="312.0" />
+            <TextField fx:id="testText" layoutX="245.0" layoutY="359.0" />
             <TextField fx:id="medicineText" layoutX="53.0" layoutY="359.0" />
-            <TextArea layoutX="51.0" layoutY="416.0" prefHeight="103.0" prefWidth="345.0" />
+            <TextArea fx:id="remarkArea" layoutX="51.0" layoutY="416.0" prefHeight="103.0" prefWidth="345.0" />
             <Label layoutX="53.0" layoutY="61.0" text="First name" />
             <Label layoutX="53.0" layoutY="119.0" text="Adress" />
             <Label layoutX="245.0" layoutY="119.0" text="Phone" />
