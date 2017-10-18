@@ -44,25 +44,37 @@ public class Doctor extends Person {
 		
 		
 	
-//	
-//	private ResultSet getResultCard(long ssn) {
-//		Connection con;
-//		try {
-//			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root");
-//			Statement st = con.createStatement();
-//			ResultSet rs = st.executeQuery("select * FROM projecthospita.resultcard WHERE " + ssn +" = resultcard.Patientssn");
-//			 if(rs.next() == true) {
-//				 return rs;
-//			 }
-//				
-//				  
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return rs;
-//	
-//	}
+	
+	public ResultSet getResultCard(long ssn) {
+		Connection con;
+		try {
+			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root");
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery("select * FROM projecthospita.resultcard WHERE resultcard.patientssn = " + ssn);
+			 if(rs.next() == true) {
+				 
+				 return rs;
+			 }
+			 
+				  
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	public void setResultCard() {
+		
+		Connection con;
+		try {
+			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root");
+			Statement st = con.createStatement();
+			
+			st.executeUpdate("INSERT INTO projecthospita.resultcard (disease, medicine, tests, remark) + VALUES (diseaseText.getText(), medicineText.getText(), testText.getText(), remarkArea.getText())");
+		}
+	}
 	
 }
 

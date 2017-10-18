@@ -23,11 +23,7 @@ private Button RSbtn;
 
 	public void setResultCard(Patient pat) {
 	
-//		diseaseText.setText(pat.getDisease());
-//		medicineText.setText(pat.getPrescription());
-//		testText.setText(pat.getTest());
-		// hämta remark från vem? 
-		//remarkArea.setText();
+		// insert data method to mysql 
 	
 }
 
