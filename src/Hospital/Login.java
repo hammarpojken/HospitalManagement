@@ -44,7 +44,7 @@ public class Login {
 			}
 			else if (proffession == "Patient") {
 				rs = st.executeQuery("select * FROM projecthospita.patient WHERE patient.username = '" + userName + "' AND patient.password = " + passWord + ";");
-				pat = new PatientUser(rs.getString(1), rs.getString(2), rs.getString(3));
+				pat = new PatientUser(rs.getString("fname"), rs.getString("lname"), rs.getString("role"), rs.getLong("ssn"));
 				
 			}
 			
@@ -69,6 +69,9 @@ public class Login {
 	}
 	public Doctor getDoc() {
 		return doc;
+	}
+	public PatientUser getPatientUser() {
+		return pat;
 	}
 	
 

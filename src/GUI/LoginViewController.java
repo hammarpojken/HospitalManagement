@@ -12,6 +12,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 public class LoginViewController {
@@ -63,7 +64,7 @@ public class LoginViewController {
 				}
 				else if(role.equals("doctor")) {
 			         loader.setLocation(LoginViewController.class.getResource("../GUI/DoctorView.fxml"));
-			         Pane journal = (Pane) loader.load();
+			         BorderPane journal = (BorderPane) loader.load();
 			         DoctorViewController controller = loader.getController();
 			         controller.setDoctor(login.getDoc());
 			         controller.setMainApp(mainApp);
@@ -84,6 +85,9 @@ public class LoginViewController {
 				else if(role.equals("patient")) {
 			         loader.setLocation(LoginViewController.class.getResource("../GUI/PatientView.fxml"));
 			         Pane journal = (Pane) loader.load();
+			         PatientViewController controller = loader.getController();
+			         controller.setPatientUser(login.getPatientUser());
+			         controller.setMainApp(this.mainApp);
 			         mainApp.getRoot().setCenter(journal);
 				}
 			}
