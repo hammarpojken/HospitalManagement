@@ -8,29 +8,27 @@ public class Patient {
 	 
     private final SimpleStringProperty firstName;
     private final SimpleStringProperty lastName;
-  //  private final SimpleLongProperty SSN;
+    private final SimpleLongProperty SSN;
     private final SimpleStringProperty adress;
     private final SimpleIntegerProperty phone;
-    private final SimpleStringProperty disease;
-    private final SimpleStringProperty medicine;
-    private final SimpleStringProperty test;
+   
 
-    public Patient(String fName, String lName, String adress, int phone, String disease, String medicine, String test) {
+    public Patient(String fName, String lName, String adress, int phone, long ssn) {
         this.firstName = new SimpleStringProperty(fName);
         this.lastName = new SimpleStringProperty(lName);
-   //     this.SSN = new SimpleLongProperty(SSN);
+        this.SSN = new SimpleLongProperty(ssn);
         this.adress = new SimpleStringProperty(adress);
         this.phone = new SimpleIntegerProperty(phone);
-        this.disease = new SimpleStringProperty(disease);
-        this.medicine = new SimpleStringProperty(medicine);
-        this.test = new SimpleStringProperty(test);
-        
-        // Ska patient innehålla disease,test,medicine??
+       
         
         
     }
 
-    public String getFirstName() {
+    public long getSSN() {
+		return SSN.get();
+	}
+
+	public String getFirstName() {
         return firstName.get();
     }
 
@@ -58,16 +56,6 @@ public class Patient {
     	return phone.get();
     }
     
-    public String getDisease() {
-    	return disease.get();
-    }
-    
-    public String getMedicine() {
-    	return medicine.get();
-    }
-    
-    public String getTest() {
-    	return test.get();
-    }
+   
     
 }

@@ -10,6 +10,11 @@ public class Doctor extends Person {
 		super(firstName, lastName, role);
 	}
 	
+	public void showResultCard() {
+		
+		
+	}
+	
 //	public void getjournal() {
 //		
 //			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "backstab1870");

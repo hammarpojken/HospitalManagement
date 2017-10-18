@@ -18,6 +18,8 @@ public class JournalController {
 	@FXML
 	private TextField phonetext;
 	@FXML
+	private TextField ssnText;
+	@FXML
 	private TextField diseaseText;
 	@FXML
 	private TextField medicineText;
@@ -40,9 +42,7 @@ public class JournalController {
         lnametext.setText(pat.getLastName());
         adresstext.setText(pat.getAdress());
         phonetext.setText(pat.getPhone() + "");
-//        diseaseText.setText(pat.getDisease());
-//        medicineText.setText(pat.getMedicine());
-//        testText.setText(pat.getTest());
+        ssnText.setText(pat.getSSN() + "");
         
 	}
 	
