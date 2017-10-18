@@ -61,36 +61,13 @@ public class DoctorViewController {
 
 	@FXML
 	public void initialize() {
-		 nameCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("firstName"));
-	     lnameCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("lastName"));
-	     tv.getItems().setAll(getPatients());   
+		nameCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("firstName"));
+	    lnameCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("lastName"));
+	    
+	   
+
 	}
 	
-	private ObservableList<Patient> getPatients(){
-		Connection con;
-		 ObservableList<Patient> data = FXCollections.observableArrayList();
-		try {
-			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root");
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery("select fname, lname, adress, phone, ssn FROM projecthospita.patient;");
-			while(rs.next()){
-				data.add(new Patient(rs.getString("fname"), rs.getString("lname"), rs.getString("adress"), rs.getInt("phone"),rs.getLong("ssn")));
-				  
-                }
-			// Change JOIN? and remove disease, medicine, test from Patient DB
-  
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return data;
-	
-	}
-	
-	private Object coloumpos(int i) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@FXML
 	public void ShowJournal() throws IOException {
@@ -130,6 +107,15 @@ public class DoctorViewController {
 		
 	}
 	
+	
+	public void setJournalInfo() {
+		tv.getItems().setAll(doc.getPatients());
+		
+	}
+	
+
+
+
 	public void setMainApp(MainApp mainapp) {
 		this.mainapp = mainapp; 
 	}

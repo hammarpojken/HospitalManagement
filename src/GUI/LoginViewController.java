@@ -67,6 +67,7 @@ public class LoginViewController {
 			         DoctorViewController controller = loader.getController();
 			         controller.setDoctor(login.getDoc());
 			         controller.setMainApp(mainApp);
+			         controller.setJournalInfo();
 			         mainApp.getRoot().setCenter(journal);
 			         mainApp.getPrimaryStage().setTitle(login.getDoc().getfname());
 				
