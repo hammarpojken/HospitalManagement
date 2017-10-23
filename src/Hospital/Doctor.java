@@ -22,7 +22,7 @@ public class Doctor extends Person {
 		Connection con;
 		 ObservableList<Patient> data = FXCollections.observableArrayList();
 		try {
-			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root");
+			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "backstab1870");
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery("select fname, lname, adress, phone, ssn FROM projecthospita.patient;");
 			while(rs.next()){
@@ -69,10 +69,12 @@ public class Doctor extends Person {
 		
 		Connection con;
 		try {
-			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root");
+			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "backstab1870");
 			Statement st = con.createStatement();
 			
 			st.executeUpdate("INSERT INTO projecthospita.resultcard (disease, medicine, tests, remark) + VALUES (diseaseText.getText(), medicineText.getText(), testText.getText(), remarkArea.getText())");
+		}catch (SQLException e) {
+			
 		}
 	}
 	

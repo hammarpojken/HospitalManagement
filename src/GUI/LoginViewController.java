@@ -87,8 +87,10 @@ public class LoginViewController {
 			         loader.setLocation(LoginViewController.class.getResource("../GUI/PatientView.fxml"));
 			         Pane journal = (Pane) loader.load();
 			         PatientViewController controller = loader.getController();
-			         controller.setPatientUser(login.getPatientUser());
+			         
 			         controller.setMainApp(this.mainApp);
+			         controller.setPatientUser(login.getPatientUser());
+			         
 			         controller.fillResultCard();
 			         mainApp.getRoot().setCenter(journal);
 				}

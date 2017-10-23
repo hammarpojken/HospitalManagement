@@ -29,7 +29,7 @@ public class Login {
 	public boolean checkUser() throws SQLException {
 		
 		try {
-			Connection con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root"
+			Connection con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "backstab1870"
 					);
 			Statement st = con.createStatement();
 			
@@ -44,6 +44,9 @@ public class Login {
 			}
 			else if (proffession == "Patient") {
 				rs = st.executeQuery("select * FROM projecthospita.patient WHERE patient.username = '" + userName + "' AND patient.password = " + passWord + ";");
+
+				rs.next();
+				System.out.println(rs.getString(1));
 				pat = new PatientUser(rs.getString("fname"), rs.getString("lname"), rs.getString("role"), rs.getLong("ssn"));
 				
 			}
@@ -63,7 +66,7 @@ public class Login {
 		
 	}
 	public String checkRole() throws SQLException {
-		return rs.getString(3);
+		return rs.getString("role");
 	
 			
 	}
@@ -71,6 +74,7 @@ public class Login {
 		return doc;
 	}
 	public PatientUser getPatientUser() {
+		System.out.println(pat.getfname());
 		return pat;
 	}
 	

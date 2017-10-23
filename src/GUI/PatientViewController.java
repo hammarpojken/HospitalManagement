@@ -46,7 +46,7 @@ public class PatientViewController {
 			ResultSet rs = p.getResultCard();
 			medicineText.setText(rs.getString("medicine"));
 			diseaseText.setText(rs.getString("disease"));
-			testText.setText(rs.getString("tests"));
+			testText.setText(rs.getString("test"));
 			remarkArea.setText(rs.getString("remark"));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
