@@ -54,7 +54,7 @@ public class JournalController {
         		
 				diseaseText.setText(rs.getString("disease"));
 				medicineText.setText(rs.getString("medicine"));
-				testText.setText(rs.getString("tests"));
+				testText.setText(rs.getString("test"));
 				remarkArea.setText(rs.getString("remark"));
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

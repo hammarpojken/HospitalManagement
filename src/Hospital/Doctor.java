@@ -22,7 +22,7 @@ public class Doctor extends Person {
 		Connection con;
 		 ObservableList<Patient> data = FXCollections.observableArrayList();
 		try {
-			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "backstab1870");
+			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root");
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery("select fname, lname, adress, phone, ssn FROM projecthospita.patient;");
 			while(rs.next()){

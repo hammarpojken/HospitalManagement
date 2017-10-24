@@ -19,7 +19,7 @@ public class PatientUser extends Person {
 	public ResultSet getResultCard() {
 	Connection con;
 	try {
-		con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "backstab1870");
+		con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root");
 		Statement st = con.createStatement();
 		ResultSet rs = st.executeQuery("select * FROM projecthospita.resultcard WHERE resultcard.Patientssn =" + this.ssn );
 		 if(rs.next() == true) {
