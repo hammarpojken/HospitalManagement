@@ -2,6 +2,7 @@ package Hospital;
 import java.io.IOException;
 
 import GUI.LoginViewController;
+import GUI.RootLayoutController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -38,6 +39,8 @@ public class MainApp extends Application {
             rootLayout = (BorderPane) loader.load();
 
             // Show the scene containing the root layout.
+            RootLayoutController con = loader.getController();
+            con.setMainApp(this);
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();

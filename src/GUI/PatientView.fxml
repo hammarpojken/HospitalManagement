@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="PatientViewPane" prefHeight="400.0" prefWidth="785.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="PatientViewPane" prefHeight="400.0" prefWidth="785.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PatientViewController">
    <left>
       <VBox prefHeight="400.0" prefWidth="130.0" BorderPane.alignment="CENTER">
          <children>
@@ -32,22 +32,22 @@
                      <bottom>
                         <Pane maxWidth="476.0" prefHeight="303.0" prefWidth="476.0" BorderPane.alignment="CENTER">
                            <children>
-                              <TextField fx:id="diseaseText" layoutX="14.0" layoutY="86.0" prefHeight="44.0" prefWidth="217.0" promptText="disease">
+                              <TextField fx:id="diseaseText" editable="false" layoutX="14.0" layoutY="86.0" prefHeight="44.0" prefWidth="217.0" promptText="disease">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="medicineText" layoutX="14.0" layoutY="161.0" prefHeight="44.0" prefWidth="217.0" promptText="medicine">
+                              <TextField fx:id="medicineText" editable="false" layoutX="14.0" layoutY="161.0" prefHeight="44.0" prefWidth="217.0" promptText="medicine">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="testText" layoutX="14.0" layoutY="236.0" prefHeight="44.0" prefWidth="217.0" promptText="test">
+                              <TextField fx:id="testText" editable="false" layoutX="14.0" layoutY="236.0" prefHeight="44.0" prefWidth="217.0" promptText="test">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </TextField>
-                              <TextArea fx:id="remarkArea" layoutX="265.0" layoutY="86.0" prefHeight="194.0" prefWidth="200.0" promptText="remark">
+                              <TextArea fx:id="remarkArea" editable="false" layoutX="265.0" layoutY="86.0" prefHeight="194.0" prefWidth="300.0" promptText="remark" wrapText="true">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
