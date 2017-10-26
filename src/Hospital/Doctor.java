@@ -67,14 +67,15 @@ public class Doctor extends Person {
 	}
 	
 	public void setResultCard(String disease, String medicine, String test, String remark, long ssn) {
-		
+		System.out.println("hej");
 		Connection con;
 		try {
 			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root");
 			Statement st = con.createStatement();
 			
-			st.executeUpdate("INSERT INTO projecthospita.resultcard (patientssn, disease, medicine, tests, remark) VALUES (" + ssn + "," + disease + "," + medicine + "," + test + "," + remark +")");
+			st.executeUpdate("INSERT INTO projecthospita.resultcard (patientssn, disease, medicine, test, remark) VALUES (" + ssn + ",'" + disease + "','" + medicine + "','" + test + "','" + remark +"')");
 		}catch (SQLException e) {
+			e.printStackTrace();
 			
 		}
 	
