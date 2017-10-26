@@ -101,7 +101,9 @@ public class DoctorViewController {
 		loader.setLocation(DoctorViewController.class.getResource("CreateResultCard.fxml"));
         BorderPane page = (BorderPane) loader.load();
         
-    //   ResultCardController controller = loader.getController();
+        ResultCardController controller = loader.getController();
+        controller.setDoctor(doc);
+        controller.setSSN( tv.getSelectionModel().getSelectedItem().getSSN());
        
         if (DoctorHbox.getChildren().size() >= 3)
         	DoctorHbox.getChildren().remove(2);
