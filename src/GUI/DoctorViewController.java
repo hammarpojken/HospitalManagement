@@ -20,6 +20,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -97,17 +99,26 @@ public class DoctorViewController {
 	@FXML
 	public void ShowResultCard() throws IOException {
 		
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(DoctorViewController.class.getResource("CreateResultCard.fxml"));
-        BorderPane page = (BorderPane) loader.load();
-        
-        ResultCardController controller = loader.getController();
-        controller.setDoctor(doc);
-        controller.setSSN( tv.getSelectionModel().getSelectedItem().getSSN());
+		if(tv.getSelectionModel().getSelectedItem() == null) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("You need to select a patient to create a resultcard");
+			alert.showAndWait();
+		}
+			else if (tv.getSelectionModel().getSelectedItem() != null) {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(DoctorViewController.class.getResource("CreateResultCard.fxml"));
+	        BorderPane page = (BorderPane) loader.load();
+	        
+	        ResultCardController controller = loader.getController();
+	        controller.setDoctor(doc);
+	        controller.setSSN( tv.getSelectionModel().getSelectedItem().getSSN());
+		
        
-        if (DoctorHbox.getChildren().size() >= 3)
-        	DoctorHbox.getChildren().remove(2);
-        DoctorHbox.getChildren().add(page);
+	        if (DoctorHbox.getChildren().size() >= 3)
+	        	DoctorHbox.getChildren().remove(2);
+	        DoctorHbox.getChildren().add(page);
+			}
 		
 	}
 	
