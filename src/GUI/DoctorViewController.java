@@ -81,8 +81,9 @@ public class DoctorViewController {
         
         JournalController controller = loader.getController();
         controller.setPatient(p);
-        
-        controller.setPatientInfo(p, doc.getResultCard(p.getSSN()));
+        controller.setDoctor(doc);
+        controller.setTable(this.tv);
+        controller.setPatientInfo(doc.getPatientInfo(p.getSSN()), doc.getResultCard(p.getSSN()));
         
         if (DoctorHbox.getChildren().size() >= 3) {
         	DoctorHbox.getChildren().remove(2);
