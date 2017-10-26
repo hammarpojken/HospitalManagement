@@ -22,7 +22,7 @@
             <TextField fx:id="medicineText" layoutX="53.0" layoutY="359.0" />
             <TextField fx:id="testText" layoutX="245.0" layoutY="359.0" />
             <TextArea fx:id="remarkArea" layoutX="51.0" layoutY="416.0" prefHeight="103.0" prefWidth="345.0" />
-            <Button fx:id="buttonUpdate" layoutX="187.0" layoutY="576.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" text="Update" />
+            <Button fx:id="buttonUpdate" layoutX="187.0" layoutY="576.0" mnemonicParsing="false" onAction="#updateJournal" prefHeight="25.0" prefWidth="74.0" text="Update" />
             <Label layoutX="53.0" layoutY="61.0" text="First name" />
             <Label layoutX="53.0" layoutY="119.0" text="Adress" />
             <Label layoutX="245.0" layoutY="119.0" text="Phone" />
