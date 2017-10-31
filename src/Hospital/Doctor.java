@@ -70,7 +70,8 @@ public class Doctor extends Person {
 		try {
 			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root");
 			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery("select * FROM projecthospita.patient WHERE patient.ssn = " + ssn);
+			ResultSet rs = st.executeQuery("select projecthospita.patient.*, projecthospita.staff.fname AS doctorfname, projecthospita.staff.lname AS doctorlname"
+					+ " from projecthospita.patient left join projecthospita.staff on patient.doctorid = staff.staffid WHERE patient.ssn = " + ssn );
 			 if(rs.next() == true) {
 				 
 				 return rs;

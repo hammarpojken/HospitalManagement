@@ -41,6 +41,8 @@ public class JournalController {
 	private TextArea remarkArea;
 	@FXML
 	private Button buttonUpdate;
+	@FXML
+	private TextField assignedDoctorText;
 	
 	@FXML
 	private void initialize(){
@@ -58,6 +60,7 @@ public class JournalController {
             adresstext.setText(rspat.getString("adress"));
             phonetext.setText(rspat.getLong("phone") + "");
 			ssnText.setText(rspat.getLong("ssn") + "");
+			assignedDoctorText.setText(rspat.getString("doctorfname") + " " + rspat.getString("doctorlname"));
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
