@@ -65,23 +65,114 @@ public class Doctor extends Person {
 		return null;
 
 	}
-	
-	public void setResultCard() {
-		
+	public ResultSet getPatientInfo(long ssn) {
 		Connection con;
 		try {
-			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "backstab1870");
+			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root");
 			Statement st = con.createStatement();
-			
-			st.executeUpdate("INSERT INTO projecthospita.resultcard (disease, medicine, tests, remark) + VALUES (diseaseText.getText(), medicineText.getText(), testText.getText(), remarkArea.getText())");
-		}catch (SQLException e) {
-			
+			ResultSet rs = st.executeQuery("select * FROM projecthospita.patient WHERE patient.ssn = " + ssn);
+			 if(rs.next() == true) {
+				 
+				 return rs;
+			 }
+			 
+				  
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-	
+		
+		return null;
+
 	}
 	
-}
+	public void setResultCard(String disease, String medicine, String test, String remark, long ssn) {
+		System.out.println("hej");
+		Connection con;
+		try {
+			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root");
+			Statement st = con.createStatement();
+			
+			st.executeUpdate("INSERT INTO projecthospita.resultcard (patientssn, disease, medicine, test, remark) VALUES (" + ssn + ",'" + disease + "','" + medicine + "','" + test + "','" + remark +"')");
+		}
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
+	}
+		
+		private void updateResultCard(String disease, String medicine, String test, String remark, long ssn) {
+			System.out.println("hej");
+			Connection con;
+			try {
+				con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root");
+				Statement st = con.createStatement();
+				
+				if (resultcardExist(ssn)) {
+					st.executeUpdate("UPDATE projecthospita.resultcard SET patientssn = " + ssn + ", disease = '" + disease
+							+ "', medicine = '" + medicine + "', test = '" + test + "', remark = '" + remark + "' WHERE patientssn = "+ ssn);
+				}
+				
+			}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
 	
+	}
+			
+		private void updatePatient(String fname, String lname, String adress, long phone, long ssn) {
+			System.out.println("hej");
+			Connection con;
+			try {
+				con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root");
+				Statement st = con.createStatement();
+					
+				st.executeUpdate("UPDATE projecthospita.patient SET fname = '" + fname + "', lname = '" + lname + "', adress = '" + adress 
+						+ "', phone = " + phone + ", ssn = " + ssn + " WHERE patient.ssn = " + ssn);
+			}
+				catch (SQLException e) {
+					e.printStackTrace();
+		
+				}
+	
+		}
+		
+		public void updateJournal (String fname, String lname, String adress, long phone, long ssn, String disease, String medicine, String test, String remark) {
+			
+			this.updatePatient(fname, lname, adress, phone, ssn);
+		
+			this.updateResultCard(disease, medicine, test, remark, ssn);
+			
+			
+		}
+		
+		public boolean resultcardExist(long ssn) {
+			
+			Connection con;
+			ResultSet rs;
+			try {
+				con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root");
+				Statement st = con.createStatement();
+					
+				rs = st.executeQuery("SELECT * FROM projecthospita.resultcard WHERE patientssn = " + ssn);
+				if (rs.next()) {
+					return true;
+				}
+			
+			}
+			
+				catch (SQLException e) {
+					
+					e.printStackTrace();
+					return false;
+					
+		
+				}
+			
+			return false;
+			
+		}
+
+}
 
 
 
