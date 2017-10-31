@@ -7,6 +7,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import Hospital.Doctor;
 import Hospital.MainApp;
@@ -23,6 +26,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -120,6 +124,55 @@ public class DoctorViewController {
 	        	DoctorHbox.getChildren().remove(2);
 	        DoctorHbox.getChildren().add(page);
 			}
+		
+	}
+	
+	@FXML
+	public void assignDoctor() {
+		
+		
+		List<String> choices = new ArrayList<>();
+		ResultSet rs = doc.getDoctors();
+			
+			
+			try {
+				while(rs.next()) {
+					choices.add(rs.getString("fname") + " " + rs.getString("lname") + " " + rs.getLong("staffid"));
+				}
+				
+				ChoiceDialog<String> dialog = new ChoiceDialog<>("Doctors", choices);
+				dialog.setTitle("Choice Dialog");
+				dialog.setHeaderText("Assign a doctor to " + tv.getSelectionModel().getSelectedItem().getFirstName() + " " +
+						tv.getSelectionModel().getSelectedItem().getLastName());
+				dialog.setContentText("Choose a doctor:");
+
+				// Traditional way to get the response value.
+				Optional<String> result = dialog.showAndWait();
+				if (result.isPresent()){
+				    
+				    long doctorid = Long.parseLong(result.get().substring(result.get().length() - 10));
+				    long patient = tv.getSelectionModel().getSelectedItem().getSSN();
+				    doc.assignDoctor(patient, doctorid);
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				
+			
+			
+
+			
+			
+			 
+				  
+	
+		
+		
+		
+
+		
 		
 	}
 	

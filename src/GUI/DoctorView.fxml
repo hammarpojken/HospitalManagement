@@ -17,7 +17,7 @@
             <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Show Patients" />
             <Button mnemonicParsing="false" onAction="#ShowJournal" prefHeight="25.0" prefWidth="130.0" text="Show Journal" />
             <Button fx:id="appointmentbtn" layoutX="10.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Appointment" />
-            <Button fx:id="assignbtn" layoutX="10.0" layoutY="85.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Assign" />
+            <Button fx:id="assignbtn" layoutX="10.0" layoutY="85.0" mnemonicParsing="false" onAction="#assignDoctor" prefHeight="25.0" prefWidth="130.0" text="Assign" />
          </children>
          <BorderPane.margin>
             <Insets left="5.0" right="5.0" top="5.0" />

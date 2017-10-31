@@ -5,9 +5,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class Doctor extends Person {
@@ -170,6 +172,46 @@ public class Doctor extends Person {
 				}
 			
 			return false;
+			
+		}
+		
+		public ResultSet getDoctors() {
+			
+			Connection con;
+			ResultSet rs;
+			
+			try {
+				con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root");
+				Statement st = con.createStatement();
+				rs = st.executeQuery("select * FROM projecthospita.staff WHERE role = 'doctor'");
+				
+				if(rs.next() == true)
+					rs.beforeFirst();
+					return rs;
+				
+					  
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+			}
+			return null;
+			
+			
+		}
+		public void assignDoctor(long ssn, long docid) {
+			
+			Connection con;
+			try {
+				con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root");
+				Statement st = con.createStatement();
+					
+				st.executeUpdate("UPDATE projecthospita.patient SET doctorid = " + docid + " WHERE patient.ssn = " + ssn);
+			}
+				catch (SQLException e) {
+					e.printStackTrace();
+		
+				}
 			
 		}
 
