@@ -34,12 +34,12 @@
                   <Label layoutX="17.0" layoutY="278.0" snapToPixel="false" text="Gender" />
                   <Label layoutX="17.0" layoutY="111.0" snapToPixel="false" text="SSN" />
                   <Label layoutX="17.0" layoutY="142.0" snapToPixel="false" text="Adress" />
-                  <Label layoutX="17.0" layoutY="177.0" snapToPixel="false" text="City/Zip" />
+                  <Label layoutX="17.0" layoutY="177.0" snapToPixel="false" text="Zip/City" />
                   <Label layoutX="17.0" layoutY="210.0" snapToPixel="false" text="Phone" />
                   <Label layoutX="17.0" layoutY="242.0" snapToPixel="false" text="Blood type" />
                   <Label layoutX="17.0" layoutY="77.0" snapToPixel="false" text="Last name" />
                   <Label layoutX="17.0" layoutY="46.0" snapToPixel="false" text="First name" />
-                  <Label layoutX="137.0" layoutY="18.0" text="Personuppgifter" />
+                  <Label layoutX="17.0" layoutY="14.0" text="Personal Information" />
                </children>
             </Pane>
             <Pane prefWidth="300.0" style="-fx-background-color: #FFFFFF;">
@@ -48,16 +48,16 @@
                   <TreeTableView layoutX="7.0" layoutY="38.0" prefHeight="111.0" prefWidth="266.0">
                      <columns>
                         <TreeTableColumn prefWidth="139.0" text="name" />
-                        <TreeTableColumn minWidth="9.0" prefWidth="59.0" text="type" />
-                        <TreeTableColumn prefWidth="67.0" text="dos" />
+                        <TreeTableColumn minWidth="9.0" prefWidth="59.0" text="dos" />
+                        <TreeTableColumn prefWidth="67.0" text="type" />
                      </columns>
                   </TreeTableView>
-                  <Label layoutX="7.0" layoutY="153.0" text="Tests" />
+                  <Label layoutX="8.0" layoutY="156.0" text="Tests" />
                   <TreeTableView layoutX="7.0" layoutY="173.0" prefHeight="111.0" prefWidth="266.0">
                      <columns>
-                        <TreeTableColumn prefWidth="139.0" text="name" />
-                        <TreeTableColumn minWidth="9.0" prefWidth="59.0" text="type" />
-                        <TreeTableColumn prefWidth="67.0" text="date" />
+                        <TreeTableColumn prefWidth="101.0" text="date" />
+                        <TreeTableColumn minWidth="9.0" prefWidth="97.0" text="name" />
+                        <TreeTableColumn prefWidth="67.0" text="type" />
                      </columns>
                   </TreeTableView>
                </children>
@@ -73,16 +73,20 @@
          <children>
             <RadioButton layoutX="94.0" layoutY="31.0" mnemonicParsing="false" snapToPixel="false" text="In process" />
             <RadioButton layoutX="195.0" layoutY="31.0" mnemonicParsing="false" snapToPixel="false" text="Discharged" />
-            <ChoiceBox layoutX="94.0" layoutY="62.0" prefHeight="25.0" prefWidth="186.0" />
-            <TextField fx:id="assignedDoctorText" editable="false" layoutX="94.0" layoutY="115.0" />
-            <TextField layoutX="94.0" layoutY="156.0" />
-            <TextArea layoutX="314.0" layoutY="47.0" prefHeight="137.0" prefWidth="252.0" wrapText="true" />
+            <ChoiceBox layoutX="94.0" layoutY="118.0" prefHeight="25.0" prefWidth="186.0" />
+            <TextField fx:id="assignedDoctorText" editable="false" layoutX="94.0" layoutY="156.0" />
+            <TextField layoutX="94.0" layoutY="191.0" />
+            <TextArea layoutX="305.0" layoutY="47.0" prefHeight="170.0" prefWidth="261.0" wrapText="true" />
             <Button fx:id="buttonUpdate" layoutX="258.0" layoutY="232.0" mnemonicParsing="false" onAction="#updateJournal" prefHeight="25.0" prefWidth="74.0" text="Update" />
-            <Label layoutX="314.0" layoutY="31.0" prefHeight="17.0" prefWidth="72.0" text="Remark:" />
-            <Label layoutX="17.0" layoutY="66.0" text="Room" />
+            <Label layoutX="305.0" layoutY="31.0" prefHeight="17.0" prefWidth="72.0" text="Remark:" />
+            <Label layoutX="17.0" layoutY="122.0" text="Room" />
             <Label layoutX="17.0" layoutY="31.0" prefHeight="17.0" prefWidth="49.0" text="Status" />
-            <Label layoutX="17.0" layoutY="160.0" text="Diagnose" />
-            <Label layoutX="17.0" layoutY="105.0" prefHeight="45.0" prefWidth="69.0" text="Assigned&#10;Doctor" />
+            <Label layoutX="17.0" layoutY="195.0" text="Diagnose" />
+            <Label layoutX="17.0" layoutY="146.0" prefHeight="45.0" prefWidth="69.0" text="Assigned&#10;Doctor" />
+            <Label layoutX="17.0" layoutY="62.0" text="Check-in" />
+            <Label layoutX="94.0" layoutY="62.0" prefHeight="17.0" prefWidth="170.0" text="Label" />
+            <Label layoutX="17.0" layoutY="88.0" text="Check-out:" />
+            <Label layoutX="94.0" layoutY="88.0" prefHeight="17.0" prefWidth="170.0" text="Label" />
          </children>
          <BorderPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
