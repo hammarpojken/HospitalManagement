@@ -5,12 +5,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Optional;
+
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ChoiceDialog;
-import javafx.scene.control.cell.PropertyValueFactory;
+
 
 public class Doctor extends Person {
 	
