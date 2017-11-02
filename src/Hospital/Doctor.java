@@ -19,33 +19,6 @@ public class Doctor extends Person {
 	
 	
 	
-	public ObservableList<Patient> getPatients(){
-		Connection con;
-		 ObservableList<Patient> data = FXCollections.observableArrayList();
-		try {
-			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root");
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery("select fname, lname, adress, phone, ssn FROM projecthospita.patient;");
-			while(rs.next()){
-				data.add(new Patient(rs.getString("fname"), rs.getString("lname"), rs.getString("adress"), rs.getInt("phone"),rs.getLong("ssn")));
-				  
-               }
-			// Change JOIN? and remove disease, medicine, test from Patient DB
- 
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return data;
-	}
-	
-	
-
-	
-		
-		
-	
-	
 	public ResultSet getResultCard(long ssn) {
 		Connection con;
 		try {

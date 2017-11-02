@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import Utils.dbhandler;
+
 
 
 public class Login {
@@ -28,37 +30,25 @@ public class Login {
 	// TODO if user does not exist inform the user.
 	public boolean checkUser() throws SQLException {
 		
-		try {
-			Connection con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root"
-					);
-			Statement st = con.createStatement();
+			rs = dbhandler.getUser(this.proffession, this.userName, this.passWord);
 			
-			if (proffession == "Staff") {
-				 rs = st.executeQuery("select * FROM projecthospita.staff WHERE staff.username = '" + userName + "' AND staff.password = " + passWord + ";");
-				 rs.next();
-				 if(rs.getString(3).equals("doctor"))
-					 doc = new Doctor(rs.getString(1), rs.getString(2), rs.getString(3));
+			if (rs != null) {
 				 
-	
-					
-			}
-			else if (proffession == "Patient") {
-				rs = st.executeQuery("select * FROM projecthospita.patient WHERE patient.username = '" + userName + "' AND patient.password = " + passWord + ";");
-
-				rs.next();
-				System.out.println(rs.getString(1));
-				pat = new PatientUser(rs.getString("fname"), rs.getString("lname"), rs.getString("role"), rs.getLong("ssn"));
+				 rs.next();
+				 if(rs.getString(3).equals("doctor")) {
+					 doc = new Doctor(rs.getString(1), rs.getString(2), rs.getString(3));
+					 
+				 }
+				 else if (rs.getString(3).equals("patient")) {
+					 
+					 pat = new PatientUser(rs.getString("fname"), rs.getString("lname"), rs.getString("role"), rs.getLong("ssn"));
+					 
+				 }
+				 
 				
 			}
 			
-			
-		
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if(rs.first())
+		if(rs != null)
 			return true;
 		return false;
 		

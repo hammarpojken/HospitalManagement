@@ -14,6 +14,7 @@ import java.util.Optional;
 import Hospital.Doctor;
 import Hospital.MainApp;
 import Hospital.Patient;
+import Utils.dbhandler;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -42,6 +43,7 @@ public class DoctorViewController {
 	private Doctor doc;
 	private MainApp mainapp;
 	private BorderPane journalLayout;
+	private ObservableList<Patient> data = FXCollections.observableArrayList();
 	
 
 	@FXML
@@ -177,8 +179,25 @@ public class DoctorViewController {
 	}
 	
 	
-	public void setJournalInfo() {
-		tv.getItems().setAll(doc.getPatients());
+	public void setPatientTableView() {
+		ResultSet rs = dbhandler.getPatients();
+		
+		if(rs !=null) {
+			
+			try {
+				while(rs.next()){
+					data.add(new Patient(rs.getString("fname"), rs.getString("lname"), rs.getString("adress"), rs.getInt("phone"),rs.getLong("ssn")));
+					  
+					
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
+		tv.getItems().setAll(data);
 		
 	}
 	

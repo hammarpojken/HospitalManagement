@@ -8,10 +8,12 @@ import Hospital.MainApp;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
@@ -68,7 +70,7 @@ public class LoginViewController {
 			         DoctorViewController controller = loader.getController();
 			         controller.setDoctor(login.getDoc());
 			         controller.setMainApp(mainApp);
-			         controller.setJournalInfo();
+			         controller.setPatientTableView();
 			         mainApp.getRoot().setCenter(journal);
 			         mainApp.getPrimaryStage().setTitle(login.getDoc().getfname());
 				
@@ -94,8 +96,15 @@ public class LoginViewController {
 			         controller.fillResultCard();
 			         mainApp.getRoot().setCenter(journal);
 				}
+				
 			}
-			System.out.println(b);
+			else {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Error Dialog");
+				alert.setHeaderText("The username or password does not exist");
+				alert.showAndWait();
+			}
+		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
