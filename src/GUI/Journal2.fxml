@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="611.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <HBox prefHeight="305.0" prefWidth="600.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane fx:id="contactPane" prefWidth="300.0" style="-fx-background-color: #FFFFFF;">
+               <children>
+                  <TextField layoutX="94.0" layoutY="42.0" prefHeight="25.0" prefWidth="181.0" />
+                  <TextField layoutX="94.0" layoutY="73.0" prefHeight="25.0" prefWidth="181.0" />
+                  <TextField layoutX="94.0" layoutY="107.0" prefHeight="25.0" prefWidth="181.0" />
+                  <TextField layoutX="94.0" layoutY="138.0" prefHeight="25.0" prefWidth="181.0" />
+                  <TextField layoutX="94.0" layoutY="173.0" prefHeight="25.0" prefWidth="58.0" />
+                  <TextField layoutX="159.0" layoutY="173.0" prefHeight="25.0" prefWidth="114.0" />
+                  <TextField layoutX="94.0" layoutY="206.0" prefHeight="25.0" prefWidth="181.0" />
+                  <ChoiceBox layoutX="94.0" layoutY="238.0" prefHeight="25.0" prefWidth="181.0" />
+                  <RadioButton layoutX="94.0" layoutY="278.0" mnemonicParsing="false" text="Male" />
+                  <RadioButton layoutX="195.0" layoutY="278.0" mnemonicParsing="false" text="Female" />
+                  <Label layoutX="17.0" layoutY="278.0" snapToPixel="false" text="Gender" />
+                  <Label layoutX="17.0" layoutY="111.0" snapToPixel="false" text="SSN" />
+                  <Label layoutX="17.0" layoutY="142.0" snapToPixel="false" text="Adress" />
+                  <Label layoutX="17.0" layoutY="177.0" snapToPixel="false" text="Zip/City" />
+                  <Label layoutX="17.0" layoutY="210.0" snapToPixel="false" text="Phone" />
+                  <Label layoutX="17.0" layoutY="242.0" snapToPixel="false" text="Blood type" />
+                  <Label layoutX="17.0" layoutY="77.0" snapToPixel="false" text="Last name" />
+                  <Label layoutX="17.0" layoutY="46.0" snapToPixel="false" text="First name" />
+                  <Label layoutX="17.0" layoutY="14.0" text="Personal Information" />
+               </children>
+            </Pane>
+            <Pane prefWidth="300.0" style="-fx-background-color: #FFFFFF;">
+               <children>
+                  <Label layoutX="8.0" layoutY="21.0" text="Prescription" />
+                  <TreeTableView layoutX="7.0" layoutY="38.0" prefHeight="111.0" prefWidth="266.0">
+                     <columns>
+                        <TreeTableColumn prefWidth="139.0" text="name" />
+                        <TreeTableColumn minWidth="9.0" prefWidth="59.0" text="dos" />
+                        <TreeTableColumn prefWidth="67.0" resizable="false" text="type" />
+                     </columns>
+                  </TreeTableView>
+                  <Label layoutX="8.0" layoutY="156.0" text="Tests" />
+                  <TreeTableView layoutX="7.0" layoutY="173.0" prefHeight="111.0" prefWidth="266.0">
+                     <columns>
+                        <TreeTableColumn prefWidth="101.0" text="date" />
+                        <TreeTableColumn minWidth="9.0" prefWidth="97.0" resizable="false" text="name" />
+                        <TreeTableColumn prefWidth="67.0" text="type" />
+                     </columns>
+                  </TreeTableView>
+               </children>
+            </Pane>
+         </children>
+         <BorderPane.margin>
+            <Insets left="10.0" right="10.0" />
+         </BorderPane.margin>
+      </HBox>
+   </center>
+   <bottom>
+      <Pane prefWidth="600.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
+         <children>
+            <RadioButton layoutX="94.0" layoutY="31.0" mnemonicParsing="false" snapToPixel="false" text="In process" />
+            <RadioButton layoutX="195.0" layoutY="31.0" mnemonicParsing="false" snapToPixel="false" text="Discharged" />
+            <ChoiceBox layoutX="94.0" layoutY="118.0" prefHeight="25.0" prefWidth="181.0" />
+            <TextField fx:id="assignedDoctorText" editable="false" layoutX="94.0" layoutY="156.0" prefWidth="181.0" />
+            <TextField layoutX="94.0" layoutY="191.0" prefWidth="181.0" />
+            <TextArea layoutX="305.0" layoutY="47.0" prefHeight="170.0" prefWidth="261.0" wrapText="true" />
+            <Button fx:id="buttonUpdate" layoutX="258.0" layoutY="232.0" mnemonicParsing="false" onAction="#updateJournal" prefHeight="25.0" prefWidth="74.0" text="Update" />
+            <Label layoutX="305.0" layoutY="31.0" prefHeight="17.0" prefWidth="72.0" text="Remark:" />
+            <Label layoutX="17.0" layoutY="122.0" text="Room" />
+            <Label layoutX="17.0" layoutY="31.0" prefHeight="17.0" prefWidth="49.0" text="Status" />
+            <Label layoutX="17.0" layoutY="195.0" text="Diagnose" />
+            <Label layoutX="17.0" layoutY="146.0" prefHeight="45.0" prefWidth="69.0" text="Assigned&#10;Doctor" />
+            <Label layoutX="17.0" layoutY="62.0" text="Check-in" />
+            <Label layoutX="94.0" layoutY="62.0" prefHeight="17.0" prefWidth="170.0" text="yyyy-mm-dd" />
+            <Label layoutX="17.0" layoutY="88.0" text="Check-out:" />
+            <Label layoutX="94.0" layoutY="88.0" prefHeight="17.0" prefWidth="170.0" text="yyyy-mm-dd" />
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+      </Pane>
+   </bottom>
+   <top>
+      <Label text="Journal" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </top>
+</BorderPane>
