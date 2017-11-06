@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import Hospital.Doctor;
 import Hospital.Patient;
+import Utils.dbhandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
@@ -43,6 +44,7 @@ public class JournalController {
 	private Button buttonUpdate;
 	@FXML
 	private TextField assignedDoctorText;
+	private DoctorViewController dc;
 	
 	@FXML
 	private void initialize(){
@@ -83,10 +85,10 @@ public class JournalController {
 	
 	public void updateJournal () {
 		
-		doctor.updateJournal(fnametext.getText(), lnametext.getText(), adresstext.getText(), Long.parseLong(phonetext.getText()),
+		dbhandler.updateJournal(fnametext.getText(), lnametext.getText(), adresstext.getText(), Long.parseLong(phonetext.getText()),
 				Long.parseLong(ssnText.getText()), diseaseText.getText(), medicineText.getText(), testText.getText(), remarkArea.getText());
 		tv.getItems().clear();
-		tv.getItems().setAll(doctor.getPatients());
+		dc.setPatientTableView();
 		
 	}
 	public void setDoctor(Doctor doc) {
@@ -95,6 +97,9 @@ public class JournalController {
 	
 	public void setTable(TableView tv) {
 		this.tv = tv;
+	}
+	public void setParentController(DoctorViewController dc){
+		this.dc = dc;
 	}
 	
 	

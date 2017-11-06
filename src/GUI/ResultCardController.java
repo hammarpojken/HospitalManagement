@@ -2,6 +2,7 @@ package GUI;
 
 import Hospital.Doctor;
 import Hospital.Patient;
+import Utils.dbhandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -26,7 +27,7 @@ private Button RSbtn;
 
 	public void setResultCard() {
 	
-		doctor.setResultCard(diseaseText.getText(), medicineText.getText(), testText.getText(), remarkArea.getText(), ssn);
+		dbhandler.setResultCard(diseaseText.getText(), medicineText.getText(), testText.getText(), remarkArea.getText(), ssn);
 	 
 	
 }

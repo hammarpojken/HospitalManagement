@@ -46,6 +46,9 @@ public class DoctorViewController {
 	private ObservableList<Patient> data = FXCollections.observableArrayList();
 	
 
+	public ObservableList<Patient> getData() {
+		return data;
+	}
 	@FXML
 	private HBox DoctorHbox;
 	@FXML
@@ -89,9 +92,9 @@ public class DoctorViewController {
         
         JournalController controller = loader.getController();
         controller.setPatient(p);
-        controller.setDoctor(doc);
+        controller.setParentController(this);
         controller.setTable(this.tv);
-        controller.setPatientInfo(doc.getPatientInfo(p.getSSN()), doc.getResultCard(p.getSSN()));
+        controller.setPatientInfo(dbhandler.getPatientInfo(p.getSSN()), dbhandler.getResultCard(p.getSSN()));
         
         if (DoctorHbox.getChildren().size() >= 3) {
         	DoctorHbox.getChildren().remove(2);
@@ -134,7 +137,7 @@ public class DoctorViewController {
 		
 		
 		List<String> choices = new ArrayList<>();
-		ResultSet rs = doc.getDoctors();
+		ResultSet rs = dbhandler.getDoctors();
 			
 			
 			try {
@@ -154,7 +157,7 @@ public class DoctorViewController {
 				    
 				    long doctorid = Long.parseLong(result.get().substring(result.get().length() - 10));
 				    long patient = tv.getSelectionModel().getSelectedItem().getSSN();
-				    doc.assignDoctor(patient, doctorid);
+				    dbhandler.assignDoctor(patient, doctorid);
 				}
 				
 			} catch (SQLException e) {
