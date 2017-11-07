@@ -43,7 +43,7 @@ public class DoctorViewController {
 	private Doctor doc;
 	private MainApp mainapp;
 	private BorderPane journalLayout;
-	private ObservableList<Patient> data = FXCollections.observableArrayList();
+	private ObservableList<Patient> data;
 	
 
 	public ObservableList<Patient> getData() {
@@ -136,71 +136,36 @@ public class DoctorViewController {
 	public void assignDoctor() {
 		
 		
-		List<String> choices = new ArrayList<>();
-		ResultSet rs = dbhandler.getDoctors();
-			
-			
-			try {
-				while(rs.next()) {
-					choices.add(rs.getString("fname") + " " + rs.getString("lname") + " " + rs.getLong("staffid"));
-				}
+		List<String> choices = dbhandler.getDoctors();
 				
-				ChoiceDialog<String> dialog = new ChoiceDialog<>("Doctors", choices);
-				dialog.setTitle("Choice Dialog");
-				dialog.setHeaderText("Assign a doctor to " + tv.getSelectionModel().getSelectedItem().getFirstName() + " " +
-						tv.getSelectionModel().getSelectedItem().getLastName());
-				dialog.setContentText("Choose a doctor:");
-
-				// Traditional way to get the response value.
-				Optional<String> result = dialog.showAndWait();
-				if (result.isPresent()){
-				    
-				    long doctorid = Long.parseLong(result.get().substring(result.get().length() - 10));
-				    long patient = tv.getSelectionModel().getSelectedItem().getSSN();
-				    dbhandler.assignDoctor(patient, doctorid);
-				}
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-				
-			
-			
-
-			
-			
-			 
-				  
+				if(choices != null) {
+					ChoiceDialog<String> dialog = new ChoiceDialog<>("Doctors", choices);
+					dialog.setTitle("Choice Dialog");
+					dialog.setHeaderText("Assign a doctor to " + tv.getSelectionModel().getSelectedItem().getFirstName() + " " +
+							tv.getSelectionModel().getSelectedItem().getLastName());
+					dialog.setContentText("Choose a doctor:");
 	
-		
-		
-		
-
-		
+					// Traditional way to get the response value.
+					Optional<String> result = dialog.showAndWait();
+					if (result.isPresent()){
+					    
+					    long doctorid = Long.parseLong(result.get().substring(result.get().length() - 10));
+					    long patient = tv.getSelectionModel().getSelectedItem().getSSN();
+					    dbhandler.assignDoctor(patient, doctorid);
+					}
+				}
+				
 		
 	}
 	
 	
 	public void setPatientTableView() {
-		ResultSet rs = dbhandler.getPatients();
+		data = dbhandler.getPatients();
 		
-		if(rs !=null) {
+		if(data !=null) {
+			tv.getItems().setAll(data);
 			
-			try {
-				while(rs.next()){
-					data.add(new Patient(rs.getString("fname"), rs.getString("lname"), rs.getString("adress"), rs.getInt("phone"),rs.getLong("ssn")));
-					  
-					
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
-		
-		
-		tv.getItems().setAll(data);
 		
 	}
 	

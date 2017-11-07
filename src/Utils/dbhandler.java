@@ -5,12 +5,18 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import Hospital.Doctor;
 import Hospital.Patient;
 import Hospital.PatientUser;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class dbhandler {
+	
+	
 	
 	//--------------------------------------- LOGIN METHODS--------------------------------------------
 	
@@ -46,25 +52,45 @@ public class dbhandler {
 	}
 	
 	//-----------------------------------DOCTOR METHODS----------------------------------------------------------
-	public static ResultSet getPatients(){
+	public static ObservableList<Patient> getPatients(){
+		ObservableList<Patient> data = FXCollections.observableArrayList();
 		Connection con;
 		ResultSet rs;
 	try {
-		con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root");
+		con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
 		Statement st = con.createStatement();
-		 rs = st.executeQuery("select fname, lname, adress, phone, ssn FROM projecthospita.patient;");
-		 con.close();
+		 rs = st.executeQuery("select * FROM mydb.patient;");
 		 
-		 return rs;
-		
+		 while(rs.next()){
+			 data.add(new Patient(
+					 rs.getLong("ssn"),
+					 rs.getString("fname"),
+					 rs.getString("lname"),
+					 rs.getLong("phone"),
+					 rs.getString("username"),
+					 rs.getString("password"),
+					 rs.getString("adress"),
+					 rs.getInt("zipcode"),
+					 rs.getString("role"),
+					 rs.getLong("doctorid"),
+					 rs.getString("gender"),
+					 rs.getInt("status_patient"),
+					 rs.getDate("checkin_date"),
+					 rs.getDate("checkout_date"),
+					 rs.getInt("room"),
+					 rs.getString("blood_type")));
+		 }
+		 
 
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 		
+	} finally {
+		con.close();
 	}
+	return data;
 	
-	return rs = null;
 	}
 	
 	public static ResultSet getResultCard(long ssn) {
@@ -200,30 +226,42 @@ public class dbhandler {
 			}
 		
 	}
-	public static ResultSet getDoctors() {
+	public static List<String> getDoctors() {
 		
 		Connection con;
 		ResultSet rs;
+		List<String> choices = new ArrayList<>();
+		
 		
 		try {
 			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root");
 			Statement st = con.createStatement();
 			rs = st.executeQuery("select * FROM projecthospita.staff WHERE role = 'doctor'");
 			
-			if(rs.next() == true)
+			if(rs.next() == true) {
 				rs.beforeFirst();
-				return rs;
-			
+				
+				while(rs.next()) {
+					choices.add(rs.getString("fname") + " " + rs.getString("lname") + " " + rs.getLong("staffid"));
+				}
+				
+			} else {
+				choices = null;
+			}
+										
+				
 				  
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 			
+		} finally {
+			
 		}
-		return null;
-		
-		
+		return choices;
 	}
+		
+	
 	public static void updateJournal (String fname, String lname, String adress, long phone, long ssn, String disease, String medicine, String test, String remark) {
 		
 		dbhandler.updatePatient(fname, lname, adress, phone, ssn);
