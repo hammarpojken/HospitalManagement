@@ -11,6 +11,8 @@ import java.util.List;
 import Hospital.Doctor;
 import Hospital.Patient;
 import Hospital.PatientUser;
+import Hospital.Prescription;
+import Hospital.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -306,4 +308,64 @@ public class dbhandler {
 			return result;
 			
 		} 		
+		
+		public static ObservableList<Prescription> getPresciption(){
+			ObservableList<Prescription> presc = FXCollections.observableArrayList();
+			Connection con;
+			ResultSet rs;
+		try {
+			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
+			Statement st = con.createStatement();
+			 rs = st.executeQuery("SELECT * FROM mydb.prescription JOIN mydb.medicine ON *;");
+			 
+			 while(rs.next()){
+				 presc.add(new Prescription(
+						 rs.getInt("idpresciption"),
+						 rs.getLong("patientid"),
+						 rs.getLong("doctorid"),
+						 rs.getInt("medicine"),
+						 rs.getString("prescription_info"),
+						 rs.getString("withdrawl_amount"),
+						 new Medicine(
+								 rs.getInt("idmedicine"),
+								 rs.getString("name"),
+								 rs.getString("type"),
+								 rs.getString("volume"),
+								 rs.getDouble("price"))));
+				 
+			 }
+			 
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace(); 
+		}
+		return presc;
+		}
+		
+		public static ObservableList<Test> getTest(){
+			ObservableList<Test> testlist = FXCollections.observableArrayList();
+			Connection con;
+			ResultSet rs;
+		try {
+			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
+			Statement st = con.createStatement();
+			 rs = st.executeQuery("select * FROM mydb.tests;");
+			 
+			 while(rs.next()){
+				 testlist.add(new Test(
+						 rs.getInt("idtests"),
+						 rs.getLong("patientid"),
+						 rs.getString("type")));
+			 }
+			 
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace(); 
+		}
+		return testlist;
 }
+		
+}
+		
