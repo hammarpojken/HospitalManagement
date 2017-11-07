@@ -310,14 +310,14 @@ public class dbhandler {
 			
 		} 		
 		
-		public static ObservableList<Prescription> getPresciption(){
+		public static ObservableList<Prescription> getPresciption(long ssn){
 			ObservableList<Prescription> presc = FXCollections.observableArrayList();
 			Connection con;
 			ResultSet rs;
 		try {
 			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
 			Statement st = con.createStatement();
-			 rs = st.executeQuery("SELECT * FROM mydb.prescription JOIN mydb.medicine ON *;");
+			 rs = st.executeQuery("SELECT * FROM mydb.prescription JOIN mydb.medicine ON prescription.medicine = medicine.idmedicine WHERE prescription.patientid =" + ssn );
 			 
 			 while(rs.next()){
 				 presc.add(new Prescription(
