@@ -15,6 +15,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
@@ -80,6 +81,10 @@ public class JournalController {
 	private Button buttonUpdate;
 	@FXML
 	private TextField assignedDoctorText;
+	@FXML
+	private Label checkinDate;
+	@FXML
+	private Label checkoutDate;
 	
 	
 	//Toggle groups
@@ -155,6 +160,9 @@ public class JournalController {
 		ziptext.setText(currentPatient.getZipcode() + "");
 		citytext.setText(dbhandler.getCity(currentPatient.getZipcode()));
 		phonetext.setText(currentPatient.getPhone() + "");
+		checkinDate.setText(currentPatient.getCheckin_date());
+		checkoutDate.setText(currentPatient.getCheckout_date());
+		
 		
 		//Gender toggle
 		if(currentPatient.getGender().equals("Female"))

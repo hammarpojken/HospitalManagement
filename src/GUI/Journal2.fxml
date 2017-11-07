@@ -90,9 +90,9 @@
             <Label layoutX="17.0" layoutY="195.0" text="Diagnose" />
             <Label layoutX="17.0" layoutY="146.0" prefHeight="45.0" prefWidth="69.0" text="Assigned&#10;Doctor" />
             <Label layoutX="17.0" layoutY="62.0" text="Check-in" />
-            <Label layoutX="94.0" layoutY="62.0" prefHeight="17.0" prefWidth="170.0" text="yyyy-mm-dd" />
+            <Label fx:id="checkinDate" layoutX="94.0" layoutY="62.0" prefHeight="17.0" prefWidth="170.0" text="yyyy-mm-dd" />
             <Label layoutX="17.0" layoutY="88.0" text="Check-out:" />
-            <Label layoutX="94.0" layoutY="88.0" prefHeight="17.0" prefWidth="170.0" text="yyyy-mm-dd" />
+            <Label fx:id="checkoutDate" layoutX="94.0" layoutY="88.0" prefHeight="17.0" prefWidth="170.0" text="yyyy-mm-dd" />
          </children>
          <BorderPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
