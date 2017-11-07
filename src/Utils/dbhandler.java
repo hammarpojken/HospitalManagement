@@ -13,6 +13,7 @@ import Hospital.Medicine;
 import Hospital.Patient;
 import Hospital.PatientUser;
 import Hospital.Prescription;
+import Hospital.ResultCard;
 import Hospital.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -62,7 +63,7 @@ public class dbhandler {
 	try {
 		con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
 		Statement st = con.createStatement();
-		 rs = st.executeQuery("select * FROM mydb.patient;");
+		 rs = st.executeQuery("SELECT * FROM mydb.patient;");
 		 
 		 while(rs.next()){
 			 data.add(new Patient(
@@ -368,5 +369,36 @@ public class dbhandler {
 		return testlist;
 }
 		
-}
+		public static ObservableList<ResultCard> getResultCardInfo(long ssn){
+			ObservableList<ResultCard> rc = FXCollections.observableArrayList();
+			Connection con;
+			ResultSet rs;
+				
+			try {
+				con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
+				Statement st = con.createStatement();
+				rs = st.executeQuery("SELECT * FROM mydb.resultcard WHERE resultcard.patientid =" + ssn);
+				
+				if(rs.next()) {
+					rc.add(new ResultCard(
+							rs.getInt("resultcardid"),
+							rs.getLong("patientid"),
+							rs.getString("diagnose"),
+							rs.getString("remark")));
+				
+
+				}
+				con.close();
+				
+				} catch (SQLException e) {
+					
+				} finally {
+				
+					
+				}
+				
+				return rc;
+				
+		}	
 		
+}		
