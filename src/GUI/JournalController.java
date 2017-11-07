@@ -5,9 +5,11 @@ import java.sql.SQLException;
 
 import Hospital.Doctor;
 import Hospital.Patient;
+import Hospital.Prescription;
 import Utils.dbhandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -18,8 +20,10 @@ public class JournalController {
 	private Doctor doctor;
 	private Patient currentPatient;
 	private TableView<Patient> tv;
+	private DoctorViewController dc;
 	//journal components
-	
+	@FXML
+	TableView<Prescription> tvPrescription;
 	@FXML
 	private Text doctorText;
 	@FXML
@@ -48,10 +52,15 @@ public class JournalController {
 	private Button buttonUpdate;
 	@FXML
 	private TextField assignedDoctorText;
-	private DoctorViewController dc;
+	@FXML
+	private TableColumn<Patient, String> nameCol;
+	@FXML
+	private TableColumn<Patient, String> lnameCol;
+	
 	
 	@FXML
 	private void initialize(){
+		
 		
 	}
 	

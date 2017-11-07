@@ -12,15 +12,17 @@ public class Prescription {
     private final SimpleIntegerProperty medicineId;
     private final SimpleStringProperty prescriptionInfo;
     private final SimpleStringProperty withdrawlAmount;
+    private final Medicine med;
     
     
-    public Prescription(int test_id, Long patient_id, Long doctor_id, int medicine_id, String prescription_info, String withdrawl_amount) {
+    public Prescription(int test_id, Long patient_id, Long doctor_id, int medicine_id, String prescription_info, String withdrawl_amount, Medicine med) {
     	this.testId = new SimpleIntegerProperty(test_id);
     	this.patientId = new SimpleLongProperty(patient_id);
     	this.doctorId = new SimpleLongProperty(doctor_id);
     	this.medicineId = new SimpleIntegerProperty(medicine_id);
     	this.prescriptionInfo = new SimpleStringProperty(prescription_info);
     	this.withdrawlAmount = new SimpleStringProperty(withdrawl_amount);
+    	this.med = med;
     	
     }
 
