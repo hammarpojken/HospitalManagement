@@ -54,32 +54,10 @@ public class JournalController {
 	public void setPatient(Patient p) {
 		this.currentPatient = p;
 	}
-	public void setPatientInfo(ResultSet rspat,  ResultSet rs) {
+	public void setPatientInfo() {
 	
-        try {
-        	fnametext.setText(rspat.getString("fname"));
-            lnametext.setText(rspat.getString("lname"));
-            adresstext.setText(rspat.getString("adress"));
-            phonetext.setText(rspat.getLong("phone") + "");
-			ssnText.setText(rspat.getLong("ssn") + "");
-			assignedDoctorText.setText(rspat.getString("doctorfname") + " " + rspat.getString("doctorlname"));
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+                
         
-        if(rs != null) {
-        	try {
-        		
-				diseaseText.setText(rs.getString("disease"));
-				medicineText.setText(rs.getString("medicine"));
-				testText.setText(rs.getString("test"));
-				remarkArea.setText(rs.getString("remark"));
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        }
         
 	}
 	
