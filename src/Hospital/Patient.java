@@ -9,7 +9,7 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Patient {
 	 
-	private final long ssn;
+	private final SimpleLongProperty ssn;
     private final SimpleStringProperty fname;
     private final SimpleStringProperty lname;
     private final SimpleLongProperty phone;
@@ -53,7 +53,7 @@ public class Patient {
     	}
  
     	
-    	this.ssn = SSN;
+    	this.ssn = new SimpleLongProperty(SSN);
         this.fname = new SimpleStringProperty(fName);
         this.lname = new SimpleStringProperty(lName);
         this.phone = new SimpleLongProperty(phone);
@@ -72,7 +72,7 @@ public class Patient {
     }
 
 	public long getSsn() {
-		return ssn;
+		return ssn.get();
 	}
 
 
@@ -95,104 +95,104 @@ public class Patient {
 
 
 
-	public SimpleLongProperty getPhone() {
-		return phone;
+	public long getPhone() {
+		return phone.get();
 	}
 
 
 
 
 
-	public SimpleStringProperty getUsername() {
-		return username;
+	public String getUsername() {
+		return username.get();
 	}
 
 
 
 
 
-	public SimpleStringProperty getPassword() {
-		return password;
+	public String getPassword() {
+		return password.get();
 	}
 
 
 
 
 
-	public SimpleStringProperty getAdress() {
-		return adress;
+	public String getAdress() {
+		return adress.get();
 	}
 
 
 
 
 
-	public SimpleIntegerProperty getZipcode() {
-		return zipcode;
+	public int getZipcode() {
+		return zipcode.get();
 	}
 
 
 
 
 
-	public SimpleStringProperty getRole() {
-		return role;
+	public String getRole() {
+		return role.get();
 	}
 
 
 
 
 
-	public SimpleLongProperty getDoctorid() {
-		return doctorid;
+	public long getDoctorid() {
+		return doctorid.get();
 	}
 
 
 
 
 
-	public SimpleStringProperty getGender() {
-		return gender;
+	public String getGender() {
+		return gender.get();
 	}
 
 
 
 
 
-	public SimpleBooleanProperty getStatus_patient() {
-		return status_patient;
+	public boolean getStatus_patient() {
+		return status_patient.get();
 	}
 
 
 
 
 
-	public SimpleStringProperty getCheckin_date() {
-		return checkin_date;
+	public String getCheckin_date() {
+		return checkin_date.get();
 	}
 
 
 
 
 
-	public SimpleStringProperty getCheckout_date() {
-		return checkout_date;
+	public String getCheckout_date() {
+		return checkout_date.get();
 	}
 
 
 
 
 
-	public SimpleIntegerProperty getRoom() {
-		return room;
+	public int getRoom() {
+		return room.get();
 	}
 
 
 
 
 
-	public SimpleStringProperty getBlood_type() {
-		return blood_type;
+	public String getBlood_type() {
+		return blood_type.get();
 	}
 
     

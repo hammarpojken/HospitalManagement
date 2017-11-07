@@ -275,4 +275,35 @@ public class dbhandler {
 		
 		
 	}
+	
+	// --------------------------------------------------------JOURNAL METHODS-----------------------------------------------------------------------------------
+	
+		public static String getCity(int zip) {
+		
+			
+		Connection con;
+		ResultSet rs;
+		String result = "N/A";
+			
+		try {
+			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
+			Statement st = con.createStatement();
+			rs = st.executeQuery("SELECT name FROM mydb.city WHERE city.idcity =" + zip);
+			
+			if(rs.next()) {
+				result = rs.getString("name");
+
+			}
+			con.close();
+			
+			} catch (SQLException e) {
+				
+			} finally {
+			
+				
+			}
+			
+			return result;
+			
+		} 		
 }
