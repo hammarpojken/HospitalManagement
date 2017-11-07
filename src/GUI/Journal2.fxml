@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="611.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.JournalController">
+<BorderPane prefHeight="611.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.JournalController">
    <center>
       <HBox prefHeight="305.0" prefWidth="600.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
@@ -77,8 +77,8 @@
    <bottom>
       <Pane prefWidth="600.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
          <children>
-            <RadioButton layoutX="94.0" layoutY="31.0" mnemonicParsing="false" snapToPixel="false" text="In process" />
-            <RadioButton layoutX="195.0" layoutY="31.0" mnemonicParsing="false" snapToPixel="false" text="Discharged" />
+            <RadioButton fx:id="radioInprocess" layoutX="94.0" layoutY="31.0" mnemonicParsing="false" snapToPixel="false" text="In process" />
+            <RadioButton fx:id="radioDischarged" layoutX="195.0" layoutY="31.0" mnemonicParsing="false" snapToPixel="false" text="Discharged" />
             <ChoiceBox layoutX="94.0" layoutY="118.0" prefHeight="25.0" prefWidth="181.0" />
             <TextField fx:id="assignedDoctorText" editable="false" layoutX="94.0" layoutY="156.0" prefWidth="181.0" />
             <TextField fx:id="diseasetext" layoutX="94.0" layoutY="191.0" prefWidth="181.0" />
