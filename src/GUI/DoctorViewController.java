@@ -87,14 +87,14 @@ public class DoctorViewController {
 		FXMLLoader loader = new FXMLLoader();
 
 		
-        loader.setLocation(DoctorViewController.class.getResource("Journal.fxml"));
+        loader.setLocation(DoctorViewController.class.getResource("Journal2.fxml"));
         BorderPane page = (BorderPane) loader.load();
         
         JournalController controller = loader.getController();
         controller.setPatient(p);
         controller.setParentController(this);
         controller.setTable(this.tv);
-        controller.setPatientInfo(dbhandler.getPatientInfo(p.getSSN()), dbhandler.getResultCard(p.getSSN()));
+        controller.setPatientInfo(dbhandler.getPatientInfo(p.getSsn()), dbhandler.getResultCard(p.getSsn()));
         
         if (DoctorHbox.getChildren().size() >= 3) {
         	DoctorHbox.getChildren().remove(2);
@@ -122,7 +122,7 @@ public class DoctorViewController {
 	        
 	        ResultCardController controller = loader.getController();
 	        controller.setDoctor(doc);
-	        controller.setSSN( tv.getSelectionModel().getSelectedItem().getSSN());
+	        controller.setSSN( tv.getSelectionModel().getSelectedItem().getSsn());
 		
        
 	        if (DoctorHbox.getChildren().size() >= 3)
@@ -141,8 +141,8 @@ public class DoctorViewController {
 				if(choices != null) {
 					ChoiceDialog<String> dialog = new ChoiceDialog<>("Doctors", choices);
 					dialog.setTitle("Choice Dialog");
-					dialog.setHeaderText("Assign a doctor to " + tv.getSelectionModel().getSelectedItem().getFirstName() + " " +
-							tv.getSelectionModel().getSelectedItem().getLastName());
+					dialog.setHeaderText("Assign a doctor to " + tv.getSelectionModel().getSelectedItem().getFname() + " " +
+							tv.getSelectionModel().getSelectedItem().getLname());
 					dialog.setContentText("Choose a doctor:");
 	
 					// Traditional way to get the response value.
@@ -150,7 +150,7 @@ public class DoctorViewController {
 					if (result.isPresent()){
 					    
 					    long doctorid = Long.parseLong(result.get().substring(result.get().length() - 10));
-					    long patient = tv.getSelectionModel().getSelectedItem().getSSN();
+					    long patient = tv.getSelectionModel().getSelectedItem().getSsn();
 					    dbhandler.assignDoctor(patient, doctorid);
 					}
 				}

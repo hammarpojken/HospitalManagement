@@ -25,7 +25,7 @@ public class dbhandler {
 		
 		try {
 			
-			Connection con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root");
+			Connection con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
 			Statement st = con.createStatement();
 			
 			if (proffession == "Staff") {
@@ -75,8 +75,8 @@ public class dbhandler {
 					 rs.getLong("doctorid"),
 					 rs.getString("gender"),
 					 rs.getInt("status_patient"),
-					 rs.getDate("checkin_date"),
-					 rs.getDate("checkout_date"),
+					 rs.getDate("checkin_date").toString(),
+					 rs.getDate("checkout_date").toString(),
 					 rs.getInt("room"),
 					 rs.getString("blood_type")));
 		 }
@@ -86,8 +86,13 @@ public class dbhandler {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 		
-	} finally {
-		con.close();
+//	} finally {
+//		try {
+//		//	con.close();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	return data;
 	
