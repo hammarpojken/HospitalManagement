@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Hospital.Doctor;
+import Hospital.Medicine;
 import Hospital.Patient;
 import Hospital.PatientUser;
 import Hospital.Prescription;

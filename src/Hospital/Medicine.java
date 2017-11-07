@@ -9,12 +9,14 @@ public class Medicine {
 	
 	private final SimpleIntegerProperty medicineId;
     private final SimpleStringProperty name;
+    private final SimpleStringProperty type;
     private final SimpleStringProperty volume;
     private final SimpleDoubleProperty price;
     
-    public Medicine(int medId, String name, String volume, double price) {
+    public Medicine(int medId, String name, String type, String volume, double price) {
     	this.medicineId  = new SimpleIntegerProperty(medId);
     	this.name = new SimpleStringProperty(name);
+    	this.type = new SimpleStringProperty(type);
     	this.volume = new SimpleStringProperty(volume);
     	this.price  = new SimpleDoubleProperty(price);
     }
@@ -77,6 +79,21 @@ public class Medicine {
 	public final void setPrice(final double price) {
 		this.priceProperty().set(price);
 	}
+
+	public final SimpleStringProperty typeProperty() {
+		return this.type;
+	}
+	
+
+	public final String getType() {
+		return this.typeProperty().get();
+	}
+	
+
+	public final void setType(final String type) {
+		this.typeProperty().set(type);
+	}
+	
 	
 
 }

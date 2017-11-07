@@ -56,6 +56,8 @@ public class JournalController {
 	private TableColumn<Patient, String> nameCol;
 	@FXML
 	private TableColumn<Patient, String> lnameCol;
+	@FXML
+	private TableColumn<Patient, String> lnameCol;
 	
 	
 	@FXML
