@@ -311,8 +311,8 @@ public class dbhandler {
 				
 			} 		
 		
-		public static ObservableList<Prescription> getPresciption(long ssn){
-			ObservableList<Prescription> presc = FXCollections.observableArrayList();
+		public static ObservableList<Medicine> getMedicine(long ssn){
+			ObservableList<Medicine> presc = FXCollections.observableArrayList();
 			Connection con;
 			ResultSet rs;
 			
@@ -322,19 +322,12 @@ public class dbhandler {
 				 rs = st.executeQuery("SELECT * FROM mydb.prescription JOIN mydb.medicine ON prescription.medicine = medicine.idmedicine WHERE prescription.patientid =" + ssn );
 				 
 				 while(rs.next()){
-					 presc.add(new Prescription(
-							 rs.getInt("idpresciption"),
-							 rs.getLong("patientid"),
-							 rs.getLong("doctorid"),
-							 rs.getInt("medicine"),
-							 rs.getString("prescription_info"),
-							 rs.getString("withdrawl_amount"),
-							 new Medicine(
+					 presc.add(new Medicine(
 									 rs.getInt("idmedicine"),
 									 rs.getString("name"),
 									 rs.getString("type"),
 									 rs.getString("volume"),
-									 rs.getDouble("price"))));
+									 rs.getDouble("price")));
 					 
 				}
 				 con.close();
