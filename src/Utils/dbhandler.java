@@ -80,9 +80,13 @@ public class dbhandler {
 					 rs.getString("gender"),
 					 rs.getInt("status_patient"),
 					 rs.getDate("checkin_date"),
+					 rs.getTime("checkin_date"),
 					 rs.getDate("checkout_date"),
+					 rs.getTime("checkout_date"),
 					 rs.getInt("room"),
 					 rs.getString("blood_type")));
+			 
+			 
 		 }
 		 
 

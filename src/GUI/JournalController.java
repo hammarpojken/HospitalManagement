@@ -160,8 +160,8 @@ public class JournalController {
 		ziptext.setText(currentPatient.getZipcode() + "");
 		citytext.setText(dbhandler.getCity(currentPatient.getZipcode()));
 		phonetext.setText(currentPatient.getPhone() + "");
-		checkinDate.setText(currentPatient.getCheckin_date());
-		checkoutDate.setText(currentPatient.getCheckout_date());
+		checkinDate.setText(currentPatient.getCheckin_date() + " " + currentPatient.getCheckinTime());
+		checkoutDate.setText(currentPatient.getCheckout_date() + " " + currentPatient.getCheckoutTime());
 		
 		
 		//Gender toggle
