@@ -316,7 +316,7 @@ public class dbhandler {
 		try {
 			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
 			Statement st = con.createStatement();
-			 rs = st.executeQuery("select * FROM mydb.prescription;");
+			 rs = st.executeQuery("SELECT * FROM mydb.prescription JOIN mydb.medicine ON *;");
 			 
 			 while(rs.next()){
 				 presc.add(new Prescription(
@@ -325,7 +325,14 @@ public class dbhandler {
 						 rs.getLong("doctorid"),
 						 rs.getInt("medicine"),
 						 rs.getString("prescription_info"),
-						 rs.getString("withdrawl_amount")));
+						 rs.getString("withdrawl_amount"),
+						 new Medicine(
+								 rs.getInt("idmedicine"),
+								 rs.getString("name"),
+								 rs.getString("type"),
+								 rs.getString("volume"),
+								 rs.getDouble("price"))));
+				 
 			 }
 			 
 
