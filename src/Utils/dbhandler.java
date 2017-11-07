@@ -29,13 +29,13 @@ public class dbhandler {
 			Statement st = con.createStatement();
 			
 			if (proffession == "Staff") {
-				 rs = st.executeQuery("select * FROM projecthospita.staff WHERE staff.username = '" + userName + "' AND staff.password = " + passWord + ";");
+				 rs = st.executeQuery("select * FROM mydb.staff WHERE staff.username = '" + userName + "' AND staff.password = " + passWord + ";");
 				 //con.close();
 				 return rs;
 				}
 			
 			else if (proffession == "Patient") {
-				rs = st.executeQuery("select * FROM projecthospita.patient WHERE patient.username = '" + userName + "' AND patient.password = " + passWord + ";");
+				rs = st.executeQuery("select * FROM mydb.patient WHERE patient.username = '" + userName + "' AND patient.password = " + passWord + ";");
 				con.close();
 				return rs;
 			}
@@ -75,8 +75,8 @@ public class dbhandler {
 					 rs.getLong("doctorid"),
 					 rs.getString("gender"),
 					 rs.getInt("status_patient"),
-					 rs.getDate("checkin_date").toString(),
-					 rs.getDate("checkout_date").toString(),
+					 rs.getDate("checkin_date"),
+					 rs.getDate("checkout_date"),
 					 rs.getInt("room"),
 					 rs.getString("blood_type")));
 		 }

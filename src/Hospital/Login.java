@@ -35,11 +35,11 @@ public class Login {
 			if (rs != null) {
 				 
 				 rs.next();
-				 if(rs.getString(3).equals("doctor")) {
-					 doc = new Doctor(rs.getString(1), rs.getString(2), rs.getString(3));
+				 if(rs.getString("role").equals("Doctor")) {
+					 doc = new Doctor(rs.getString("fname"), rs.getString("lname"), rs.getString("role"));
 					 
 				 }
-				 else if (rs.getString(3).equals("patient")) {
+				 else if (rs.getString("role").equals("patient")) {
 					 
 					 pat = new PatientUser(rs.getString("fname"), rs.getString("lname"), rs.getString("role"), rs.getLong("ssn"));
 					 

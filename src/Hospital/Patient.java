@@ -1,5 +1,7 @@
 package Hospital;
 
+import java.sql.Date;
+
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleLongProperty;
@@ -29,9 +31,10 @@ public class Patient {
    
 
     public Patient(long SSN, String fName, String lName, Long phone, String userName, String passWord, 
-    		String adress, int zipCode, String role, Long doctorId, String gender, int status_Patient, String checkin_Date,
-    		String checkout_Date, int room, String blood_Type) {
-    	
+    		String adress, int zipCode, String role, Long doctorId, String gender, int status_Patient, Date checkin_Date,
+    		Date checkout_Date, int room, String blood_Type) {
+    	String checkin = "N/A";
+    	String checkout = "N/A";
     	boolean b = false;
     	if (status_Patient == 0) {
     		
@@ -41,7 +44,14 @@ public class Patient {
     		this.status_patient = new SimpleBooleanProperty(b);
     		
     	}
-    	
+    	if(checkin_Date != null) {
+    		checkin = checkin_Date.toString();
+    	}
+    	if (checkout_Date != null) {
+    		checkout = checkin_Date.toString();
+    		
+    	}
+ 
     	
     	this.ssn = SSN;
         this.fname = new SimpleStringProperty(fName);
@@ -54,8 +64,8 @@ public class Patient {
         this.role = new SimpleStringProperty(role);
         this.doctorid = new SimpleLongProperty(doctorId);
         this.gender = new SimpleStringProperty(gender);
-        this.checkin_date = new SimpleStringProperty(checkin_Date);
-        this.checkout_date = new SimpleStringProperty(checkout_Date);
+        this.checkin_date = new SimpleStringProperty(checkin);
+        this.checkout_date = new SimpleStringProperty(checkout);
         this.room = new SimpleIntegerProperty(room);
         this.blood_type = new SimpleStringProperty(blood_Type);
         
@@ -69,16 +79,16 @@ public class Patient {
 
 
 
-	public SimpleStringProperty getFname() {
-		return fname;
+	public String getFname() {
+		return fname.get();
 	}
 
 
 
 
 
-	public SimpleStringProperty getLname() {
-		return lname;
+	public String getLname() {
+		return lname.get();
 	}
 
 

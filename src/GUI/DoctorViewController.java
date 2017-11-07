@@ -72,8 +72,8 @@ public class DoctorViewController {
 
 	@FXML
 	public void initialize() {
-		nameCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("firstName"));
-	    lnameCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("lastName"));
+		nameCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("fname"));
+	    lnameCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("lname"));
 	    
 	   
 
