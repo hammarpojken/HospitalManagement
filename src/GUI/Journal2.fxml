@@ -5,10 +5,10 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TreeTableColumn?>
-<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -28,8 +28,8 @@
                   <TextField fx:id="citytext" layoutX="159.0" layoutY="173.0" prefHeight="25.0" prefWidth="114.0" />
                   <TextField fx:id="phonetext" layoutX="94.0" layoutY="206.0" prefHeight="25.0" prefWidth="181.0" />
                   <ChoiceBox layoutX="94.0" layoutY="238.0" prefHeight="25.0" prefWidth="181.0" />
-                  <RadioButton layoutX="94.0" layoutY="278.0" mnemonicParsing="false" text="Male" />
-                  <RadioButton layoutX="195.0" layoutY="278.0" mnemonicParsing="false" text="Female" />
+                  <RadioButton fx:id="radioMale" layoutX="94.0" layoutY="278.0" mnemonicParsing="false" text="Male" />
+                  <RadioButton fx:id="radioFemale" layoutX="195.0" layoutY="278.0" mnemonicParsing="false" text="Female" />
                   <Label layoutX="17.0" layoutY="278.0" snapToPixel="false" text="Gender" />
                   <Label layoutX="17.0" layoutY="111.0" snapToPixel="false" text="SSN" />
                   <Label layoutX="17.0" layoutY="142.0" snapToPixel="false" text="Adress" />
@@ -38,27 +38,34 @@
                   <Label layoutX="17.0" layoutY="242.0" snapToPixel="false" text="Blood type" />
                   <Label layoutX="17.0" layoutY="77.0" snapToPixel="false" text="Last name" />
                   <Label layoutX="17.0" layoutY="46.0" snapToPixel="false" text="First name" />
-                  <Label layoutX="17.0" layoutY="14.0" text="Personal Information" />
+                  <Label layoutX="17.0" layoutY="1.0" prefHeight="26.0" prefWidth="125.0" text="Personal Information">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
                </children>
             </Pane>
             <Pane prefWidth="300.0" style="-fx-background-color: #FFFFFF;">
                <children>
-                  <Label layoutX="8.0" layoutY="21.0" text="Prescription" />
-                  <TreeTableView layoutX="7.0" layoutY="38.0" prefHeight="111.0" prefWidth="266.0">
-                     <columns>
-                        <TreeTableColumn prefWidth="139.0" text="name" />
-                        <TreeTableColumn minWidth="9.0" prefWidth="59.0" text="dos" />
-                        <TreeTableColumn prefWidth="67.0" resizable="false" text="type" />
-                     </columns>
-                  </TreeTableView>
-                  <Label layoutX="8.0" layoutY="156.0" text="Tests" />
-                  <TreeTableView layoutX="7.0" layoutY="173.0" prefHeight="111.0" prefWidth="266.0">
-                     <columns>
-                        <TreeTableColumn prefWidth="101.0" text="date" />
-                        <TreeTableColumn minWidth="9.0" prefWidth="97.0" resizable="false" text="name" />
-                        <TreeTableColumn prefWidth="67.0" text="type" />
-                     </columns>
-                  </TreeTableView>
+                  <Label layoutX="8.0" layoutY="6.0" text="Prescribed Medicine">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label layoutX="8.0" layoutY="156.0" text="Tests">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <TableView fx:id="tvMedicine" layoutX="8.0" layoutY="38.0" prefHeight="115.0" prefWidth="271.0">
+                    <columns>
+                      <TableColumn fx:id="nameCol" editable="false" prefWidth="126.0" text="Name" />
+                      <TableColumn fx:id="typeCol" editable="false" prefWidth="76.0" text="Type" />
+                        <TableColumn fx:id="volumeCol" editable="false" prefWidth="68.0" text="Volume" />
+                    </columns>
+                  </TableView>
+                  <TableView fx:id="tvTests" layoutX="9.0" layoutY="174.0" prefHeight="108.0" prefWidth="269.0">
+                    <columns>
+                      <TableColumn fx:id="testTypeCol" editable="false" prefWidth="123.0" resizable="false" text="Type" />
+                    </columns>
+                  </TableView>
                </children>
             </Pane>
          </children>
@@ -74,8 +81,8 @@
             <RadioButton layoutX="195.0" layoutY="31.0" mnemonicParsing="false" snapToPixel="false" text="Discharged" />
             <ChoiceBox layoutX="94.0" layoutY="118.0" prefHeight="25.0" prefWidth="181.0" />
             <TextField fx:id="assignedDoctorText" editable="false" layoutX="94.0" layoutY="156.0" prefWidth="181.0" />
-            <TextField layoutX="94.0" layoutY="191.0" prefWidth="181.0" />
-            <TextArea layoutX="305.0" layoutY="47.0" prefHeight="170.0" prefWidth="261.0" wrapText="true" />
+            <TextField fx:id="diseasetext" layoutX="94.0" layoutY="191.0" prefWidth="181.0" />
+            <TextArea fx:id="remarkarea" layoutX="305.0" layoutY="47.0" prefHeight="170.0" prefWidth="261.0" wrapText="true" />
             <Button fx:id="buttonUpdate" layoutX="258.0" layoutY="232.0" mnemonicParsing="false" onAction="#updateJournal" prefHeight="25.0" prefWidth="74.0" text="Update" />
             <Label layoutX="305.0" layoutY="31.0" prefHeight="17.0" prefWidth="72.0" text="Remark:" />
             <Label layoutX="17.0" layoutY="122.0" text="Room" />

@@ -3,16 +3,23 @@ package GUI;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.security.auth.callback.Callback;
+
 import Hospital.Doctor;
+import Hospital.Medicine;
 import Hospital.Patient;
 import Hospital.Prescription;
+import Hospital.Test;
 import Utils.dbhandler;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 
 public class JournalController {
@@ -23,7 +30,17 @@ public class JournalController {
 	private DoctorViewController dc;
 	//journal components
 	@FXML
-	TableView<Prescription> tvPrescription;
+	private TableView<Medicine> tvMedicine;
+	@FXML
+	private TableView<Test> tvTests;
+	@FXML
+	private TableColumn<Medicine, String> nameCol;
+	@FXML
+	private TableColumn<Test, String> testTypeCol;
+	@FXML
+	private TableColumn<Medicine, String> typeCol;
+	@FXML
+	private TableColumn<Medicine, String> volumeCol;
 	@FXML
 	private Text doctorText;
 	@FXML
@@ -52,16 +69,16 @@ public class JournalController {
 	private Button buttonUpdate;
 	@FXML
 	private TextField assignedDoctorText;
-	@FXML
-	private TableColumn<Patient, String> nameCol;
-	@FXML
-	private TableColumn<Patient, String> lnameCol;
-	@FXML
-	private TableColumn<Patient, String> lnameCol;
+
 	
 	
 	@FXML
 	private void initialize(){
+		nameCol.setCellValueFactory(new PropertyValueFactory<Medicine, String>("name"));
+	    typeCol.setCellValueFactory(new PropertyValueFactory<Medicine, String>("type"));
+	    volumeCol.setCellValueFactory(new PropertyValueFactory<Medicine, String>("volume"));
+	    testTypeCol.setCellValueFactory(new PropertyValueFactory<Test, String>("type"));
+	    
 		
 		
 	}
@@ -79,9 +96,13 @@ public class JournalController {
 		citytext.setText(dbhandler.getCity(currentPatient.getZipcode()));
 		phonetext.setText(currentPatient.getPhone() + "");
 		
-	
-                
+		tvMedicine.getItems().setAll(dbhandler.getMedicine(currentPatient.getSsn()));
+		
+		tvTests.getItems().setAll(dbhandler.getTest(currentPatient.getSsn()));
+        System.out.println(dbhandler.getResultCardInfo(currentPatient.getSsn()).size());
+        remarkarea.setText(dbhandler.getResultCardInfo(currentPatient.getSsn()).get(0).getRemark());
         
+        diseasetext.setText(dbhandler.getResultCardInfo(currentPatient.getSsn()).get(0).getDiagnose());
         
 	}
 	

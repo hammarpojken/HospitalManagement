@@ -319,7 +319,7 @@ public class dbhandler {
 			try {
 				con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
 				Statement st = con.createStatement();
-				 rs = st.executeQuery("SELECT * FROM mydb.prescription JOIN mydb.medicine ON prescription.medicine = medicine.idmedicine WHERE prescription.patientid =" + ssn );
+				 rs = st.executeQuery("SELECT * FROM mydb.medicine WHERE medicine.idmedicine IN (SELECT prescription.medicine FROM prescription WHERE prescription.patientid = " + ssn + ")" );
 				 
 				 while(rs.next()){
 					 presc.add(new Medicine(
@@ -365,8 +365,8 @@ public class dbhandler {
 				return testlist;
 }
 		
-		public static ObservableList<ResultCard> getResultCardInfo(long ssn){
-			ObservableList<ResultCard> rc = FXCollections.observableArrayList();
+		public static List<ResultCard> getResultCardInfo(long ssn){
+			List<ResultCard> rc = new ArrayList<ResultCard>();
 			Connection con;
 			ResultSet rs;
 				
@@ -377,7 +377,7 @@ public class dbhandler {
 				
 				while(rs.next()) {
 					rc.add(new ResultCard(
-							rs.getInt("resultcardid"),
+							rs.getInt("idresultcard"),
 							rs.getLong("patientid"),
 							rs.getString("diagnose"),
 							rs.getString("remark")));
@@ -391,6 +391,7 @@ public class dbhandler {
 				} finally {
 					
 				}
+				System.out.println(rc.size());
 				return rc;
 				
 		}	
