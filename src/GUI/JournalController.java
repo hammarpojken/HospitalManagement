@@ -162,6 +162,7 @@ public class JournalController {
 		phonetext.setText(currentPatient.getPhone() + "");
 		checkinDate.setText(currentPatient.getCheckin_date() + " " + currentPatient.getCheckinTime());
 		checkoutDate.setText(currentPatient.getCheckout_date() + " " + currentPatient.getCheckoutTime());
+		assignedDoctorText.setText(dbhandler.getDoctor(currentPatient.getDoctorid()));
 		
 		
 		//Gender toggle

@@ -273,6 +273,31 @@ public class dbhandler {
 		}
 		return choices;
 	}
+	
+	public static String getDoctor(long docid) {
+		
+		Connection con;
+		ResultSet rs;
+		String docname = "No assigned doctor";
+		try {
+			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
+			Statement st = con.createStatement();
+			
+				
+			rs = st.executeQuery("SELECT fname, lname FROM mydb.staff WHERE staff.staffid = " + docid);
+			if (rs.next()) {
+				return rs.getString("fname") + " " + rs.getString("lname");
+			}
+			
+			
+		
+		}catch (SQLException e) {
+			e.printStackTrace();	
+	
+			}
+		return docname;
+		
+	}
 		
 	
 	public static void updateJournal (String fname, String lname, String adress, long phone, long ssn, String disease, String medicine, String test, String remark) {
