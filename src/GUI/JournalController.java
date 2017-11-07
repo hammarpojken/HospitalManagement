@@ -31,15 +31,19 @@ public class JournalController {
 	@FXML
 	private TextField phonetext;
 	@FXML
-	private TextField ssnText;
+	private TextField ssntext;
 	@FXML
-	private TextField diseaseText;
+	private TextField ziptext;
 	@FXML
-	private TextField medicineText;
+	private TextField citytext;
 	@FXML
-	private TextField testText;
+	private TextField diseasetext;
 	@FXML
-	private TextArea remarkArea;
+	private TextField medicinetext;
+	@FXML
+	private TextField testtext;
+	@FXML
+	private TextArea remarkarea;
 	@FXML
 	private Button buttonUpdate;
 	@FXML
@@ -54,39 +58,26 @@ public class JournalController {
 	public void setPatient(Patient p) {
 		this.currentPatient = p;
 	}
-	public void setPatientInfo(ResultSet rspat,  ResultSet rs) {
+	public void setPatientInfo() {
+		
+		fnametext.setText(currentPatient.getFname());
+		lnametext.setText(currentPatient.getLname());
+		ssntext.setText(currentPatient.getSsn() + "");
+		adresstext.setText(currentPatient.getAdress());
+		ziptext.setText(currentPatient.getZipcode() + "");
+		citytext.setText(dbhandler.getCity(currentPatient.getZipcode()));
+		phonetext.setText(currentPatient.getPhone() + "");
+		
 	
-        try {
-        	fnametext.setText(rspat.getString("fname"));
-            lnametext.setText(rspat.getString("lname"));
-            adresstext.setText(rspat.getString("adress"));
-            phonetext.setText(rspat.getLong("phone") + "");
-			ssnText.setText(rspat.getLong("ssn") + "");
-			assignedDoctorText.setText(rspat.getString("doctorfname") + " " + rspat.getString("doctorlname"));
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+                
         
-        if(rs != null) {
-        	try {
-        		
-				diseaseText.setText(rs.getString("disease"));
-				medicineText.setText(rs.getString("medicine"));
-				testText.setText(rs.getString("test"));
-				remarkArea.setText(rs.getString("remark"));
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        }
         
 	}
 	
 	public void updateJournal () {
 		
 		dbhandler.updateJournal(fnametext.getText(), lnametext.getText(), adresstext.getText(), Long.parseLong(phonetext.getText()),
-				Long.parseLong(ssnText.getText()), diseaseText.getText(), medicineText.getText(), testText.getText(), remarkArea.getText());
+				Long.parseLong(ssntext.getText()), diseasetext.getText(), medicinetext.getText(), testtext.getText(), remarkarea.getText());
 		tv.getItems().clear();
 		dc.setPatientTableView();
 		
@@ -100,6 +91,12 @@ public class JournalController {
 	}
 	public void setParentController(DoctorViewController dc){
 		this.dc = dc;
+	}
+	@FXML
+	public void getCity() {
+		int zip = Integer.parseInt(ziptext.getText());
+		citytext.setText(dbhandler.getCity(zip));
+		
 	}
 	
 	
