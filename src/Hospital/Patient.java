@@ -117,7 +117,7 @@ public class Patient {
 
 
 
-	public SimpleLongProperty getZipcode() {
+	public SimpleIntegerProperty getZipcode() {
 		return zipcode;
 	}
 
