@@ -7,7 +7,7 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Patient {
 	 
-	private final SimpleLongProperty ssn;
+	private final long ssn;
     private final SimpleStringProperty fname;
     private final SimpleStringProperty lname;
     private final SimpleLongProperty phone;
@@ -43,7 +43,7 @@ public class Patient {
     	}
     	
     	
-    	this.ssn = new SimpleLongProperty(SSN);
+    	this.ssn = SSN;
         this.fname = new SimpleStringProperty(fName);
         this.lname = new SimpleStringProperty(lName);
         this.phone = new SimpleLongProperty(phone);
@@ -61,7 +61,7 @@ public class Patient {
         
     }
 
-	public SimpleLongProperty getSsn() {
+	public long getSsn() {
 		return ssn;
 	}
 
