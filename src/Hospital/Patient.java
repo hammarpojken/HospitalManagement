@@ -14,7 +14,7 @@ public class Patient {
     private final SimpleStringProperty username;
     private final SimpleStringProperty password;
     private final SimpleStringProperty adress;
-    private final SimpleLongProperty zipcode;
+    private final SimpleIntegerProperty zipcode;
     private final SimpleStringProperty role;
     private final SimpleLongProperty doctorid;
     private final SimpleStringProperty gender;
@@ -29,7 +29,7 @@ public class Patient {
    
 
     public Patient(long SSN, String fName, String lName, Long phone, String userName, String passWord, 
-    		String adress, Long zipCode, String role, Long doctorId, String gender, int status_Patient, String checkin_Date,
+    		String adress, int zipCode, String role, Long doctorId, String gender, int status_Patient, String checkin_Date,
     		String checkout_Date, int room, String blood_Type) {
     	
     	boolean b = false;
@@ -50,7 +50,7 @@ public class Patient {
         this.username = new SimpleStringProperty(userName);
         this.password = new SimpleStringProperty(passWord);
         this.adress = new SimpleStringProperty(adress);
-        this.zipcode = new SimpleLongProperty(zipCode);
+        this.zipcode = new SimpleIntegerProperty(zipCode);
         this.role = new SimpleStringProperty(role);
         this.doctorid = new SimpleLongProperty(doctorId);
         this.gender = new SimpleStringProperty(gender);
