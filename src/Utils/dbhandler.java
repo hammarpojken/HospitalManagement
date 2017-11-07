@@ -289,84 +289,87 @@ public class dbhandler {
 		ResultSet rs;
 		String result = "N/A";
 			
-		try {
-			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
-			Statement st = con.createStatement();
-			rs = st.executeQuery("SELECT name FROM mydb.city WHERE city.idcity =" + zip);
-			
-			if(rs.next()) {
-				result = rs.getString("name");
-
-			}
-			con.close();
-			
-			} catch (SQLException e) {
+			try {
+				con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
+				Statement st = con.createStatement();
+				rs = st.executeQuery("SELECT name FROM mydb.city WHERE city.idcity =" + zip);
 				
-			} finally {
-			
+				if(rs.next()) {
+					result = rs.getString("name");
+	
+				}
+				con.close();
 				
-			}
-			
-			return result;
-			
-		} 		
+				} catch (SQLException e) {
+					
+				} finally {
+				
+					
+				}
+				
+				return result;
+				
+			} 		
 		
 		public static ObservableList<Prescription> getPresciption(long ssn){
 			ObservableList<Prescription> presc = FXCollections.observableArrayList();
 			Connection con;
 			ResultSet rs;
-		try {
-			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
-			Statement st = con.createStatement();
-			 rs = st.executeQuery("SELECT * FROM mydb.prescription JOIN mydb.medicine ON prescription.medicine = medicine.idmedicine WHERE prescription.patientid =" + ssn );
-			 
-			 while(rs.next()){
-				 presc.add(new Prescription(
-						 rs.getInt("idpresciption"),
-						 rs.getLong("patientid"),
-						 rs.getLong("doctorid"),
-						 rs.getInt("medicine"),
-						 rs.getString("prescription_info"),
-						 rs.getString("withdrawl_amount"),
-						 new Medicine(
-								 rs.getInt("idmedicine"),
-								 rs.getString("name"),
-								 rs.getString("type"),
-								 rs.getString("volume"),
-								 rs.getDouble("price"))));
+			
+			try {
+				con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
+				Statement st = con.createStatement();
+				 rs = st.executeQuery("SELECT * FROM mydb.prescription JOIN mydb.medicine ON prescription.medicine = medicine.idmedicine WHERE prescription.patientid =" + ssn );
 				 
-			 }
-			 
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace(); 
-		}
-		return presc;
-		}
+				 while(rs.next()){
+					 presc.add(new Prescription(
+							 rs.getInt("idpresciption"),
+							 rs.getLong("patientid"),
+							 rs.getLong("doctorid"),
+							 rs.getInt("medicine"),
+							 rs.getString("prescription_info"),
+							 rs.getString("withdrawl_amount"),
+							 new Medicine(
+									 rs.getInt("idmedicine"),
+									 rs.getString("name"),
+									 rs.getString("type"),
+									 rs.getString("volume"),
+									 rs.getDouble("price"))));
+					 
+				}
+				 con.close();
 		
-		public static ObservableList<Test> getTest(){
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace(); 
+				}
+			
+				return presc;
+				}
+				
+		public static ObservableList<Test> getTest(long ssn){
 			ObservableList<Test> testlist = FXCollections.observableArrayList();
 			Connection con;
 			ResultSet rs;
-		try {
-			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
-			Statement st = con.createStatement();
-			 rs = st.executeQuery("select * FROM mydb.tests;");
-			 
-			 while(rs.next()){
-				 testlist.add(new Test(
-						 rs.getInt("idtests"),
-						 rs.getLong("patientid"),
-						 rs.getString("type")));
-			 }
-			 
+			
+			try {
+				con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
+				Statement st = con.createStatement();
+				 rs = st.executeQuery("SELECT * FROM mydb.tests WHERE tests.patientid = " + ssn);
+				 
+				 while(rs.next()){
+					 testlist.add(new Test(
+							 rs.getInt("idtests"),
+							 rs.getLong("patientid"),
+							 rs.getString("type")));
+				}
+				 con.close();
 
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace(); 
-		}
-		return testlist;
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace(); 
+				}
+				return testlist;
 }
 		
 		public static ObservableList<ResultCard> getResultCardInfo(long ssn){
@@ -379,7 +382,7 @@ public class dbhandler {
 				Statement st = con.createStatement();
 				rs = st.executeQuery("SELECT * FROM mydb.resultcard WHERE resultcard.patientid =" + ssn);
 				
-				if(rs.next()) {
+				while(rs.next()) {
 					rc.add(new ResultCard(
 							rs.getInt("resultcardid"),
 							rs.getLong("patientid"),
@@ -393,10 +396,8 @@ public class dbhandler {
 				} catch (SQLException e) {
 					
 				} finally {
-				
 					
 				}
-				
 				return rc;
 				
 		}	
