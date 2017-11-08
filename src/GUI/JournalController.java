@@ -14,11 +14,13 @@ import Utils.dbhandler;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 
@@ -69,6 +71,12 @@ public class JournalController {
 	private Button buttonUpdate;
 	@FXML
 	private TextField assignedDoctorText;
+	@FXML
+	private RadioButton radioMale;
+	@FXML
+	private RadioButton radioFemale;
+	@FXML
+	private ToggleGroup tglGender;
 
 	
 	
@@ -78,6 +86,10 @@ public class JournalController {
 	    typeCol.setCellValueFactory(new PropertyValueFactory<Medicine, String>("type"));
 	    volumeCol.setCellValueFactory(new PropertyValueFactory<Medicine, String>("volume"));
 	    testTypeCol.setCellValueFactory(new PropertyValueFactory<Test, String>("type"));
+	    radioMale.setToggleGroup(tglGender);
+	    radioMale.setToggleGroup(tglGender);
+	    
+	    
 	    
 		
 		
