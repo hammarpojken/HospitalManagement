@@ -15,20 +15,18 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-<<<<<<< HEAD
-=======
+
 import javafx.scene.control.Label;
->>>>>>> 8654d5839d1e0a19e31888066a9e10ccdf5e0457
+
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-<<<<<<< HEAD
-=======
+
 import javafx.scene.control.Toggle;
->>>>>>> 8654d5839d1e0a19e31888066a9e10ccdf5e0457
+
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
@@ -88,14 +86,6 @@ public class JournalController {
 	@FXML
 	private TextField assignedDoctorText;
 	@FXML
-<<<<<<< HEAD
-	private RadioButton radioMale;
-	@FXML
-	private RadioButton radioFemale;
-	@FXML
-	private ToggleGroup tglGender;
-
-=======
 	private Label checkinDate;
 	@FXML
 	private Label checkoutDate;
@@ -117,7 +107,7 @@ public class JournalController {
 	@FXML
 	private RadioButton radioDischarged;
 	
->>>>>>> 8654d5839d1e0a19e31888066a9e10ccdf5e0457
+
 	
 	
 	@FXML
