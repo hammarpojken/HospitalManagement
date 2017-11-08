@@ -1,6 +1,7 @@
 package Hospital;
 
 import java.sql.Date;
+import java.sql.Time;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -23,6 +24,8 @@ public class Patient {
     private final SimpleBooleanProperty status_patient;
     private final SimpleStringProperty checkin_date;
     private final SimpleStringProperty checkout_date;
+    private final SimpleStringProperty checkin_time;
+    private final SimpleStringProperty checkout_time;
     private final SimpleIntegerProperty room;
     private final SimpleStringProperty blood_type;
     
@@ -32,9 +35,12 @@ public class Patient {
 
     public Patient(long SSN, String fName, String lName, Long phone, String userName, String passWord, 
     		String adress, int zipCode, String role, Long doctorId, String gender, int status_Patient, Date checkin_Date,
-    		Date checkout_Date, int room, String blood_Type) {
+    		Time checkin_time,Date checkout_Date,Time checkout_time, int room, String blood_Type) {
     	String checkin = "N/A";
     	String checkout = "N/A";
+    	String checkinT = "N/A";
+    	String checkoutT = "N/A";
+    	
     	boolean b = false;
     	if (status_Patient == 0) {
     		
@@ -46,12 +52,16 @@ public class Patient {
     	}
     	if(checkin_Date != null) {
     		checkin = checkin_Date.toString();
+    		checkinT = checkin_time.toString();
     	}
     	if (checkout_Date != null) {
     		checkout = checkin_Date.toString();
+    		checkoutT = checkout_time.toString();
     		
     	}
  
+    	this.checkin_time =  new SimpleStringProperty(checkinT);
+    	this.checkout_time =  new SimpleStringProperty(checkoutT);
     	
     	this.ssn = new SimpleLongProperty(SSN);
         this.fname = new SimpleStringProperty(fName);
@@ -193,6 +203,13 @@ public class Patient {
 
 	public String getBlood_type() {
 		return blood_type.get();
+	}
+	
+	public String getCheckinTime() {
+		return checkin_time.get();
+	}
+	public String getCheckoutTime() {
+		return checkout_time.get();
 	}
 
     

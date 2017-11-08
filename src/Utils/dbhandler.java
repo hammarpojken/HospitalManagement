@@ -80,9 +80,13 @@ public class dbhandler {
 					 rs.getString("gender"),
 					 rs.getInt("status_patient"),
 					 rs.getDate("checkin_date"),
+					 rs.getTime("checkin_date"),
 					 rs.getDate("checkout_date"),
+					 rs.getTime("checkout_date"),
 					 rs.getInt("room"),
 					 rs.getString("blood_type")));
+			 
+			 
 		 }
 		 
 
@@ -268,6 +272,31 @@ public class dbhandler {
 			
 		}
 		return choices;
+	}
+	
+	public static String getDoctor(long docid) {
+		
+		Connection con;
+		ResultSet rs;
+		String docname = "No assigned doctor";
+		try {
+			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
+			Statement st = con.createStatement();
+			
+				
+			rs = st.executeQuery("SELECT fname, lname FROM mydb.staff WHERE staff.staffid = " + docid);
+			if (rs.next()) {
+				return rs.getString("fname") + " " + rs.getString("lname");
+			}
+			
+			
+		
+		}catch (SQLException e) {
+			e.printStackTrace();	
+	
+			}
+		return docname;
+		
 	}
 		
 	

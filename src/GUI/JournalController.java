@@ -11,15 +11,24 @@ import Hospital.Patient;
 import Hospital.Prescription;
 import Hospital.Test;
 import Utils.dbhandler;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+<<<<<<< HEAD
+=======
+import javafx.scene.control.Label;
+>>>>>>> 8654d5839d1e0a19e31888066a9e10ccdf5e0457
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+<<<<<<< HEAD
+=======
+import javafx.scene.control.Toggle;
+>>>>>>> 8654d5839d1e0a19e31888066a9e10ccdf5e0457
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
@@ -30,11 +39,16 @@ public class JournalController {
 	private Patient currentPatient;
 	private TableView<Patient> tv;
 	private DoctorViewController dc;
+	
 	//journal components
+	
+	// Table Views
 	@FXML
 	private TableView<Medicine> tvMedicine;
 	@FXML
 	private TableView<Test> tvTests;
+	
+	// Table Columns
 	@FXML
 	private TableColumn<Medicine, String> nameCol;
 	@FXML
@@ -43,6 +57,8 @@ public class JournalController {
 	private TableColumn<Medicine, String> typeCol;
 	@FXML
 	private TableColumn<Medicine, String> volumeCol;
+	
+	// Text Fields
 	@FXML
 	private Text doctorText;
 	@FXML
@@ -72,16 +88,41 @@ public class JournalController {
 	@FXML
 	private TextField assignedDoctorText;
 	@FXML
+<<<<<<< HEAD
 	private RadioButton radioMale;
 	@FXML
 	private RadioButton radioFemale;
 	@FXML
 	private ToggleGroup tglGender;
 
+=======
+	private Label checkinDate;
+	@FXML
+	private Label checkoutDate;
+	
+	
+	//Toggle groups
+	@FXML
+	private ToggleGroup tglGender;
+	@FXML
+	private ToggleGroup tglStatus;
+	
+	//Radio buttons
+	@FXML
+	private RadioButton radioFemale;
+	@FXML
+	private RadioButton radioMale;
+	@FXML
+	private RadioButton radioInprocess;
+	@FXML
+	private RadioButton radioDischarged;
+	
+>>>>>>> 8654d5839d1e0a19e31888066a9e10ccdf5e0457
 	
 	
 	@FXML
 	private void initialize(){
+		// Table columns initialized
 		nameCol.setCellValueFactory(new PropertyValueFactory<Medicine, String>("name"));
 	    typeCol.setCellValueFactory(new PropertyValueFactory<Medicine, String>("type"));
 	    volumeCol.setCellValueFactory(new PropertyValueFactory<Medicine, String>("volume"));
@@ -91,6 +132,36 @@ public class JournalController {
 	    
 	    
 	    
+	    // toggleGroup/radioButtons initialized and added listener
+	    tglGender = new ToggleGroup();
+	    radioFemale.setToggleGroup(tglGender);
+	    radioMale.setToggleGroup(tglGender);
+	    
+	    tglGender.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
+	        public void changed(ObservableValue<? extends Toggle> ov,
+	                Toggle old_toggle, Toggle new_toggle) {
+	                    if (tglGender.getSelectedToggle() != null) {
+	                        tglGender.getSelectedToggle().setSelected(true);
+	                        
+	                        
+	                    }                
+	                }
+	        });
+	    
+	    tglStatus = new ToggleGroup();
+	    radioDischarged.setToggleGroup(tglStatus);
+	    radioInprocess.setToggleGroup(tglStatus);
+	    
+	    tglStatus.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
+	        public void changed(ObservableValue<? extends Toggle> ov,
+	                Toggle old_toggle, Toggle new_toggle) {
+	                    if (tglStatus.getSelectedToggle() != null) {
+	                        tglStatus.getSelectedToggle().setSelected(true);
+	                        
+	                        
+	                    }                
+	                }
+	        });
 		
 		
 	}
@@ -100,6 +171,7 @@ public class JournalController {
 	}
 	public void setPatientInfo() {
 		
+		// personal info
 		fnametext.setText(currentPatient.getFname());
 		lnametext.setText(currentPatient.getLname());
 		ssntext.setText(currentPatient.getSsn() + "");
@@ -107,6 +179,23 @@ public class JournalController {
 		ziptext.setText(currentPatient.getZipcode() + "");
 		citytext.setText(dbhandler.getCity(currentPatient.getZipcode()));
 		phonetext.setText(currentPatient.getPhone() + "");
+		checkinDate.setText(currentPatient.getCheckin_date() + " " + currentPatient.getCheckinTime());
+		checkoutDate.setText(currentPatient.getCheckout_date() + " " + currentPatient.getCheckoutTime());
+		assignedDoctorText.setText(dbhandler.getDoctor(currentPatient.getDoctorid()));
+		
+		
+		//Gender toggle
+		if(currentPatient.getGender().equals("Female"))
+			radioFemale.setSelected(true);
+		else if (currentPatient.getGender().equals("Male"))
+			radioMale.setSelected(true);
+		
+		//Patient status
+		if(currentPatient.getStatus_patient() == true)
+			radioInprocess.setSelected(true);
+		else if (currentPatient.getStatus_patient()== false)
+			radioDischarged.setSelected(true);
+		
 		
 		tvMedicine.getItems().setAll(dbhandler.getMedicine(currentPatient.getSsn()));
 		
