@@ -181,6 +181,17 @@ public class JournalController {
 		checkoutDate.setText(currentPatient.getCheckout_date() + " " + currentPatient.getCheckoutTime());
 		assignedDoctorText.setText(dbhandler.getDoctor(currentPatient.getDoctorid()));
 		
+		for(int i = 0; i< roomChoice.getItems().size(); i++) {
+			String item = roomChoice.getItems().get(i);
+			if(currentPatient.getRoom() == Integer.parseInt(item.substring(0, 1))){
+				roomChoice.getSelectionModel().select(i);
+				
+			}
+			
+		}
+		
+			
+		
 		
 		//Gender toggle
 		if(currentPatient.getGender().equals("Female"))
