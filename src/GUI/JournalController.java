@@ -109,6 +109,8 @@ public class JournalController {
 	private RadioButton radioDischarged;
 	@FXML
 	private ChoiceBox<String> bloodChoice;
+	@FXML
+	private ChoiceBox<String> roomChoice;
 	
 
 	
@@ -124,6 +126,7 @@ public class JournalController {
 	    radioMale.setToggleGroup(tglGender);
 	    bloodChoice.setItems(FXCollections.observableArrayList(
 	    "O-", "O+", "A-", "A+", "B-", "B+", "AB-", "AB+"));
+	    roomChoice.setItems(dbhandler.getRooms());
 	    
 	    
 	    
