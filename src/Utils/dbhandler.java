@@ -247,9 +247,9 @@ public class dbhandler {
 		
 		
 		try {
-			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root");
+			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
 			Statement st = con.createStatement();
-			rs = st.executeQuery("select * FROM projecthospita.staff WHERE role = 'doctor'");
+			rs = st.executeQuery("select * FROM mydb.staff WHERE role = 'doctor'");
 			
 			if(rs.next() == true) {
 				rs.beforeFirst();
