@@ -228,10 +228,10 @@ public class dbhandler {
 		
 		Connection con;
 		try {
-			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root");
+			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
 			Statement st = con.createStatement();
 				
-			st.executeUpdate("UPDATE projecthospita.patient SET doctorid = " + docid + " WHERE patient.ssn = " + ssn);
+			st.executeUpdate("UPDATE mydb.patient SET doctorid = " + docid + " WHERE patient.ssn = " + ssn);
 		}
 			catch (SQLException e) {
 				e.printStackTrace();
