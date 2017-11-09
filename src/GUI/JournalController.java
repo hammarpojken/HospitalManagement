@@ -13,9 +13,10 @@ import Hospital.Test;
 import Utils.dbhandler;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 
 import javafx.scene.control.RadioButton;
@@ -106,6 +107,8 @@ public class JournalController {
 	private RadioButton radioInprocess;
 	@FXML
 	private RadioButton radioDischarged;
+	@FXML
+	private ChoiceBox<String> bloodChoice;
 	
 
 	
@@ -119,6 +122,8 @@ public class JournalController {
 	    testTypeCol.setCellValueFactory(new PropertyValueFactory<Test, String>("type"));
 	    radioMale.setToggleGroup(tglGender);
 	    radioMale.setToggleGroup(tglGender);
+	    bloodChoice.setItems(FXCollections.observableArrayList(
+	    "O-", "O+", "A-", "A+", "B-", "B+", "AB-", "AB+"));
 	    
 	    
 	    
