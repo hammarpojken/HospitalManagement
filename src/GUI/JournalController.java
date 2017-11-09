@@ -249,7 +249,8 @@ public class JournalController {
 		citytext.setText(dbhandler.getCity(zip));
 		
 	}
-	
+
+// -----------------------------------------------Exceptions ------------------------------------------
 	
 	
 
