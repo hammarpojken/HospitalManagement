@@ -173,7 +173,7 @@ public class dbhandler {
 			
 			if (resultcardExist(patientId)) {
 				st.executeUpdate("UPDATE mydb.resultcard SET idresultcard = " + rcId + ", patientid = " + patientId
-						+ ", diagnose = '" + diagnose + "', remark = '" + remark + "' WHERE patientssn = "+ patientId);
+						+ ", diagnose = '" + diagnose + "', remark = '" + remark + "' WHERE patientid = "+ patientId);
 			}
 			
 		}
@@ -192,8 +192,7 @@ public class dbhandler {
 			
 			if(oldroom == newroom) {
 				st.executeUpdate("UPDATE mydb.patient SET ssn = " + ssn + ", fname = '" + fname + "', lname = '" + lname + "', phone = " + phone + 
-						", adress = '" + adress + "', zipcode = "+zip+", gender = '" +gender+ "',blood_type = '"+bloodtype+ "',"
-								+ "  WHERE patient.ssn = " + ssn);
+						", adress = '" + adress + "', zipcode = "+ zip +", gender = '" + gender + "', blood_type = '" + bloodtype + "' WHERE ssn = " + ssn);
 				
 			} else {
 				dbhandler.addPatientToRoom(newroom);
@@ -201,7 +200,7 @@ public class dbhandler {
 				dbhandler.dischargePatientRoom(oldroom);
 				st.executeUpdate("UPDATE mydb.patient SET ssn = " + ssn + ", fname = '" + fname + "', lname = '" + lname + "', phone = " + phone + 
 						", adress = '" + adress + "', zipcode = "+zip+", gender = '" +gender+ "',blood_type = '"+bloodtype+ "', room = " + newroom
-								+ "  WHERE patient.ssn = " + ssn);
+								+ " WHERE ssn = " + ssn);
 			}
 				
 			
@@ -219,8 +218,9 @@ public class dbhandler {
 			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
 			Statement st = con.createStatement();
 			 rs = st.executeQuery("SELECT available_slots FROM mydb.room WHERE idroom =" + roomid);
-			 int slots = rs.getInt("available_slot") - 1;
-			 st.executeUpdate("UPDATE mydb.room SET available_slots = " + slots);
+			 rs.next();
+			 int slots = rs.getInt("available_slots") - 1;
+			 st.executeUpdate("UPDATE mydb.room SET available_slots = " + slots +"WHERE idroom =" + roomid);
 			
 			
 			
@@ -238,9 +238,10 @@ public class dbhandler {
 		try {
 			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
 			Statement st = con.createStatement();
-			 rs = st.executeQuery("SELECT available_slots FROM mydb.room WHERE idroom =" +roomid);
-			 int slots = rs.getInt("available_slot") - +1;
-			 st.executeUpdate("UPDATE mydb.room SET available_slots = " + slots);
+			 rs = st.executeQuery("SELECT available_slots FROM mydb.room WHERE idroom =" + roomid);
+			 rs.next();
+			 int slots = rs.getInt("available_slots") +1;
+			 st.executeUpdate("UPDATE mydb.room SET available_slots = " + slots + "WHERE idroom =" + roomid);
 			
 			
 			
@@ -260,7 +261,7 @@ public class dbhandler {
 			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
 			Statement st = con.createStatement();
 				
-			rs = st.executeQuery("SELECT * FROM projecthospita.resultcard WHERE patientssn = " + ssn);
+			rs = st.executeQuery("SELECT * FROM mydb.resultcard WHERE patientid = " + ssn);
 			if (rs.next()) {
 				con.close();
 				return true;

@@ -22,7 +22,7 @@
                <children>
                   <TextField fx:id="fnametext" layoutX="94.0" layoutY="42.0" prefHeight="25.0" prefWidth="181.0" />
                   <TextField fx:id="lnametext" layoutX="94.0" layoutY="73.0" prefHeight="25.0" prefWidth="181.0" />
-                  <TextField fx:id="ssntext" layoutX="94.0" layoutY="107.0" prefHeight="25.0" prefWidth="181.0" />
+                  <TextField fx:id="ssntext" editable="false" layoutX="94.0" layoutY="107.0" prefHeight="25.0" prefWidth="181.0" />
                   <TextField fx:id="adresstext" layoutX="94.0" layoutY="138.0" prefHeight="25.0" prefWidth="181.0" />
                   <TextField fx:id="ziptext" layoutX="94.0" layoutY="173.0" onKeyReleased="#getCity" prefHeight="25.0" prefWidth="58.0" />
                   <TextField fx:id="citytext" editable="false" layoutX="159.0" layoutY="173.0" prefHeight="25.0" prefWidth="114.0" />

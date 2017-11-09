@@ -153,6 +153,7 @@ public class JournalController {
 	                }else  {
 	                	fnametext.setStyle("-fx-border-color: RED");
 	                	buttonUpdate.setDisable(true);
+
 	                }
 	            	
 	            	
@@ -290,13 +291,35 @@ public class JournalController {
 	        }
 	    });
 	    
-	   	    
+// update button check rooms	   	 
+	    roomChoice.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+	        @Override
+	        public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
+	        	String room = roomChoice.getItems().get((Integer) number2);
+	        	int available = Integer.parseInt(room.substring(room.length()-3, room.length()-2));
+	        	int size = Integer.parseInt(room.substring(room.length()-1, room.length()));
+	        	
+	        	if (available == 0) {
+	        		
+	        		buttonUpdate.setDisable(true);
+	        		roomChoice.setStyle("-fx-border-color: RED");
+	        			
+	        	} else {
+	        		buttonUpdate.setDisable(false);
+	        		roomChoice.setStyle("-fx-border-color: null");
+	        	} 
+	 
+	        }
+	      });
+   
 	    
 	    
 	    // toggleGroup/radioButtons initialized and added listener
 	    tglGender = new ToggleGroup();
 	    radioFemale.setToggleGroup(tglGender);
+	    radioFemale.setUserData("Female");
 	    radioMale.setToggleGroup(tglGender);
+	    radioMale.setUserData("Male");
 	    
 	    tglGender.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
 	        public void changed(ObservableValue<? extends Toggle> ov,
@@ -391,10 +414,17 @@ public class JournalController {
 	
 	public void updateJournal () {
 		
-		dbhandler.updateJournal(fnametext.getText(), lnametext.getText(), adresstext.getText(), Long.parseLong(phonetext.getText()),
-				Long.parseLong(ssntext.getText()), diseasetext.getText(), medicinetext.getText(), testtext.getText(), remarkarea.getText());
+		int newroom = Integer.parseInt(roomChoice.getSelectionModel().getSelectedItem().substring(0,1));
+		int rcid = dbhandler.getResultCardInfo(currentPatient.getSsn()).get(0).getResultcardId();
+		
+		dbhandler.updateJournal(fnametext.getText(), lnametext.getText(),Long.parseLong(ssntext.getText()), adresstext.getText(),
+				Integer.parseInt(ziptext.getText()), Long.parseLong(phonetext.getText()), bloodChoice.getSelectionModel().getSelectedItem(),
+				tglGender.getSelectedToggle().getUserData().toString(), currentPatient.getRoom(), newroom, rcid, diseasetext.getText(),
+				remarkarea.getText());
+		
 		tv.getItems().clear();
 		dc.setPatientTableView();
+		
 		
 	}
 	public void setDoctor(Doctor doc) {
