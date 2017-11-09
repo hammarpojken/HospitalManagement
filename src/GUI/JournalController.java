@@ -181,6 +181,7 @@ public class JournalController {
 		checkoutDate.setText(currentPatient.getCheckout_date() + " " + currentPatient.getCheckoutTime());
 		assignedDoctorText.setText(dbhandler.getDoctor(currentPatient.getDoctorid()));
 		
+		//room
 		for(int i = 0; i< roomChoice.getItems().size(); i++) {
 			String item = roomChoice.getItems().get(i);
 			if(currentPatient.getRoom() == Integer.parseInt(item.substring(0, 1))){
@@ -189,7 +190,15 @@ public class JournalController {
 			}
 			
 		}
-		
+		//bloodtype
+		for(int i = 0; i< bloodChoice.getItems().size(); i++) {
+			String item = bloodChoice.getItems().get(i);
+			if(currentPatient.getBlood_type().equals(item)){
+				bloodChoice.getSelectionModel().select(i);
+				
+			}
+			
+		}
 			
 		
 		
