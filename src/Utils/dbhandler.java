@@ -164,16 +164,16 @@ public class dbhandler {
 			}
 	}
 	
-	public static void updateResultCard(String disease, String medicine, String test, String remark, long ssn) {
+	public static void updateResultCard(int rcId, long patientId, String diagnose, String remark) {
 		System.out.println("hej");
 		Connection con;
 		try {
-			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root");
+			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
 			Statement st = con.createStatement();
 			
-			if (resultcardExist(ssn)) {
-				st.executeUpdate("UPDATE projecthospita.resultcard SET patientssn = " + ssn + ", disease = '" + disease
-						+ "', medicine = '" + medicine + "', test = '" + test + "', remark = '" + remark + "' WHERE patientssn = "+ ssn);
+			if (resultcardExist(patientId)) {
+				st.executeUpdate("UPDATE mydb.resultcard SET idresultcard = " + rcId + ", patientid = " + patientId
+						+ ", diagnose = '" + diagnose + "', remark = '" + remark + "' WHERE patientssn = "+ patientId);
 			}
 			
 		}
@@ -182,15 +182,29 @@ public class dbhandler {
 			}
 
 	}
-	public static void updatePatient(String fname, String lname, String adress, long phone, long ssn) {
-		System.out.println("hej");
+	public static void updatePatient(String fname, String lname, long ssn, String adress, int zip, long phone, String bloodtype,
+			String gender, int oldroom, int newroom) {
+	
 		Connection con;
 		try {
-			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root");
+			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
 			Statement st = con.createStatement();
+			
+			if(oldroom == newroom) {
+				st.executeUpdate("UPDATE mydb.patient SET ssn = " + ssn + ", fname = '" + fname + "', lname = '" + lname + "', phone = " + phone + 
+						", adress = '" + adress + "', zipcode = "+zip+", gender = '" +gender+ "',blood_type = '"+bloodtype+ "',"
+								+ "  WHERE patient.ssn = " + ssn);
 				
-			st.executeUpdate("UPDATE projecthospita.patient SET fname = '" + fname + "', lname = '" + lname + "', adress = '" + adress 
-					+ "', phone = " + phone + ", ssn = " + ssn + " WHERE patient.ssn = " + ssn);
+			} else {
+				dbhandler.addPatientToRoom(newroom);
+				
+				dbhandler.dischargePatientRoom(oldroom);
+				st.executeUpdate("UPDATE mydb.patient SET ssn = " + ssn + ", fname = '" + fname + "', lname = '" + lname + "', phone = " + phone + 
+						", adress = '" + adress + "', zipcode = "+zip+", gender = '" +gender+ "',blood_type = '"+bloodtype+ "', room = " + newroom
+								+ "  WHERE patient.ssn = " + ssn);
+			}
+				
+			
 		}
 			catch (SQLException e) {
 				e.printStackTrace();
@@ -198,16 +212,57 @@ public class dbhandler {
 			}
 
 	}
+	public static void addPatientToRoom(int roomid){
+		Connection con;
+		ResultSet rs;
+		try {
+			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
+			Statement st = con.createStatement();
+			 rs = st.executeQuery("SELECT available_slots FROM mydb.room WHERE idroom =" + roomid);
+			 int slots = rs.getInt("available_slot") - 1;
+			 st.executeUpdate("UPDATE mydb.room SET available_slots = " + slots);
+			
+			
+			
+		}
+			catch (SQLException e) {
+				e.printStackTrace();
+	
+			}
+
+		
+	}
+	public static void dischargePatientRoom(int roomid){
+		Connection con;
+		ResultSet rs;
+		try {
+			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
+			Statement st = con.createStatement();
+			 rs = st.executeQuery("SELECT available_slots FROM mydb.room WHERE idroom =" +roomid);
+			 int slots = rs.getInt("available_slot") - +1;
+			 st.executeUpdate("UPDATE mydb.room SET available_slots = " + slots);
+			
+			
+			
+		}
+			catch (SQLException e) {
+				e.printStackTrace();
+	
+			}
+
+		
+	}
 	public static boolean resultcardExist(long ssn) {
 		
 		Connection con;
 		ResultSet rs;
 		try {
-			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root");
+			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
 			Statement st = con.createStatement();
 				
 			rs = st.executeQuery("SELECT * FROM projecthospita.resultcard WHERE patientssn = " + ssn);
 			if (rs.next()) {
+				con.close();
 				return true;
 			}
 		
@@ -300,11 +355,12 @@ public class dbhandler {
 	}
 		
 	
-	public static void updateJournal (String fname, String lname, String adress, long phone, long ssn, String disease, String medicine, String test, String remark) {
+	public static void updateJournal (String fname, String lname, long ssn, String adress, int zip, long phone,
+			String bloodtype, String gender, int oldroom, int newroom, int rcid, String diagnose, String remark) {
 		
-		dbhandler.updatePatient(fname, lname, adress, phone, ssn);
+		dbhandler.updatePatient(fname, lname, ssn, adress, zip, phone, bloodtype, gender, oldroom, newroom);
 	
-		dbhandler.updateResultCard(disease, medicine, test, remark, ssn);
+		dbhandler.updateResultCard(rcid, ssn, diagnose, remark);
 		
 		
 	}
