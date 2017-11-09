@@ -436,7 +436,7 @@ public class dbhandler {
 				
 				while(rs.next()) {
 					String temp;
-					temp = rs.getInt("idroom") + "-" + rs.getString("type") + "-" + rs.getInt("available_slots") + "/" + rs.getInt("size");
+					temp = rs.getInt("idroom") + "-" + rs.getString("type") + "  " + rs.getInt("available_slots") + "/" + rs.getInt("size");
 					rc.add(temp);
 				}
 				
