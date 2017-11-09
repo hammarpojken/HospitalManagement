@@ -132,7 +132,7 @@ public class JournalController {
 	    "O-", "O+", "A-", "A+", "B-", "B+", "AB-", "AB+"));
 	    roomChoice.setItems(dbhandler.getRooms());
 	    
-	    //Input controll events
+	    //Input control events
 	    
 	    fnametext.focusedProperty().addListener(new ChangeListener<Boolean>()
 	    {
@@ -146,14 +146,151 @@ public class JournalController {
 	            else
 	            {
 	            	String nametemp = fnametext.getText();
-	            	if(nametemp.matches("") )
-	            	buttonUpdate.setDisable(true);
-	                fnametext.setStyle("-fx-border-color: RED");
+	            	if(nametemp.matches("^[a-zA-Z]+$")) {
+	            		buttonUpdate.setDisable(false);
+	            		fnametext.setStyle("-fx-border-color: null");
+	            		
+	                }else  {
+	                	fnametext.setStyle("-fx-border-color: RED");
+	                	buttonUpdate.setDisable(true);
+	                }
+	            	
+	            	
 	            }
 	        }
 	    });
 	    
+	    lnametext.focusedProperty().addListener(new ChangeListener<Boolean>()
+	    {
+	        @Override
+	        public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+	        {
+	            if (newPropertyValue)
+	            {
+	                System.out.println("Textfield on focus");
+	            }
+	            else
+	            {
+	            	String nametemp = lnametext.getText();
+	            	if(nametemp.matches("^[a-zA-Z]+$")) {
+	            		buttonUpdate.setDisable(false);
+	            		lnametext.setStyle("-fx-border-color: null");
+	            		
+	                }else  {
+	                	lnametext.setStyle("-fx-border-color: RED");
+	                	buttonUpdate.setDisable(true);
+	                }
+	            	
+	            	
+	            }
+	        }
+	    });
 	    
+	    ssntext.focusedProperty().addListener(new ChangeListener<Boolean>()
+	    {
+	        @Override
+	        public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+	        {
+	            if (newPropertyValue)
+	            {
+	                System.out.println("Textfield on focus");
+	            }
+	            else
+	            {
+	            	String nametemp = ssntext.getText();
+	            	if(nametemp.matches("^[0-9]{2}((0[0-9])|(10|11|12))(([1-2][0-9])|(3[0-1])|(0[1-9]))[0-9]{4}$")) {
+	            		buttonUpdate.setDisable(false);
+	            		ssntext.setStyle("-fx-border-color: null");
+	            		
+	                }else  {
+	                	ssntext.setStyle("-fx-border-color: RED");
+	                	buttonUpdate.setDisable(true);
+	                }
+	            	
+	            	
+	            }
+	        }
+	    });
+	    
+	    adresstext.focusedProperty().addListener(new ChangeListener<Boolean>()
+	    {
+	        @Override
+	        public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+	        {
+	            if (newPropertyValue)
+	            {
+	                System.out.println("Textfield on focus");
+	            }
+	            else
+	            {
+	            	String nametemp = adresstext.getText();
+	            	if(nametemp.matches("^[a-zA-Z0-9 ]*$")) {
+	            		buttonUpdate.setDisable(false);
+	            		adresstext.setStyle("-fx-border-color: null");
+	            		
+	                }else  {
+	                	adresstext.setStyle("-fx-border-color: RED");
+	                	buttonUpdate.setDisable(true);
+	                }
+	            	
+	            	
+	            }
+	        }
+	    });
+	    
+	    ziptext.focusedProperty().addListener(new ChangeListener<Boolean>()
+	    {
+	        @Override
+	        public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+	        {
+	            if (newPropertyValue)
+	            {
+	                System.out.println("Textfield on focus");
+	            }
+	            else
+	            {
+	            	String nametemp = ziptext.getText();
+	            	if(nametemp.matches("^[0-9]{5}$")) {
+	            		buttonUpdate.setDisable(false);
+	            		ziptext.setStyle("-fx-border-color: null");
+	            		
+	                }else  {
+	                	ziptext.setStyle("-fx-border-color: RED");
+	                	buttonUpdate.setDisable(true);
+	                }
+	            	
+	            	
+	            }
+	        }
+	    });
+	    
+	    phonetext.focusedProperty().addListener(new ChangeListener<Boolean>()
+	    {
+	        @Override
+	        public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+	        {
+	            if (newPropertyValue)
+	            {
+	                System.out.println("Textfield on focus");
+	            }
+	            else
+	            {
+	            	String nametemp = phonetext.getText();
+	            	if(nametemp.matches("^[0-9]{9,10}$")) {
+	            		buttonUpdate.setDisable(false);
+	            		phonetext.setStyle("-fx-border-color: null");
+	            		
+	                }else  {
+	                	phonetext.setStyle("-fx-border-color: RED");
+	                	buttonUpdate.setDisable(true);
+	                }
+	            	
+	            	
+	            }
+	        }
+	    });
+	    
+	   	    
 	    
 	    
 	    // toggleGroup/radioButtons initialized and added listener
