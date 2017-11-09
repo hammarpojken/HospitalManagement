@@ -423,6 +423,29 @@ public class dbhandler {
 				System.out.println(rc.size());
 				return rc;
 				
-		}	
+		}
+		public static ObservableList<String> getRooms(){
+			ObservableList<String> rc = FXCollections.observableArrayList();
+			Connection con;
+			ResultSet rs;
+			
+			try {
+				con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
+				Statement st = con.createStatement();
+				rs = st.executeQuery("SELECT * FROM mydb.room");
+				
+				while(rs.next()) {
+					String temp;
+					temp = rs.getInt("idroom") + "-" + rs.getString("type") + "-" + rs.getInt("available_slots") + "/" + rs.getInt("size");
+					rc.add(temp);
+				}
+				
+			}catch (SQLException k) {
+				return rc = null;
+				
+			}
+			return rc;
+			
+		}
 		
 }		
