@@ -1,5 +1,8 @@
 package GUI;
 
+
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -40,7 +43,8 @@ public class JournalController {
 	private DoctorViewController dc;
 	
 	//journal components
-	
+	@FXML
+	private boolean updateState = true;
 	// Table Views
 	@FXML
 	private TableView<Medicine> tvMedicine;
@@ -128,6 +132,28 @@ public class JournalController {
 	    "O-", "O+", "A-", "A+", "B-", "B+", "AB-", "AB+"));
 	    roomChoice.setItems(dbhandler.getRooms());
 	    
+	    //Input controll events
+	    
+	    fnametext.focusedProperty().addListener(new ChangeListener<Boolean>()
+	    {
+	        @Override
+	        public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+	        {
+	            if (newPropertyValue)
+	            {
+	                System.out.println("Textfield on focus");
+	            }
+	            else
+	            {
+	            	String nametemp = fnametext.getText();
+	            	if(nametemp.matches("") )
+	            	buttonUpdate.setDisable(true);
+	                fnametext.setStyle("-fx-border-color: RED");
+	            }
+	        }
+	    });
+	    
+	    
 	    
 	    
 	    // toggleGroup/radioButtons initialized and added listener
@@ -193,7 +219,8 @@ public class JournalController {
 		//bloodtype
 		for(int i = 0; i< bloodChoice.getItems().size(); i++) {
 			String item = bloodChoice.getItems().get(i);
-			if(currentPatient.getBlood_type().equals(item)){
+			
+			if(currentPatient.getBlood_type() !=  null && currentPatient.getBlood_type().equals(item)){
 				bloodChoice.getSelectionModel().select(i);
 				
 			}
