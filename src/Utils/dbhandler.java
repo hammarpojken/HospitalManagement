@@ -219,15 +219,10 @@ public class dbhandler {
 			Statement st = con.createStatement();
 			 rs = st.executeQuery("SELECT available_slots FROM mydb.room WHERE idroom =" + roomid);
 			 rs.next();
-<<<<<<< HEAD
-			 int slots = rs.getInt("available_slots");
-			 slots -= 1;
-			 System.out.println(slots);
-			 st.executeUpdate("UPDATE mydb.room SET available_slots = " + slots +"WHERE idroom =" + roomid);
-=======
+
 			 int slots = rs.getInt("available_slots") - 1;
 			 st.executeUpdate("UPDATE mydb.room SET available_slots = " + slots +" WHERE idroom =" + roomid);
->>>>>>> 51ccd3d8255b24d35a5eb068314714564cae73df
+
 			
 			
 			
@@ -247,15 +242,10 @@ public class dbhandler {
 			Statement st = con.createStatement();
 			 rs = st.executeQuery("SELECT available_slots FROM mydb.room WHERE idroom =" + roomid);
 			 rs.next();
-<<<<<<< HEAD
-			 int slots = rs.getInt("available_slots");
-			 slots += 1;
-			 System.out.println(slots);
-			 st.executeUpdate("UPDATE mydb.room SET available_slots = " + slots + "WHERE idroom =" + roomid);
-=======
+
+			 
 			 int slots = rs.getInt("available_slots") +1;
 			 st.executeUpdate("UPDATE mydb.room SET available_slots = " + slots + " WHERE idroom =" + roomid);
->>>>>>> 51ccd3d8255b24d35a5eb068314714564cae73df
 			
 			
 			
