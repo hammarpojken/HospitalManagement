@@ -409,11 +409,11 @@ public class dbhandler {
 			try {
 				con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
 				Statement st = con.createStatement();
-				 rs = st.executeQuery("SELECT * FROM mydb.medicine WHERE medicine.idmedicine IN (SELECT prescription.medicine FROM prescription WHERE prescription.patientid = " + ssn + ")" );
+				 rs = st.executeQuery("SELECT prescription.idprescription, prescription.medicine, medicine.name, medicine.type, medicine.volume, medicine.price FROM mydb.prescription JOIN mydb.medicine ON prescription.medicine = medicine.idmedicine WHERE prescription.patientid = " +ssn);
 				 
 				 while(rs.next()){
 					 presc.add(new Medicine(
-									 rs.getInt("idmedicine"),
+									 rs.getInt("medicine"),
 									 rs.getString("name"),
 									 rs.getString("type"),
 									 rs.getString("volume"),
