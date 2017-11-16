@@ -11,27 +11,27 @@ public class Prescription {
     private final SimpleLongProperty doctorId;
     private final SimpleIntegerProperty medicineId;
     private final SimpleStringProperty prescriptionInfo;
-    private final SimpleStringProperty withdrawlAmount;
+    private final SimpleIntegerProperty withdrawlAmount;
     private final Medicine med;
     
     
-    public Prescription(int test_id, Long patient_id, Long doctor_id, int medicine_id, String prescription_info, String withdrawl_amount, Medicine med) {
+    public Prescription(int test_id, Long patient_id, Long doctor_id, int medicine_id, String prescription_info, int withdrawl_amount, Medicine med) {
     	this.testId = new SimpleIntegerProperty(test_id);
     	this.patientId = new SimpleLongProperty(patient_id);
     	this.doctorId = new SimpleLongProperty(doctor_id);
     	this.medicineId = new SimpleIntegerProperty(medicine_id);
     	this.prescriptionInfo = new SimpleStringProperty(prescription_info);
-    	this.withdrawlAmount = new SimpleStringProperty(withdrawl_amount);
+    	this.withdrawlAmount = new SimpleIntegerProperty(withdrawl_amount);
     	this.med = med;
     	
     }
-    public Prescription(Long patient_id, Long doctor_id, int medicine_id, String prescription_info, String withdrawl_amount, Medicine med) {
+    public Prescription(Long patient_id, Long doctor_id, int medicine_id, String prescription_info, int withdrawl_amount, Medicine med) {
     	this.testId = null;
     	this.patientId = new SimpleLongProperty(patient_id);
     	this.doctorId = new SimpleLongProperty(doctor_id);
     	this.medicineId = new SimpleIntegerProperty(medicine_id);
     	this.prescriptionInfo = new SimpleStringProperty(prescription_info);
-    	this.withdrawlAmount = new SimpleStringProperty(withdrawl_amount);
+    	this.withdrawlAmount = new SimpleIntegerProperty(withdrawl_amount);
     	this.med = med;
     	
     }
@@ -129,19 +129,19 @@ public class Prescription {
 	
 
 
-	public final SimpleStringProperty withdrawlAmountProperty() {
+	public final SimpleIntegerProperty withdrawlAmountProperty() {
 		return this.withdrawlAmount;
 	}
 	
 
 
-	public final String getWithdrawlAmount() {
+	public final int getWithdrawlAmount() {
 		return this.withdrawlAmountProperty().get();
 	}
 	
 
 
-	public final void setWithdrawlAmount(final String withdrawlAmount) {
+	public final void setWithdrawlAmount(final int withdrawlAmount) {
 		this.withdrawlAmountProperty().set(withdrawlAmount);
 	}
 	

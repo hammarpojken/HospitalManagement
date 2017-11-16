@@ -38,7 +38,7 @@ public class Login {
 				 rs.next();
 				 if(rs.getString("role").equals("Doctor")) {
 					 
-					 doc = new Doctor(rs.getString("fname"), rs.getString("lname"), rs.getString("role"));
+					 doc = new Doctor(rs.getLong("staffid"), rs.getString("fname"), rs.getString("lname"), rs.getString("role"));
 					 
 				 }
 				 else if (rs.getString("role").equals("Receptionist")) {

@@ -12,9 +12,14 @@ import javafx.collections.ObservableList;
 
 
 public class Doctor extends Person {
+	private long staffId;
 	
-	public Doctor(String firstName, String lastName, String role) {
+	public Doctor(long id, String firstName, String lastName, String role) {
 		super(firstName, lastName, role);
+		this.staffId = id;
+	}
+	public long getId() {
+		return this.staffId;
 	}
 	
 	

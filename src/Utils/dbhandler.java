@@ -459,6 +459,23 @@ public class dbhandler {
 				return presc;
 				}
 				
+		public static void prescribMed(Prescription p) {
+			Connection con;
+			
+			try {
+				con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
+				Statement st = con.createStatement();
+				st.execute("INSERT INTO mydb.prescription (patientid, medicine, prescription_info, withdrawl_amount, doctorid) VALUES (" + p.getPatientId() + "," + p.getMedicineId() + ",'" + p.getPrescriptionInfo() + "'," + p.getWithdrawlAmount() + "," + p.getDoctorId() + ")");
+				 
+				 
+				
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace(); 
+				}
+			
+		}
+		
 		public static ObservableList<Test> getTest(long ssn){
 			ObservableList<Test> testlist = FXCollections.observableArrayList();
 			Connection con;

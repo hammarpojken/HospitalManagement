@@ -40,9 +40,10 @@ public class PrescribeMedController {
 	@FXML
 	public void createPrescription() {
 		int medId = medicines.getSelectionModel().selectedItemProperty().get().getMedicineId();
+		Medicine med = medicines.getSelectionModel().getSelectedItem();
 		int withrawl = Integer.parseInt(amount.getSelectionModel().getSelectedItem());
-		Prescription p = new Prescription()
-		dbhandler.prescribeMed(currentPatient.getSsn(), )
+		Prescription p = new Prescription(currentPatient.getSsn(), doc.getId(), medId, prescInfo.getText(), withrawl, med);
+		dbhandler.prescribMed(p);
 		
 		
 	}

@@ -67,7 +67,7 @@
       </VBox>
    </center>
    <bottom>
-      <Button fx:id="createBtn" mnemonicParsing="false" text="Create " BorderPane.alignment="CENTER">
+      <Button fx:id="createBtn" mnemonicParsing="false" onAction="#createPrescription" text="Create " BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets top="50.0" />
          </BorderPane.margin>
