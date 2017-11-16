@@ -429,6 +429,35 @@ public class dbhandler {
 			
 				return presc;
 				}
+		
+		public static ObservableList<Medicine> getMedicine(){
+			ObservableList<Medicine> presc = FXCollections.observableArrayList();
+			Connection con;
+			ResultSet rs;
+			
+			try {
+				con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
+				Statement st = con.createStatement();
+				 rs = st.executeQuery("SELECT * FROM mydb.medicine" );
+				 
+				 while(rs.next()){
+					 presc.add(new Medicine(
+									 rs.getInt("idmedicine"),
+									 rs.getString("name"),
+									 rs.getString("type"),
+									 rs.getString("volume"),
+									 rs.getDouble("price")));
+					 
+				}
+				 con.close();
+		
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace(); 
+				}
+			
+				return presc;
+				}
 				
 		public static ObservableList<Test> getTest(long ssn){
 			ObservableList<Test> testlist = FXCollections.observableArrayList();

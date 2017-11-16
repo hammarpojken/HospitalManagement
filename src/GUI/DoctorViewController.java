@@ -161,6 +161,35 @@ public class DoctorViewController {
 		
 	}
 	
+	@FXML
+	public void prescribeMed() {
+		Patient p = tv.getSelectionModel().getSelectedItem();
+
+
+		try {
+			FXMLLoader loader = new FXMLLoader();
+	        loader.setLocation(DoctorViewController.class.getResource("PrescribeMedView.fxml"));
+	        BorderPane page;
+	        page = (BorderPane) loader.load();
+	        
+	        PrescribeMedController controller = loader.getController();
+	       controller.setPatient(p);
+	       controller.setDoctor(doc);
+	        
+	        if (DoctorHbox.getChildren().size() >= 3) {
+	        	DoctorHbox.getChildren().remove(2);
+	        }
+	        DoctorHbox.getChildren().add(page);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        
+		
+	}
+	
 	
 	public void setPatientTableView() {
 		data = dbhandler.getPatients();

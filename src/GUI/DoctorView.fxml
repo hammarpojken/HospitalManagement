@@ -14,7 +14,7 @@
       <VBox prefHeight="400.0" prefWidth="123.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="CreateRSbtn" mnemonicParsing="false" onAction="#ShowResultCard" prefHeight="25.0" prefWidth="132.0" text="Create Result Card" />
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Show Patients" />
+            <Button mnemonicParsing="false" onAction="#prescribeMed" prefHeight="25.0" prefWidth="130.0" text="Prescribe medicine" />
             <Button mnemonicParsing="false" onAction="#ShowJournal" prefHeight="25.0" prefWidth="130.0" text="Show Journal" />
             <Button fx:id="appointmentbtn" layoutX="10.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Appointment" />
             <Button fx:id="assignbtn" layoutX="10.0" layoutY="85.0" mnemonicParsing="false" onAction="#assignDoctor" prefHeight="25.0" prefWidth="130.0" text="Assign" />

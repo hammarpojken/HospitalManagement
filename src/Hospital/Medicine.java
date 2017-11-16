@@ -20,6 +20,10 @@ public class Medicine {
     	this.volume = new SimpleStringProperty(volume);
     	this.price  = new SimpleDoubleProperty(price);
     }
+    @Override
+    public String toString() {
+    	return getName();
+    }
 
 	public final SimpleIntegerProperty medicineIdProperty() {
 		return this.medicineId;
