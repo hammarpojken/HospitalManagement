@@ -219,7 +219,9 @@ public class dbhandler {
 			Statement st = con.createStatement();
 			 rs = st.executeQuery("SELECT available_slots FROM mydb.room WHERE idroom =" + roomid);
 			 rs.next();
-			 int slots = rs.getInt("available_slots") - 1;
+			 int slots = rs.getInt("available_slots");
+			 slots -= 1;
+			 System.out.println(slots);
 			 st.executeUpdate("UPDATE mydb.room SET available_slots = " + slots +"WHERE idroom =" + roomid);
 			
 			
@@ -240,7 +242,9 @@ public class dbhandler {
 			Statement st = con.createStatement();
 			 rs = st.executeQuery("SELECT available_slots FROM mydb.room WHERE idroom =" + roomid);
 			 rs.next();
-			 int slots = rs.getInt("available_slots") +1;
+			 int slots = rs.getInt("available_slots");
+			 slots += 1;
+			 System.out.println(slots);
 			 st.executeUpdate("UPDATE mydb.room SET available_slots = " + slots + "WHERE idroom =" + roomid);
 			
 			
