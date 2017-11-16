@@ -80,7 +80,7 @@ public class LoginViewController {
 			         Pane journal = (Pane) loader.load();
 			         mainApp.getRoot().setCenter(journal);
 				}
-				else if(role.equals("receptionist")) {
+				else if(role.equals("Receptionist")) {
 			         loader.setLocation(LoginViewController.class.getResource("../GUI/ReceptionistView.fxml"));
 			         Pane journal = (Pane) loader.load();
 			         mainApp.getRoot().setCenter(journal);

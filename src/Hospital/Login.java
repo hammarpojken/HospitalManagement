@@ -19,6 +19,7 @@ public class Login {
 	private ResultSet rs = null;
 	private Doctor doc;
 	private PatientUser pat;
+	private Receptionist rec;
 	
 	public Login(MainApp app, String uname, String pass, String proff) {
 		this.mainApp = app;
@@ -36,7 +37,13 @@ public class Login {
 				 
 				 rs.next();
 				 if(rs.getString("role").equals("Doctor")) {
+					 
 					 doc = new Doctor(rs.getString("fname"), rs.getString("lname"), rs.getString("role"));
+					 
+				 }
+				 else if (rs.getString("role").equals("Receptionist")) {
+					 
+					 rec = new Receptionist(rs.getString("fname"), rs.getString("lname"), rs.getString("role"));
 					 
 				 }
 				 else if (rs.getString("role").equals("Patient")) {

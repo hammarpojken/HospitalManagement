@@ -42,6 +42,7 @@ public class JournalController {
 	private Patient currentPatient;
 	private TableView<Patient> tv;
 	private DoctorViewController dc;
+	private ReceptionistViewController rec;
 	
 	//journal components
 	@FXML
@@ -444,6 +445,9 @@ public class JournalController {
 	}
 	public void setParentController(DoctorViewController dc){
 		this.dc = dc;
+	}
+	public void setParentControllerRec(ReceptionistViewController rec) {
+		this.rec = rec;
 	}
 	@FXML
 	public void getCity() {
