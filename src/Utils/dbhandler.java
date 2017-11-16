@@ -555,5 +555,25 @@ public class dbhandler {
 			
 		}
 		
+// ----------------------------------------------RECEPTIONIST METOHDS---------------------------------------------
 		
-}		
+		public static void savePatient(Patient p) {
+			Connection con;
+			try {
+				con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root");
+				Statement st = con.createStatement();
+				
+				st.execute("INSERT INTO mydb.patient (ssn, fname, lname, phone, adress, zipcode, gender, status_patient, blood_type) VALUES "
+						+ " ("+ p.getSsn() + ",'" + p.getFname() + "','" + p.getLname() + "'," + p.getPhone() + ",'" + p.getAdress()
+						+ "'," + p.getZipcode() + ",'" + p.getGender() + "'," + p.getStatus_patient() + "," + p.getBlood_type()); 
+			}
+					
+	
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		
+		}
+			
+				

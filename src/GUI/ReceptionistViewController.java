@@ -102,11 +102,18 @@ public class ReceptionistViewController {
 		FXMLLoader loader = new FXMLLoader();
 
 		loader.setLocation(ReceptionistViewController.class.getResource("RegisterView.fxml"));
-        BorderPane reg = (BorderPane) loader.load();
+        BorderPane page = (BorderPane) loader.load();
         
         RegisterViewController controller = loader.getController();
+        
+        if (ReceptionistHbox.getChildren().size() >= 3) {
+            ReceptionistHbox.getChildren().remove(2);
+        }
+         ReceptionistHbox.getChildren().add(page);
        
 	
 	}
+	
+	
 	
 }

@@ -80,6 +80,30 @@ public class Patient {
         this.blood_type = new SimpleStringProperty(blood_Type);
         
     }
+    
+    public Patient(long SSN, String fName, String lName, long phone, String adress, int zipCode, String gender, String blood_Type) {
+    	
+    	this.ssn = new SimpleLongProperty(SSN);
+        this.fname = new SimpleStringProperty(fName);
+        this.lname = new SimpleStringProperty(lName);
+        this.phone = new SimpleLongProperty(phone);
+        this.username = null;
+        this.password = null;
+        this.adress = new SimpleStringProperty(adress);
+        this.zipcode = new SimpleIntegerProperty(zipCode);
+        this.role = null;
+        this.doctorid = null;
+        this.gender = new SimpleStringProperty(gender);
+        this.checkin_date = null;
+        this.checkout_date = null;
+        this.checkin_time =  null;
+    	this.checkout_time =  null;
+        this.room = null;
+        this.blood_type = new SimpleStringProperty(blood_Type);
+        this.status_patient = null;
+    	
+    	
+    }
 
 	public long getSsn() {
 		return ssn.get();
