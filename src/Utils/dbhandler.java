@@ -40,7 +40,7 @@ public class dbhandler {
 			
 			else if (proffession == "Patient") {
 				rs = st.executeQuery("select * FROM mydb.patient WHERE patient.username = '" + userName + "' AND patient.password = " + passWord + ";");
-				con.close();
+				
 				return rs;
 			}
 			

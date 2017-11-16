@@ -40,20 +40,20 @@ public class PatientViewController {
 	public void setMainApp(MainApp app) {
 		this.mainApp = app;
 	}
-	public void fillResultCard(){
-		
-		try {
-			ResultSet rs = p.getResultCard();
-			medicineText.setText(rs.getString("medicine"));
-			diseaseText.setText(rs.getString("disease"));
-			testText.setText(rs.getString("test"));
-			remarkArea.setText(rs.getString("remark"));
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-	}
+//	public void fillResultCard(){
+//		
+//		try {
+//			ResultSet rs = p.getResultCard();
+//			medicineText.setText(rs.getString("medicine"));
+//			diseaseText.setText(rs.getString("disease"));
+//			testText.setText(rs.getString("test"));
+//			remarkArea.setText(rs.getString("remark"));
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		
+//	}
 
 }

@@ -39,7 +39,7 @@ public class Login {
 					 doc = new Doctor(rs.getString("fname"), rs.getString("lname"), rs.getString("role"));
 					 
 				 }
-				 else if (rs.getString("role").equals("patient")) {
+				 else if (rs.getString("role").equals("Patient")) {
 					 
 					 pat = new PatientUser(rs.getString("fname"), rs.getString("lname"), rs.getString("role"), rs.getLong("ssn"));
 					 
