@@ -82,7 +82,9 @@ public class LoginViewController {
 				}
 				else if(role.equals("Receptionist")) {
 			         loader.setLocation(LoginViewController.class.getResource("../GUI/ReceptionistView.fxml"));
-			         Pane journal = (Pane) loader.load();
+			         BorderPane journal = (BorderPane) loader.load();
+			         ReceptionistViewController controller = loader.getController();
+			         controller.setPatientTableView();
 			         mainApp.getRoot().setCenter(journal);
 				}
 				else if(role.equals("Patient")) {

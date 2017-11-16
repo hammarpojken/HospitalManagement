@@ -1,11 +1,15 @@
 package GUI;
 
 import java.io.IOException;
-
+import java.util.List;
 import Hospital.Doctor;
 import Hospital.MainApp;
 import Hospital.Patient;
 import Hospital.Receptionist;
+import Utils.dbhandler;
+import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,9 +27,7 @@ public class ReceptionistViewController {
 	private BorderPane journalLayout;
 	private ObservableList<Patient> data;
 	
-	public ObservableList<Patient> getData() {
-		return data;
-	}
+
 	@FXML
 	private HBox ReceptionistHbox;
 	@FXML
@@ -79,5 +81,30 @@ public class ReceptionistViewController {
         
 	}
 	
+	public void setPatientTableView() {
+		data = dbhandler.getPatients();
+		
+		if(data !=null) {
+			tv.getItems().setAll(data);
+			
+		}
+		
+	}
+	public void setMainApp(MainApp mainapp) {
+		this.mainapp = mainapp; 
+	}
+	public ObservableList<Patient> getData() {
+		return data;
+	}
+	
+	public void registerPatient() throws IOException {
+
+		FXMLLoader loader = new FXMLLoader();
+
+		loader.setLocation(ReceptionistViewController.class.getResource(""));
+        BorderPane page = (BorderPane) loader.load();
+        
+		
+	}
 	
 }

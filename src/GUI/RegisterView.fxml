@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane prefHeight="413.0" prefWidth="422.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane fx:id="contactPane" prefHeight="358.0" prefWidth="362.0" style="-fx-background-color: #FFFFFF;">
+               <children>
+                  <TextField fx:id="fnametext" layoutX="94.0" layoutY="42.0" prefHeight="25.0" prefWidth="181.0" />
+                  <TextField fx:id="lnametext" layoutX="94.0" layoutY="73.0" prefHeight="25.0" prefWidth="181.0" />
+                  <TextField fx:id="ssntext" editable="false" layoutX="94.0" layoutY="107.0" prefHeight="25.0" prefWidth="181.0" />
+                  <TextField fx:id="adresstext" layoutX="94.0" layoutY="138.0" prefHeight="25.0" prefWidth="181.0" />
+                  <TextField fx:id="ziptext" layoutX="94.0" layoutY="173.0" onKeyReleased="#getCity" prefHeight="25.0" prefWidth="58.0" />
+                  <TextField fx:id="citytext" editable="false" layoutX="159.0" layoutY="173.0" prefHeight="25.0" prefWidth="114.0" />
+                  <TextField fx:id="phonetext" layoutX="94.0" layoutY="206.0" prefHeight="25.0" prefWidth="181.0" />
+                  <ChoiceBox fx:id="bloodChoice" layoutX="94.0" layoutY="238.0" prefHeight="25.0" prefWidth="181.0" />
+                  <RadioButton fx:id="radioMale" layoutX="94.0" layoutY="278.0" mnemonicParsing="false" text="Male" />
+                  <RadioButton fx:id="radioFemale" layoutX="195.0" layoutY="278.0" mnemonicParsing="false" text="Female" />
+                  <Label layoutX="17.0" layoutY="278.0" snapToPixel="false" text="Gender" />
+                  <Label layoutX="17.0" layoutY="111.0" snapToPixel="false" text="SSN" />
+                  <Label layoutX="17.0" layoutY="142.0" snapToPixel="false" text="Adress" />
+                  <Label layoutX="17.0" layoutY="177.0" snapToPixel="false" text="Zip/City" />
+                  <Label layoutX="17.0" layoutY="210.0" snapToPixel="false" text="Phone" />
+                  <Label layoutX="17.0" layoutY="242.0" snapToPixel="false" text="Blood type" />
+                  <Label layoutX="17.0" layoutY="77.0" snapToPixel="false" text="Last name" />
+                  <Label layoutX="17.0" layoutY="46.0" snapToPixel="false" text="First name" />
+                  <Label layoutX="122.0" layoutY="1.0" prefHeight="26.0" prefWidth="125.0" text="Personal Information">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <RadioButton fx:id="radioInprocess" layoutX="94.0" layoutY="311.0" mnemonicParsing="false" snapToPixel="false" text="In process" />
+                  <RadioButton fx:id="radioDischarged" layoutX="195.0" layoutY="311.0" mnemonicParsing="false" snapToPixel="false" text="Discharged" />
+                  <Label layoutX="17.0" layoutY="311.0" prefHeight="17.0" prefWidth="49.0" text="Status" />
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
