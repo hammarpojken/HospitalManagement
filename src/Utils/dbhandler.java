@@ -151,7 +151,7 @@ public class dbhandler {
 	}
 	
 	public static void setResultCard(String disease, String medicine, String test, String remark, long ssn) {
-		System.out.println("hej");
+		
 		Connection con;
 		try {
 			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root");
@@ -165,7 +165,7 @@ public class dbhandler {
 	}
 	
 	public static void updateResultCard(int rcId, long patientId, String diagnose, String remark) {
-		System.out.println("hej");
+		
 		Connection con;
 		try {
 			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
@@ -220,7 +220,7 @@ public class dbhandler {
 			 rs = st.executeQuery("SELECT available_slots FROM mydb.room WHERE idroom =" + roomid);
 			 rs.next();
 			 int slots = rs.getInt("available_slots") - 1;
-			 st.executeUpdate("UPDATE mydb.room SET available_slots = " + slots +"WHERE idroom =" + roomid);
+			 st.executeUpdate("UPDATE mydb.room SET available_slots = " + slots +" WHERE idroom =" + roomid);
 			
 			
 			
@@ -241,7 +241,7 @@ public class dbhandler {
 			 rs = st.executeQuery("SELECT available_slots FROM mydb.room WHERE idroom =" + roomid);
 			 rs.next();
 			 int slots = rs.getInt("available_slots") +1;
-			 st.executeUpdate("UPDATE mydb.room SET available_slots = " + slots + "WHERE idroom =" + roomid);
+			 st.executeUpdate("UPDATE mydb.room SET available_slots = " + slots + " WHERE idroom =" + roomid);
 			
 			
 			
@@ -477,7 +477,7 @@ public class dbhandler {
 				} finally {
 					
 				}
-				System.out.println(rc.size());
+				
 				return rc;
 				
 		}

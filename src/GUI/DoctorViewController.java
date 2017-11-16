@@ -94,6 +94,7 @@ public class DoctorViewController {
         
         JournalController controller = loader.getController();
         controller.setPatient(p);
+        
         controller.setParentController(this);
         controller.setTable(this.tv);
         controller.setPatientInfo();
