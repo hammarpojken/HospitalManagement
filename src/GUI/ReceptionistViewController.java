@@ -101,10 +101,12 @@ public class ReceptionistViewController {
 
 		FXMLLoader loader = new FXMLLoader();
 
-		loader.setLocation(ReceptionistViewController.class.getResource(""));
-        BorderPane page = (BorderPane) loader.load();
+		loader.setLocation(ReceptionistViewController.class.getResource("RegisterView.fxml"));
+        BorderPane reg = (BorderPane) loader.load();
         
-		
+        RegisterViewController controller = loader.getController();
+       
+	
 	}
 	
 }
