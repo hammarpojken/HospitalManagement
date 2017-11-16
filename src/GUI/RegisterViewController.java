@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 
 public class RegisterViewController {
@@ -130,12 +131,12 @@ public class RegisterViewController {
 	            {
 	            	String nametemp = ssntext.getText();
 	            	if(nametemp.matches("^[0-9]{2}((0[0-9])|(10|11|12))(([1-2][0-9])|(3[0-1])|(0[1-9]))[0-9]{4}$")) {
-	            		buttonUpdate.setDisable(false);
+	            		savebtn.setDisable(false);
 	            		ssntext.setStyle("-fx-border-color: null");
 	            		
 	                }else  {
 	                	ssntext.setStyle("-fx-border-color: RED");
-	                	buttonUpdate.setDisable(true);
+	                	savebtn.setDisable(true);
 	                }
 	            	
 	            	
@@ -156,12 +157,12 @@ public class RegisterViewController {
 	            {
 	            	String nametemp = adresstext.getText();
 	            	if(nametemp.matches("^[a-zA-Z0-9 ]*$")) {
-	            		buttonUpdate.setDisable(false);
+	            		savebtn.setDisable(false);
 	            		adresstext.setStyle("-fx-border-color: null");
 	            		
 	                }else  {
 	                	adresstext.setStyle("-fx-border-color: RED");
-	                	buttonUpdate.setDisable(true);
+	                	savebtn.setDisable(true);
 	                }
 	            	
 	            	
@@ -182,12 +183,12 @@ public class RegisterViewController {
 	            {
 	            	String nametemp = ziptext.getText();
 	            	if(nametemp.matches("^[0-9]{5}$")) {
-	            		buttonUpdate.setDisable(false);
+	            		savebtn.setDisable(false);
 	            		ziptext.setStyle("-fx-border-color: null");
 	            		
 	                }else  {
 	                	ziptext.setStyle("-fx-border-color: RED");
-	                	buttonUpdate.setDisable(true);
+	                	savebtn.setDisable(true);
 	                }
 	            	
 	            	
@@ -208,12 +209,12 @@ public class RegisterViewController {
 	            {
 	            	String nametemp = phonetext.getText();
 	            	if(nametemp.matches("^[0-9]{9,10}$")) {
-	            		buttonUpdate.setDisable(false);
+	            		savebtn.setDisable(false);
 	            		phonetext.setStyle("-fx-border-color: null");
 	            		
 	                }else  {
 	                	phonetext.setStyle("-fx-border-color: RED");
-	                	buttonUpdate.setDisable(true);
+	                	savebtn.setDisable(true);
 	                }
 	            	
 	            	
@@ -221,7 +222,43 @@ public class RegisterViewController {
 	        }
 	    });
 	    
-	}
+	
+	
+	// toggleGroup/radioButtons initialized and added listener
+    tglGender = new ToggleGroup();
+    radioFemale.setToggleGroup(tglGender);
+    radioFemale.setUserData("Female");
+    radioMale.setToggleGroup(tglGender);
+    radioMale.setUserData("Male");
+    
+    tglGender.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
+        public void changed(ObservableValue<? extends Toggle> ov,
+                Toggle old_toggle, Toggle new_toggle) {
+                    if (tglGender.getSelectedToggle() != null) {
+                        tglGender.getSelectedToggle().setSelected(true);
+                        
+                        
+                    }                
+                }
+        });
+    
+    tglStatus = new ToggleGroup();
+    radioDischarged.setToggleGroup(tglStatus);
+    radioInprocess.setToggleGroup(tglStatus);
+    
+    tglStatus.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
+        public void changed(ObservableValue<? extends Toggle> ov,
+                Toggle old_toggle, Toggle new_toggle) {
+                    if (tglStatus.getSelectedToggle() != null) {
+                        tglStatus.getSelectedToggle().setSelected(true);
+                        
+                        
+                    }                
+                }
+        });
+	
+	
+}
 	
 	@FXML
 	public void createPatient() {
