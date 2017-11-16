@@ -3,6 +3,7 @@ package GUI;
 
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -130,6 +131,8 @@ public class JournalController {
 	    radioMale.setToggleGroup(tglGender);
 	    bloodChoice.setItems(FXCollections.observableArrayList(
 	    "O-", "O+", "A-", "A+", "B-", "B+", "AB-", "AB+"));
+	    
+	    
 	    roomChoice.setItems(dbhandler.getRooms());
 	    
 	    //Input control events
@@ -141,7 +144,7 @@ public class JournalController {
 	        {
 	            if (newPropertyValue)
 	            {
-	                System.out.println("Textfield on focus");
+	                
 	            }
 	            else
 	            {
@@ -168,7 +171,7 @@ public class JournalController {
 	        {
 	            if (newPropertyValue)
 	            {
-	                System.out.println("Textfield on focus");
+	                
 	            }
 	            else
 	            {
@@ -194,7 +197,7 @@ public class JournalController {
 	        {
 	            if (newPropertyValue)
 	            {
-	                System.out.println("Textfield on focus");
+	                
 	            }
 	            else
 	            {
@@ -220,7 +223,7 @@ public class JournalController {
 	        {
 	            if (newPropertyValue)
 	            {
-	                System.out.println("Textfield on focus");
+	                
 	            }
 	            else
 	            {
@@ -246,7 +249,7 @@ public class JournalController {
 	        {
 	            if (newPropertyValue)
 	            {
-	                System.out.println("Textfield on focus");
+	                
 	            }
 	            else
 	            {
@@ -272,7 +275,7 @@ public class JournalController {
 	        {
 	            if (newPropertyValue)
 	            {
-	                System.out.println("Textfield on focus");
+	                
 	            }
 	            else
 	            {
@@ -405,12 +408,13 @@ public class JournalController {
 		tvMedicine.getItems().setAll(dbhandler.getMedicine(currentPatient.getSsn()));
 		
 		tvTests.getItems().setAll(dbhandler.getTest(currentPatient.getSsn()));
-        System.out.println(dbhandler.getResultCardInfo(currentPatient.getSsn()).size());
+        
         remarkarea.setText(dbhandler.getResultCardInfo(currentPatient.getSsn()).get(0).getRemark());
         
         diseasetext.setText(dbhandler.getResultCardInfo(currentPatient.getSsn()).get(0).getDiagnose());
         
 	}
+
 	
 	public void updateJournal () {
 		
@@ -424,7 +428,11 @@ public class JournalController {
 		
 		tv.getItems().clear();
 		dc.setPatientTableView();
+		currentPatient.setRoom(newroom);
 		
+		
+		
+	
 		
 	}
 	public void setDoctor(Doctor doc) {

@@ -196,6 +196,9 @@ public class Patient {
 	public int getRoom() {
 		return room.get();
 	}
+	public void setRoom(int x) {
+		this.room.set(x);
+	}
 
 
 
@@ -211,6 +214,7 @@ public class Patient {
 	public String getCheckoutTime() {
 		return checkout_time.get();
 	}
+	
 
     
     
