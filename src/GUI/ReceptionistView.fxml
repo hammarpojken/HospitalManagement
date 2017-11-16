@@ -9,16 +9,15 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<BorderPane fx:id="DoctorViewPane" prefHeight="400.0" prefWidth="785.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="ReceptionistViewPane" prefHeight="400.0" prefWidth="785.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ReceptionistViewController">
    <left>
       <VBox prefHeight="400.0" prefWidth="123.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="CreateRSbtn" mnemonicParsing="false" onAction="#ShowResultCard" prefHeight="25.0" prefWidth="132.0" text="Create Patient" />
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Search Doctor" />
-            <Button mnemonicParsing="false" onAction="#ShowJournal" prefHeight="25.0" prefWidth="130.0" text="Show Journal" />
-            <Button fx:id="appointmentbtn" layoutX="10.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Appointment" />
-            <Button fx:id="assignbtn" layoutX="10.0" layoutY="85.0" mnemonicParsing="false" onAction="#assignDoctor" prefHeight="25.0" prefWidth="130.0" text="Show Schedule" />
+            <Button fx:id="registerPatient" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" text="Register Patient" />
+            <Button fx:id="showJournal" mnemonicParsing="false" onAction="#ShowJournal" prefHeight="25.0" prefWidth="130.0" text="Show Journal" />
+            <Button fx:id="searchDoctor" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Search Doctor" />
+            <Button fx:id="appointment" layoutX="10.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Appointment" />
+            <Button fx:id="showSchedule" layoutX="10.0" layoutY="85.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Show Schedule" />
          </children>
          <BorderPane.margin>
             <Insets left="5.0" right="5.0" top="5.0" />
@@ -26,7 +25,7 @@
       </VBox>
    </left>
    <center>
-      <HBox fx:id="DoctorHbox" prefHeight="400.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
+      <HBox fx:id="ReceptionistHbox" prefHeight="400.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
          <children>
             <TableView fx:id="tv" prefHeight="258.0" prefWidth="306.0">
                <columns>
