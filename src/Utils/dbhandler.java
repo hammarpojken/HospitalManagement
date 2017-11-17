@@ -560,7 +560,7 @@ public class dbhandler {
 		public static void savePatient(Patient p) {
 			Connection con;
 			try {
-				con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/projecthospita?autoReconnect=true&useSSL=false", "root", "root");
+				con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
 				Statement st = con.createStatement();
 				
 				
