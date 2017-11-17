@@ -141,20 +141,23 @@ public class DoctorViewController {
 	public void assignDoctor() {
 		
 		
-		List<String> choices = dbhandler.getDoctors();
+		List<Doctor> choices = dbhandler.getDoctors();
 				
 				if(choices != null) {
-					ChoiceDialog<String> dialog = new ChoiceDialog<>("Doctors", choices);
+					ChoiceDialog<Doctor> dialog = new ChoiceDialog("Doctors", choices);
 					dialog.setTitle("Choice Dialog");
 					dialog.setHeaderText("Assign a doctor to " + tv.getSelectionModel().getSelectedItem().getFname() + " " +
 							tv.getSelectionModel().getSelectedItem().getLname());
 					dialog.setContentText("Choose a doctor:");
+					System.out.println(dialog.getItems().get(0));
 	
 					// Traditional way to get the response value.
-					Optional<String> result = dialog.showAndWait();
+					Optional<Doctor> result = dialog.showAndWait();
 					if (result.isPresent()){
+						System.out.println(result.get());
+						
 					    
-					    long doctorid = Long.parseLong(result.get().substring(result.get().length() - 10));
+					    long doctorid = result.get().getId();
 					    long patient = tv.getSelectionModel().getSelectedItem().getSsn();
 					    dbhandler.assignDoctor(patient, doctorid);
 					}

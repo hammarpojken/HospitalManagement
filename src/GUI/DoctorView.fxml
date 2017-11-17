@@ -31,7 +31,7 @@
             <VBox spacing="5.0">
                <children>
                   <TextField fx:id="searchBox" maxWidth="150.0" minWidth="150.0" onKeyReleased="#searchPatients" prefWidth="150.0" promptText="Search patient" />
-                  <TableView fx:id="tv" prefHeight="258.0" prefWidth="306.0">
+                  <TableView fx:id="tv" prefWidth="306.0">
                      <columns>
                         <TableColumn fx:id="nameCol" prefWidth="75.0" text="First name" />
                         <TableColumn fx:id="lnameCol" prefWidth="75.0" text="Last name" />
