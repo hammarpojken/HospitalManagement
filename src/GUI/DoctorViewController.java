@@ -195,11 +195,8 @@ public class DoctorViewController {
 	public void searchPatients() {
 		String search = searchBox.getText();
 		
-		//if(search.matches("[0-9]+")) {
-			
-			int ssnSearch = Integer.parseInt(search);
+
 			setPatientTableView(search);
-		//}
 	}
 	
 	
@@ -220,14 +217,7 @@ public class DoctorViewController {
 	
 		}
 	}
-	public void setPatientTableView(int search) {
-		//data = dbhandler.getPatients(search);
-		
-		if(data !=null) {
-			tv.getItems().setAll(data);
-	
-		}
-	}
+
 
 
 	public void setMainApp(MainApp mainapp) {

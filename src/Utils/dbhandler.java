@@ -585,7 +585,7 @@ public class dbhandler {
 		try {
 			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
 			Statement st = con.createStatement();
-			 rs = st.executeQuery("SELECT * FROM mydb.patient WHERE patient.ssn LIKE '" + search + "%' or WHERE patient.fname LIKE '" + search + "%'");
+			 rs = st.executeQuery("SELECT * FROM mydb.patient WHERE patient.ssn LIKE '" + search + "%' or patient.fname LIKE '" + search + "%'");
 			 
 			 while(rs.next()){
 				 data.add(new Patient(
