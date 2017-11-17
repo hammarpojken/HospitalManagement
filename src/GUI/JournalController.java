@@ -63,6 +63,7 @@ public class JournalController {
 	@FXML
 	private TableColumn<Medicine, String> volumeCol;
 	
+	
 	// Text Fields
 	@FXML
 	private Text doctorText;
@@ -128,6 +129,7 @@ public class JournalController {
 	    typeCol.setCellValueFactory(new PropertyValueFactory<Medicine, String>("type"));
 	    volumeCol.setCellValueFactory(new PropertyValueFactory<Medicine, String>("volume"));
 	    testTypeCol.setCellValueFactory(new PropertyValueFactory<Test, String>("type"));
+	    
 	    radioMale.setToggleGroup(tglGender);
 	    radioMale.setToggleGroup(tglGender);
 	    bloodChoice.setItems(FXCollections.observableArrayList(

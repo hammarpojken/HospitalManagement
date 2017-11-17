@@ -68,6 +68,8 @@ public class DoctorViewController {
 	private Button appointmentbtn;
 	@FXML
 	private Button CreateRSbtn;
+	@FXML
+	private TextField searchBox;
 	
 
 
@@ -189,6 +191,16 @@ public class DoctorViewController {
         
 		
 	}
+	@FXML
+	public void searchPatients() {
+		String search = searchBox.getText();
+		
+		//if(search.matches("[0-9]+")) {
+			
+			int ssnSearch = Integer.parseInt(search);
+			setPatientTableView(search);
+		//}
+	}
 	
 	
 	public void setPatientTableView() {
@@ -200,8 +212,22 @@ public class DoctorViewController {
 		}
 		
 	}
+	public void setPatientTableView(String search) {
+		data = dbhandler.getPatients(search);
+		
+		if(data !=null) {
+			tv.getItems().setAll(data);
 	
-
+		}
+	}
+	public void setPatientTableView(int search) {
+		//data = dbhandler.getPatients(search);
+		
+		if(data !=null) {
+			tv.getItems().setAll(data);
+	
+		}
+	}
 
 
 	public void setMainApp(MainApp mainapp) {

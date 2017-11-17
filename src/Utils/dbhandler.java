@@ -575,6 +575,54 @@ public class dbhandler {
 				}
 		}
 		
+		//--------------------------------SEARCH METHODS----------------------------------
+		
+		public static ObservableList<Patient> getPatients(String search) {
+			ObservableList<Patient> data = FXCollections.observableArrayList();
+			Connection con;
+			ResultSet rs;
+			
+		try {
+			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
+			Statement st = con.createStatement();
+			 rs = st.executeQuery("SELECT * FROM mydb.patient WHERE patient.ssn LIKE '" + search + "%' or WHERE patient.fname LIKE '" + search + "%'");
+			 
+			 while(rs.next()){
+				 data.add(new Patient(
+						 rs.getLong("ssn"),
+						 rs.getString("fname"),
+						 rs.getString("lname"),
+						 rs.getLong("phone"),
+						 rs.getString("username"),
+						 rs.getString("password"),
+						 rs.getString("adress"),
+						 rs.getInt("zipcode"),
+						 rs.getString("role"),
+						 rs.getLong("doctorid"),
+						 rs.getString("gender"),
+						 rs.getInt("status_patient"),
+						 rs.getDate("checkin_date"),
+						 rs.getTime("checkin_date"),
+						 rs.getDate("checkout_date"),
+						 rs.getTime("checkout_date"),
+						 rs.getInt("room"),
+						 rs.getString("blood_type")));
+				 
+				 
+			 }
+			 
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+
 		}
+		return data;
+		
+	}
+		
+		
+}
 			
 				
