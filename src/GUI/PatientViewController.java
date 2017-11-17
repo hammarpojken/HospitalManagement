@@ -1,36 +1,41 @@
 package GUI;
 
 import java.sql.ResultSet;
+import Hospital.Patient;
+import Hospital.ResultCard;
+import Utils.dbhandler;
+
 import java.sql.SQLException;
 
 import Hospital.MainApp;
 import Hospital.PatientUser;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 public class PatientViewController {
 	
+	private Patient currentPatient;
 	private PatientUser p;
 	private MainApp mainApp;
 	
 	@FXML
-	private Button personalInfoBtn;
-	@FXML
-	private Button payBillBtn;
-	@FXML
-	private TextField diseaseText;
-	@FXML
-	private TextField testText;
-	@FXML
-	private TextField medicineText;
+	private TextField diagnosetext;
 	@FXML
 	private TextArea remarkArea;
+	@FXML
+	private TableView<String> prescription;
+	@FXML
+	private TableView<String> tests;
+	@FXML
+	private TableView<String> appointments;
 	
 	@FXML
 	public void initialize(){
+		
 		
 	}
 	public void setPatientUser(PatientUser pat) {
@@ -40,20 +45,9 @@ public class PatientViewController {
 	public void setMainApp(MainApp app) {
 		this.mainApp = app;
 	}
-//	public void fillResultCard(){
-//		
-//		try {
-//			ResultSet rs = p.getResultCard();
-//			medicineText.setText(rs.getString("medicine"));
-//			diseaseText.setText(rs.getString("disease"));
-//			testText.setText(rs.getString("test"));
-//			remarkArea.setText(rs.getString("remark"));
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		
-//	}
-
+	
+	public void setResultcard () {
+		remarkArea.setText(dbhandler.getResultCardInfo(p.getSSN()).get(0).getRemark());    
+        diagnosetext.setText(dbhandler.getResultCardInfo(p.getSSN()).get(0).getDiagnose());
+	}
 }
