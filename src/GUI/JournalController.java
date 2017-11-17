@@ -410,9 +410,11 @@ public class JournalController {
 		
 		tvTests.getItems().setAll(dbhandler.getTest(currentPatient.getSsn()));
         
-        remarkarea.setText(dbhandler.getResultCardInfo(currentPatient.getSsn()).get(0).getRemark());
-        
-        diseasetext.setText(dbhandler.getResultCardInfo(currentPatient.getSsn()).get(0).getDiagnose());
+		if(dbhandler.getResultCardInfo(currentPatient.getSsn()).size() > 0) {
+	        remarkarea.setText(dbhandler.getResultCardInfo(currentPatient.getSsn()).get(0).getRemark());
+	        
+	        diseasetext.setText(dbhandler.getResultCardInfo(currentPatient.getSsn()).get(0).getDiagnose());
+			}
         
 	}
 
