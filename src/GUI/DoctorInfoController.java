@@ -32,10 +32,7 @@ public class DoctorInfoController {
 		fnametext.setText(doc.getfname());
 		lnametext.setText(doc.getlname());
 		doctoridtext.setText(doc.getId() + "");
-		
-		
-		
-		
+				
 	}
 
 
