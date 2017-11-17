@@ -21,6 +21,12 @@ public class Doctor extends Person {
 	public long getId() {
 		return this.staffId;
 	}
+	@Override
+	public String toString() {
+		return this.getfname() + " " + this.getlname();
+		
+	}
+
 	
 	
 	

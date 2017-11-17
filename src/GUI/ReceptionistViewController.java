@@ -2,6 +2,8 @@ package GUI;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
+
 import Hospital.Doctor;
 import Hospital.MainApp;
 import Hospital.Patient;
@@ -14,6 +16,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -113,6 +116,46 @@ public class ReceptionistViewController {
        
 	
 	}
+	
+	@FXML
+	public void searchDoctor() throws IOException {
+		
+		
+		List<Doctor> choices = dbhandler.getDoctors();
+				
+				if(choices != null) {
+					ChoiceDialog<String> dialog = new ChoiceDialog("Doctors", choices);
+//					dialog.getItems().add(choices.get(0));
+					dialog.setTitle("Choice Dialog");
+					dialog.setHeaderText("");
+					dialog.setContentText("Choose a doctor:");
+	
+					// Traditional way to get the response value.
+					Optional<String> result = dialog.showAndWait();
+//					Doctor d = (Doctor)result;
+					if (result.isPresent()){
+					    
+						System.out.println(result);
+						FXMLLoader loader = new FXMLLoader();
+
+						loader.setLocation(ReceptionistViewController.class.getResource("DoctorInfo.fxml"));
+				        BorderPane page = (BorderPane) loader.load();
+				        
+				        RegisterViewController controller = loader.getController();
+				        
+				        if (ReceptionistHbox.getChildren().size() >= 3) {
+				            ReceptionistHbox.getChildren().remove(2);
+				        }
+				         ReceptionistHbox.getChildren().add(page);
+				         
+				         
+					}
+				}
+				
+		
+	}
+	
+	
 	
 	
 	

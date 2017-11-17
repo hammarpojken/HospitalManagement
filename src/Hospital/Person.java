@@ -16,5 +16,11 @@ public abstract class Person {
 	public String getfname() {
 		return this.fName;
 	}
+	public String getlname() {
+		return this.lName;
+	}
+	public String getrole() {
+		return this.getrole();
+	}
 
 }

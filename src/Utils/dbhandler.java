@@ -299,11 +299,11 @@ public class dbhandler {
 			}
 		
 	}
-	public static List<String> getDoctors() {
+	public static List<Doctor> getDoctors() {
 		
 		Connection con;
 		ResultSet rs;
-		List<String> choices = new ArrayList<>();
+		List<Doctor> choices = new ArrayList<Doctor>();
 		
 		
 		try {
@@ -315,7 +315,7 @@ public class dbhandler {
 				rs.beforeFirst();
 				
 				while(rs.next()) {
-					choices.add(rs.getString("fname") + " " + rs.getString("lname") + " " + rs.getLong("staffid"));
+					choices.add(new Doctor(rs.getLong("staffid"), rs.getString("fname"), rs.getString("lname"), rs.getString("role")));
 				}
 				
 			} else {
