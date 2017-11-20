@@ -102,11 +102,13 @@ public class PatientViewController {
 				});
 			    
 			    testTypeCol.setCellValueFactory(new PropertyValueFactory<Test, String>("type"));
+			    
+			    
 		
 	}
 	
 	public void prePopup() {
-		Prescription p =tvMedicine.getSelectionModel().getSelectedItem();
+		Prescription p = tvMedicine.getSelectionModel().getSelectedItem();
 	
         try {
         	FXMLLoader loader = new FXMLLoader();
@@ -137,8 +139,15 @@ public class PatientViewController {
 		this.mainApp = app;
 	}
 	
+	
 	public void setResultcard () {
 		remarkArea.setText(dbhandler.getResultCardInfo(p.getSSN()).get(0).getRemark());    
         diagnosetext.setText(dbhandler.getResultCardInfo(p.getSSN()).get(0).getDiagnose());
+	}
+	
+	public void setPatientTable() {
+		
+		tvMedicine.getItems().setAll(dbhandler.getPatientPrescriptions(p.getSSN()));
+		tvTests.getItems().setAll(dbhandler.getTest(p.getSSN()));
 	}
 }
