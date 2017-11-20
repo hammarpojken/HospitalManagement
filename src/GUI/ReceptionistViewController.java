@@ -124,24 +124,27 @@ public class ReceptionistViewController {
 		List<Doctor> choices = dbhandler.getDoctors();
 				
 				if(choices != null) {
-					ChoiceDialog<String> dialog = new ChoiceDialog("Doctors", choices);
+					ChoiceDialog<Doctor> dialog = new ChoiceDialog("Doctors", choices);
 //					dialog.getItems().add(choices.get(0));
 					dialog.setTitle("Choice Dialog");
 					dialog.setHeaderText("");
 					dialog.setContentText("Choose a doctor:");
 	
 					// Traditional way to get the response value.
-					Optional<String> result = dialog.showAndWait();
-//					Doctor d = (Doctor)result;
+					Optional<Doctor> result = dialog.showAndWait();
 					if (result.isPresent()){
-					    
-						System.out.println(result);
+						
+					  
+						
 						FXMLLoader loader = new FXMLLoader();
 
 						loader.setLocation(ReceptionistViewController.class.getResource("DoctorInfo.fxml"));
 				        BorderPane page = (BorderPane) loader.load();
 				        
-				        RegisterViewController controller = loader.getController();
+				        Doctor d = result.get();
+				        DoctorInfoController controller = loader.getController();
+				        controller.setDoctor(d);
+				        controller.setDoctorInfo();
 				        
 				        if (ReceptionistHbox.getChildren().size() >= 3) {
 				            ReceptionistHbox.getChildren().remove(2);

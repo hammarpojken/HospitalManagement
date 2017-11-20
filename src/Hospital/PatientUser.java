@@ -34,5 +34,9 @@ public class PatientUser extends Person {
 	return null;
 
 }
+	public long getSSN() {
+		return ssn;
+		
+	}
 
 }
