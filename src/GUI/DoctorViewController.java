@@ -87,6 +87,13 @@ public class DoctorViewController {
 	@FXML
 	public void ShowJournal() throws IOException {
 		
+		if(tv.getSelectionModel().getSelectedItem() == null) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("You need to select a patient");
+			alert.showAndWait();
+		} else {
+		
 		Patient p = tv.getSelectionModel().getSelectedItem();
 		FXMLLoader loader = new FXMLLoader();
 
@@ -100,11 +107,14 @@ public class DoctorViewController {
         controller.setParentController(this);
         controller.setTable(this.tv);
         controller.setPatientInfo();
-        
         if (DoctorHbox.getChildren().size() >= 3) {
         	DoctorHbox.getChildren().remove(2);
         }
         DoctorHbox.getChildren().add(page);
+		}
+		tv.getSelectionModel().clearSelection();
+        
+       
 		
 		
 
@@ -134,6 +144,7 @@ public class DoctorViewController {
 	        	DoctorHbox.getChildren().remove(2);
 	        DoctorHbox.getChildren().add(page);
 			}
+		tv.getSelectionModel().clearSelection();
 		
 	}
 	
@@ -143,13 +154,13 @@ public class DoctorViewController {
 		
 		List<Doctor> choices = dbhandler.getDoctors();
 				
-				if(choices != null) {
+				if(choices != null && tv.getSelectionModel().getSelectedItem() != null) {
 					ChoiceDialog<Doctor> dialog = new ChoiceDialog("Doctors", choices);
 					dialog.setTitle("Choice Dialog");
 					dialog.setHeaderText("Assign a doctor to " + tv.getSelectionModel().getSelectedItem().getFname() + " " +
 							tv.getSelectionModel().getSelectedItem().getLname());
 					dialog.setContentText("Choose a doctor:");
-					System.out.println(dialog.getItems().get(0));
+					
 	
 					// Traditional way to get the response value.
 					Optional<Doctor> result = dialog.showAndWait();
@@ -160,7 +171,13 @@ public class DoctorViewController {
 					    long doctorid = result.get().getId();
 					    long patient = tv.getSelectionModel().getSelectedItem().getSsn();
 					    dbhandler.assignDoctor(patient, doctorid);
+					    setPatientTableView();
 					}
+				} else {
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setTitle("Error Dialog");
+					alert.setHeaderText("You need to select a patient");
+					alert.showAndWait();
 				}
 				
 		
@@ -168,8 +185,12 @@ public class DoctorViewController {
 	
 	@FXML
 	public void prescribeMed() {
+		
+		
+		
 		Patient p = tv.getSelectionModel().getSelectedItem();
-
+		System.out.println(p);
+		if(p != null) {
 
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -191,7 +212,12 @@ public class DoctorViewController {
 			e.printStackTrace();
 		}
         
-        
+		} else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error Dialog");
+			alert.setHeaderText("You need to select a patient");
+			alert.showAndWait();
+		}
 		
 	}
 	@FXML

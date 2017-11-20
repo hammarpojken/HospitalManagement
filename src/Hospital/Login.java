@@ -30,9 +30,10 @@ public class Login {
 	}
 	// TODO if user does not exist inform the user.
 	public boolean checkUser() throws SQLException {
-		
-			rs = dbhandler.getUser(this.proffession, this.userName, this.passWord);
 			
+		try {
+			rs = dbhandler.getUser(this.proffession, this.userName, this.passWord);
+			System.out.println(rs);
 			if (rs != null) {
 				 
 				 rs.next();
@@ -52,13 +53,14 @@ public class Login {
 					 
 				 }
 				 
-				
+				 return true;
 			}
 			
-		if(rs != null)
-			return true;
+		} catch (SQLException e) {
+			return false;
+			
+		}
 		return false;
-		
 		
 		
 	}

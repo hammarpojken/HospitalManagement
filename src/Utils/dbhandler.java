@@ -47,7 +47,7 @@ public class dbhandler {
 		} 
 		catch (SQLException e) {
 		
-			e.printStackTrace();
+			
 			return rs = null;
 			
 		}
