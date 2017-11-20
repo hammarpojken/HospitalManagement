@@ -6,6 +6,7 @@ import java.awt.event.FocusListener;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javafx.*;
 
 import javax.security.auth.callback.Callback;
 
@@ -15,13 +16,19 @@ import Hospital.Patient;
 import Hospital.Prescription;
 import Hospital.Test;
 import Utils.dbhandler;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
+
 
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
@@ -34,7 +41,9 @@ import javafx.scene.control.Toggle;
 
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class JournalController {
 	
@@ -49,19 +58,21 @@ public class JournalController {
 	private boolean updateState = true;
 	// Table Views
 	@FXML
-	private TableView<Medicine> tvMedicine;
+	private TableView<Prescription> tvMedicine;
 	@FXML
 	private TableView<Test> tvTests;
 	
 	// Table Columns
 	@FXML
-	private TableColumn<Medicine, String> nameCol;
+	private TableColumn<Prescription, String> nameCol;
 	@FXML
 	private TableColumn<Test, String> testTypeCol;
 	@FXML
-	private TableColumn<Medicine, String> typeCol;
+	private TableColumn<Prescription, String> typeCol;
 	@FXML
-	private TableColumn<Medicine, String> volumeCol;
+	private TableColumn<Prescription, String> volumeCol;
+	@FXML
+	private TableColumn<Prescription, String> test;
 	
 	
 	// Text Fields
@@ -125,10 +136,46 @@ public class JournalController {
 	@FXML
 	private void initialize(){
 		// Table columns initialized
-		nameCol.setCellValueFactory(new PropertyValueFactory<Medicine, String>("name"));
-	    typeCol.setCellValueFactory(new PropertyValueFactory<Medicine, String>("type"));
-	    volumeCol.setCellValueFactory(new PropertyValueFactory<Medicine, String>("volume"));
-	    testTypeCol.setCellValueFactory(new PropertyValueFactory<Test, String>("type"));
+		nameCol.setCellValueFactory(new javafx.util.Callback<TableColumn.CellDataFeatures<Prescription, String>, ObservableValue<String>>() {
+			
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<Prescription, String> param) {
+				
+				return param.getValue().getMedicine().nameProperty();
+			}
+		});
+		
+		typeCol.setCellValueFactory(new javafx.util.Callback<TableColumn.CellDataFeatures<Prescription, String>, ObservableValue<String>>() {
+		
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<Prescription, String> param) {
+				
+				return param.getValue().getMed().get().typeProperty();
+			}
+		});
+		
+	    volumeCol.setCellValueFactory(new javafx.util.Callback<TableColumn.CellDataFeatures<Prescription, String>, ObservableValue<String>>() {
+			
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<Prescription, String> param) {
+				
+				return param.getValue().getMedicine().volumeProperty();
+			}
+		});
+	    
+	   
+	    
+	    test.setCellValueFactory(new javafx.util.Callback<TableColumn.CellDataFeatures<Prescription, String>, ObservableValue<String>>() {
+			
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<Prescription, String> param) {
+				
+				return param.getValue().prescIdProperty().asString();
+			}
+		});
+          
+        
+	    testTypeCol.setCellValueFactory(new PropertyValueFactory<Test, String>("type"));  
 	    
 	    radioMale.setToggleGroup(tglGender);
 	    radioMale.setToggleGroup(tglGender);
@@ -137,6 +184,8 @@ public class JournalController {
 	    
 	    
 	    roomChoice.setItems(dbhandler.getRooms());
+	    
+	    
 	    
 	    //Input control events
 	    
@@ -407,8 +456,8 @@ public class JournalController {
 		else if (currentPatient.getStatus_patient()== false)
 			radioDischarged.setSelected(true);
 		
-		
-		tvMedicine.getItems().setAll(dbhandler.getMedicine(currentPatient.getSsn()));
+		tvMedicine.getItems().setAll(dbhandler.getPatientPrescriptions(currentPatient.getSsn()));
+		//tvMedicine.getItems().setAll(dbhandler.getMedicine(currentPatient.getSsn()));
 		
 		tvTests.getItems().setAll(dbhandler.getTest(currentPatient.getSsn()));
         
@@ -417,6 +466,30 @@ public class JournalController {
 	        
 	        diseasetext.setText(dbhandler.getResultCardInfo(currentPatient.getSsn()).get(0).getDiagnose());
 			}
+        
+	}
+	public void prePopup() {
+		Prescription p =tvMedicine.getSelectionModel().getSelectedItem();
+	
+        try {
+        	FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(DoctorViewController.class.getResource("PrescriptionDialog.fxml"));
+			DialogPane page =  loader.load();
+			PrescriptionPopup controller = loader.getController();
+			controller.setPrescription(p);
+			controller.setinfo();
+			
+			Stage stage = new Stage();
+			Scene scene = new Scene(page);
+			stage.setScene(scene);
+			
+			stage.showAndWait();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
         
 	}
 

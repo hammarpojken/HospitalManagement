@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="611.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.JournalController">
+<BorderPane prefHeight="611.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.JournalController">
    <center>
       <HBox prefHeight="305.0" prefWidth="600.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
@@ -54,14 +54,15 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
-                  <TableView fx:id="tvMedicine" layoutX="8.0" layoutY="38.0" prefHeight="115.0" prefWidth="271.0">
+                  <TableView fx:id="tvMedicine" layoutX="8.0" layoutY="38.0" minWidth="290.0" onMouseClicked="#prePopup" prefHeight="115.0" prefWidth="271.0">
                     <columns>
-                      <TableColumn fx:id="nameCol" editable="false" prefWidth="126.0" text="Name" />
-                      <TableColumn fx:id="typeCol" editable="false" prefWidth="76.0" text="Type" />
-                        <TableColumn fx:id="volumeCol" editable="false" prefWidth="68.0" text="Volume" />
+                      <TableColumn fx:id="test" editable="false" prefWidth="40.0" text="PreID" />
+                        <TableColumn fx:id="nameCol" editable="false" text="Name" />
+                      <TableColumn fx:id="typeCol" editable="false" prefWidth="59.0" text="Type" />
+                        <TableColumn fx:id="volumeCol" prefWidth="91.0" text="Volume" />
                     </columns>
                   </TableView>
-                  <TableView fx:id="tvTests" layoutX="9.0" layoutY="174.0" prefHeight="108.0" prefWidth="269.0">
+                  <TableView fx:id="tvTests" layoutX="9.0" layoutY="174.0" minWidth="290.0" prefHeight="108.0" prefWidth="269.0">
                     <columns>
                       <TableColumn fx:id="testTypeCol" editable="false" prefWidth="123.0" resizable="false" text="Type" />
                     </columns>
@@ -82,7 +83,7 @@
             <ChoiceBox fx:id="roomChoice" layoutX="94.0" layoutY="118.0" prefHeight="25.0" prefWidth="181.0" />
             <TextField fx:id="assignedDoctorText" editable="false" layoutX="94.0" layoutY="156.0" prefWidth="181.0" />
             <TextField fx:id="diseasetext" layoutX="94.0" layoutY="191.0" prefWidth="181.0" />
-            <TextArea fx:id="remarkarea" layoutX="305.0" layoutY="47.0" prefHeight="170.0" prefWidth="261.0" wrapText="true" />
+            <TextArea fx:id="remarkarea" layoutX="305.0" layoutY="47.0" minWidth="290.0" prefHeight="170.0" prefWidth="261.0" wrapText="true" />
             <Button fx:id="buttonUpdate" layoutX="258.0" layoutY="232.0" mnemonicParsing="false" onAction="#updateJournal" prefHeight="25.0" prefWidth="74.0" text="Update" />
             <Label layoutX="305.0" layoutY="31.0" prefHeight="17.0" prefWidth="72.0" text="Remark:" />
             <Label layoutX="17.0" layoutY="122.0" text="Room" />

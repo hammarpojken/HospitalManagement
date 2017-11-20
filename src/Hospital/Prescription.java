@@ -2,57 +2,58 @@ package Hospital;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Prescription {
 	
-	private final SimpleIntegerProperty testId;
+	private final SimpleIntegerProperty prescId;
     private final SimpleLongProperty patientId;
     private final SimpleLongProperty doctorId;
     private final SimpleIntegerProperty medicineId;
     private final SimpleStringProperty prescriptionInfo;
     private final SimpleIntegerProperty withdrawlAmount;
-    private final Medicine med;
+    private final SimpleObjectProperty<Medicine>  med;
     
     
-    public Prescription(int test_id, Long patient_id, Long doctor_id, int medicine_id, String prescription_info, int withdrawl_amount, Medicine med) {
-    	this.testId = new SimpleIntegerProperty(test_id);
+    public Prescription(int prescId, Long patient_id, Long doctor_id, int medicine_id, String prescription_info, int withdrawl_amount, Medicine med) {
+    	this.prescId = new SimpleIntegerProperty(prescId);
     	this.patientId = new SimpleLongProperty(patient_id);
     	this.doctorId = new SimpleLongProperty(doctor_id);
     	this.medicineId = new SimpleIntegerProperty(medicine_id);
     	this.prescriptionInfo = new SimpleStringProperty(prescription_info);
     	this.withdrawlAmount = new SimpleIntegerProperty(withdrawl_amount);
-    	this.med = med;
+    	this.med = new SimpleObjectProperty(med);
     	
     }
     public Prescription(Long patient_id, Long doctor_id, int medicine_id, String prescription_info, int withdrawl_amount, Medicine med) {
-    	this.testId = null;
+    	this.prescId = null;
     	this.patientId = new SimpleLongProperty(patient_id);
     	this.doctorId = new SimpleLongProperty(doctor_id);
     	this.medicineId = new SimpleIntegerProperty(medicine_id);
     	this.prescriptionInfo = new SimpleStringProperty(prescription_info);
     	this.withdrawlAmount = new SimpleIntegerProperty(withdrawl_amount);
-    	this.med = med;
+    	this.med = new SimpleObjectProperty(med);
     	
     }
 
 
-	public final SimpleIntegerProperty testIdProperty() {
-		return this.testId;
+	public final SimpleIntegerProperty prescIdProperty() {
+		return this.prescId;
 	}
 	
 
 
 	public final int getTestId() {
-		return this.testIdProperty().get();
+		return this.prescIdProperty().get();
 		
 		
 	}
 	
 
 
-	public final void setTestId(final int testId) {
-		this.testIdProperty().set(testId);
+	public final void setTestId(final int prescId) {
+		this.prescIdProperty().set(prescId);
 	}
 	
 
@@ -144,7 +145,13 @@ public class Prescription {
 	public final void setWithdrawlAmount(final int withdrawlAmount) {
 		this.withdrawlAmountProperty().set(withdrawlAmount);
 	}
+	public SimpleObjectProperty<Medicine> getMed() {
+		return med;
+	}
 	
+	public Medicine getMedicine() {
+		return med.get();
+	}
 
 
 }

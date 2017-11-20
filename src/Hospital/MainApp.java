@@ -37,7 +37,7 @@ public class MainApp extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("../GUI/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
-
+            
             // Show the scene containing the root layout.
             RootLayoutController con = loader.getController();
             con.setMainApp(this);

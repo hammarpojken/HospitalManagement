@@ -621,8 +621,39 @@ public class dbhandler {
 		return data;
 		
 	}
+		public static ObservableList<Prescription> getPatientPrescriptions(Long ssn) {
+			
+			ObservableList<Prescription> data = FXCollections.observableArrayList();
+			Connection con;
+			ResultSet rs;
+			
+		try {
+			con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "root");
+			Statement st = con.createStatement();
+			 rs = st.executeQuery("SELECT * FROM mydb.prescription join medicine on prescription.medicine = medicine.idmedicine where prescription.patientid = " + ssn);
+			 
+			 while(rs.next()){
+				 data.add(new Prescription(rs.getInt("idprescription"),rs.getLong("patientid"), rs.getLong("doctorid"), rs.getInt("medicine"),rs.getString("prescription_info"), rs.getInt("withdrawl_amount"),
+						 new Medicine(rs.getInt("idmedicine"), rs.getString("name"), rs.getString("type"), rs.getString("volume"), rs.getDouble("price"))));
+						
+				 
+				 
+			 }
+			 
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+
+		}
+		return data;
 		
-		
+	}
+			
 }
+		
+		
+
 			
 				
