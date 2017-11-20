@@ -19,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -51,6 +52,8 @@ public class ReceptionistViewController {
 	private Button appointment;
 	@FXML
 	private Button showSchedule;	
+	@FXML
+	private TextField searchBox;
 	
 	@FXML
 	public void initialize() {
@@ -154,9 +157,29 @@ public class ReceptionistViewController {
 				         
 					}
 				}
-				
+						
 		
 	}
+	
+	@FXML
+	public void searchPatients() {
+		String search = searchBox.getText();
+		
+
+			setPatientTableView(search);
+	}
+	
+	public void setPatientTableView(String search) {
+		data = dbhandler.getPatients(search);
+		
+		if(data !=null) {
+			tv.getItems().setAll(data);
+	
+		}
+	}
+	
+	
+	
 	
 	
 	
