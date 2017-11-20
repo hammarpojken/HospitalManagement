@@ -33,6 +33,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -41,6 +42,7 @@ import javafx.scene.control.Toggle;
 
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -186,7 +188,17 @@ public class JournalController {
 	    
 	    roomChoice.setItems(dbhandler.getRooms());
 	    
+	    tvMedicine.setRowFactory( tv -> {
+	        TableRow<Prescription> row = new TableRow<>();
+	        row.setOnMouseClicked(event -> {
+	            if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+	                this.prePopup(event);
+	            }
+	        });
+	        return row ;
+	    });
 	    
+	    //tvMedicine.setOnMouseClicked(null);
 	    
 	    //Input control events
 	    
@@ -469,10 +481,11 @@ public class JournalController {
 			}
         
 	}
-	public void prePopup() {
+	public void prePopup(MouseEvent event) {
 		Prescription p =tvMedicine.getSelectionModel().getSelectedItem();
 	
         try {
+        	
         	FXMLLoader loader = new FXMLLoader();
             loader.setLocation(DoctorViewController.class.getResource("PrescriptionDialog.fxml"));
 			DialogPane page =  loader.load();

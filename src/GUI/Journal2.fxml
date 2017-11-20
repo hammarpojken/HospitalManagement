@@ -54,7 +54,7 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
-                  <TableView fx:id="tvMedicine" layoutX="8.0" layoutY="38.0" minWidth="290.0" onMouseClicked="#prePopup" prefHeight="115.0" prefWidth="271.0">
+                  <TableView fx:id="tvMedicine" layoutX="8.0" layoutY="38.0" minWidth="290.0" prefHeight="115.0" prefWidth="271.0">
                     <columns>
                       <TableColumn fx:id="test" editable="false" prefWidth="40.0" text="PreID" />
                         <TableColumn fx:id="nameCol" editable="false" text="Name" />
