@@ -43,6 +43,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class JournalController {
@@ -479,9 +480,13 @@ public class JournalController {
 			controller.setPrescription(p);
 			controller.setinfo();
 			
+			
 			Stage stage = new Stage();
 			Scene scene = new Scene(page);
+			controller.setStage(stage);
 			stage.setScene(scene);
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setResizable(false);
 			
 			stage.showAndWait();
 			
