@@ -87,6 +87,13 @@ public class LoginViewController {
 			         controller.setPatientTableView();
 			         mainApp.getRoot().setCenter(journal);
 				}
+				else if(role.equals("Nurse")) {
+			         loader.setLocation(LoginViewController.class.getResource("NurseView.fxml"));
+			         BorderPane journal = (BorderPane) loader.load();
+			         NurseViewController controller = loader.getController();
+			         controller.setPatientTableView();
+			         mainApp.getRoot().setCenter(journal);
+				}
 				else if(role.equals("Patient")) {
 			         loader.setLocation(LoginViewController.class.getResource("../GUI/PatientView.fxml"));
 			         Pane journal = (Pane) loader.load();

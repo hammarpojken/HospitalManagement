@@ -6,12 +6,14 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 
 public class RegisterViewController {
 
@@ -266,6 +268,11 @@ public class RegisterViewController {
 		Patient p = new Patient(Long.parseLong(ssntext.getText()), fNametext.getText(), lNametext.getText(), Long.parseLong(phonetext.getText()), adresstext.getText(),
 				Integer.parseInt(ziptext.getText()), tglGender.getSelectedToggle().getUserData().toString(), bloodType.getSelectionModel().getSelectedItem());
 		dbhandler.savePatient(p);
+		
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Confirmation");
+		alert.setHeaderText("Patient has been saved");
+		alert.showAndWait();
 	
 	}
 	

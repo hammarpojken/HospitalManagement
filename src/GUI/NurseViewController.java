@@ -6,12 +6,9 @@ import java.util.Optional;
 
 import Hospital.Doctor;
 import Hospital.MainApp;
+import Hospital.Nurse;
 import Hospital.Patient;
-import Hospital.Receptionist;
 import Utils.dbhandler;
-import javafx.beans.property.SimpleLongProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,18 +21,21 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
-public class ReceptionistViewController {
-	
-	private Receptionist rec;
-	private MainApp mainapp;
+public class NurseViewController {
+
 	private BorderPane journalLayout;
 	private ObservableList<Patient> data;
+	private MainApp mainapp;
+	private Nurse nurse;
 	
-
+	public ObservableList<Patient> getData() {
+		return data;
+	}
+	
 	@FXML
-	private HBox ReceptionistHbox;
+	private HBox NurseHbox;
 	@FXML
-	private BorderPane ReceptionistViewPane;
+	private BorderPane NurseViewPane;
 	@FXML
 	private TableView<Patient> tv;
 	@FXML
@@ -43,13 +43,9 @@ public class ReceptionistViewController {
 	@FXML
 	private TableColumn<Patient, String> lnameCol;
 	@FXML
-	private Button registerPatient;
-	@FXML
 	private Button showJournal;
 	@FXML
 	private Button searchDoctor;
-	@FXML
-	private Button appointment;
 	@FXML
 	private Button showSchedule;	
 	@FXML
@@ -59,9 +55,7 @@ public class ReceptionistViewController {
 	public void initialize() {
 		nameCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("fname"));
 	    lnameCol.setCellValueFactory(new PropertyValueFactory<Patient, String>("lname"));
-	    
-	}
-	
+}
 
 	@FXML
 	public void ShowJournal() throws IOException {
@@ -76,16 +70,15 @@ public class ReceptionistViewController {
         JournalController controller = loader.getController();
         controller.setPatient(p);
         
-        controller.setParentControllerRec(this);
+        controller.setParentControllerNurse(this);
         controller.setTable(this.tv);
         controller.setPatientInfo();
         
-        if (ReceptionistHbox.getChildren().size() >= 3) {
-        	ReceptionistHbox.getChildren().remove(2);
+        if (NurseHbox.getChildren().size() >= 3) {
+        	NurseHbox.getChildren().remove(2);
         }
-        ReceptionistHbox.getChildren().add(page);
-        
-	}
+        NurseHbox.getChildren().add(page);
+		}
 	
 	public void setPatientTableView() {
 		data = dbhandler.getPatients();
@@ -99,27 +92,7 @@ public class ReceptionistViewController {
 	public void setMainApp(MainApp mainapp) {
 		this.mainapp = mainapp; 
 	}
-	public ObservableList<Patient> getData() {
-		return data;
-	}
-	
-	public void registerPatient() throws IOException {
 
-		FXMLLoader loader = new FXMLLoader();
-
-		loader.setLocation(ReceptionistViewController.class.getResource("RegisterView.fxml"));
-        BorderPane page = (BorderPane) loader.load();
-        
-        RegisterViewController controller = loader.getController();
-        
-        if (ReceptionistHbox.getChildren().size() >= 3) {
-            ReceptionistHbox.getChildren().remove(2);
-        }
-         ReceptionistHbox.getChildren().add(page);
-       
-	
-	}
-	
 	@FXML
 	public void searchDoctor() throws IOException {
 		
@@ -141,7 +114,7 @@ public class ReceptionistViewController {
 						
 						FXMLLoader loader = new FXMLLoader();
 
-						loader.setLocation(ReceptionistViewController.class.getResource("DoctorInfo.fxml"));
+						loader.setLocation(NurseViewController.class.getResource("DoctorInfo.fxml"));
 				        BorderPane page = (BorderPane) loader.load();
 				        
 				        Doctor d = result.get();
@@ -149,10 +122,10 @@ public class ReceptionistViewController {
 				        controller.setDoctor(d);
 				        controller.setDoctorInfo();
 				        
-				        if (ReceptionistHbox.getChildren().size() >= 3) {
-				            ReceptionistHbox.getChildren().remove(2);
+				        if (NurseHbox.getChildren().size() >= 3) {
+				            NurseHbox.getChildren().remove(2);
 				        }
-				         ReceptionistHbox.getChildren().add(page);
+				         NurseHbox.getChildren().add(page);
 				         
 				         
 					}
@@ -176,16 +149,19 @@ public class ReceptionistViewController {
 			tv.getItems().setAll(data);
 	
 		}
-		
-		
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-}

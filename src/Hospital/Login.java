@@ -47,6 +47,11 @@ public class Login {
 					 rec = new Receptionist(rs.getString("fname"), rs.getString("lname"), rs.getString("role"));
 					 
 				 }
+				 else if (rs.getString("role").equals("Nurse")) {
+					 
+					 rec = new Receptionist(rs.getString("fname"), rs.getString("lname"), rs.getString("role"));
+					 
+				 }
 				 else if (rs.getString("role").equals("Patient")) {
 					 
 					 pat = new PatientUser(rs.getString("fname"), rs.getString("lname"), rs.getString("role"), rs.getLong("ssn"));

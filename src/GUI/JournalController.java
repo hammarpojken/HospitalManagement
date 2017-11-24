@@ -23,6 +23,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Dialog;
@@ -41,6 +42,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -55,6 +57,7 @@ public class JournalController {
 	private TableView<Patient> tv;
 	private DoctorViewController dc;
 	private ReceptionistViewController rec;
+	private NurseViewController nurse;
 	
 	//journal components
 	@FXML
@@ -526,7 +529,10 @@ public class JournalController {
 		dc.setPatientTableView();
 		currentPatient.setRoom(newroom);
 		
-		
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Confirmation");
+		alert.setHeaderText("Patient has been updated");
+		alert.showAndWait();
 		
 	
 		
@@ -543,6 +549,9 @@ public class JournalController {
 	}
 	public void setParentControllerRec(ReceptionistViewController rec) {
 		this.rec = rec;
+	}
+	public void setParentControllerNurse(NurseViewController nurse) {
+		this.nurse = nurse;
 	}
 	@FXML
 	public void getCity() {
