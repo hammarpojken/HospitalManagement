@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="413.0" prefWidth="422.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RegisterViewController">
+<BorderPane prefHeight="413.0" prefWidth="422.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RegisterViewController">
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -20,7 +20,7 @@
                   <TextField fx:id="lNametext" layoutX="94.0" layoutY="73.0" prefHeight="25.0" prefWidth="181.0" />
                   <TextField fx:id="ssntext" layoutX="94.0" layoutY="107.0" prefHeight="25.0" prefWidth="181.0" />
                   <TextField fx:id="adresstext" layoutX="94.0" layoutY="138.0" prefHeight="25.0" prefWidth="181.0" />
-                  <TextField fx:id="ziptext" layoutX="94.0" layoutY="173.0" prefHeight="25.0" prefWidth="58.0" />
+                  <TextField fx:id="ziptext" layoutX="94.0" layoutY="173.0" onKeyReleased="#getCity" prefHeight="25.0" prefWidth="58.0" />
                   <TextField fx:id="citytext" editable="false" layoutX="159.0" layoutY="173.0" prefHeight="25.0" prefWidth="114.0" />
                   <TextField fx:id="phonetext" layoutX="94.0" layoutY="206.0" prefHeight="25.0" prefWidth="181.0" />
                   <ChoiceBox fx:id="bloodType" layoutX="94.0" layoutY="238.0" prefHeight="25.0" prefWidth="181.0" />

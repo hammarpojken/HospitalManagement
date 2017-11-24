@@ -261,7 +261,7 @@ public class RegisterViewController {
 	
 	
 }
-	
+	// Creating a new patient
 	@FXML
 	public void createPatient() {
 
@@ -273,9 +273,17 @@ public class RegisterViewController {
 		alert.setTitle("Confirmation");
 		alert.setHeaderText("Patient has been saved");
 		alert.showAndWait();
+		
+		rec.setPatientTableView();
 	
 	}
-	
+	// Linking the zip to a city
+	@FXML
+	public void getCity() {
+		int zip = Integer.parseInt(ziptext.getText());
+		citytext.setText(dbhandler.getCity(zip));
+		
+	}
 	
 	
 	

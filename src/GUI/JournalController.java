@@ -534,8 +534,7 @@ public class JournalController {
 		alert.setHeaderText("Patient has been updated");
 		alert.showAndWait();
 		
-	
-		
+				
 	}
 	public void setDoctor(Doctor doc) {
 		this.doctor = doc;
